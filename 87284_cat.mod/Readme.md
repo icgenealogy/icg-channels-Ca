@@ -1,0 +1,19 @@
+# ICGenealogy Channel: 87284\_cat.mod
+
+## Details
+
+Name | Description
+---- | -----------
+ModelDB id | [87284](http://senselab.med.yale.edu/ModelDB/ShowModel.cshtml?model=87284)
+ICG id | [2467](http://icg.neurotheory.ox.ac.uk/channels/3/2467)
+ICG Class | [Ca](http://icg.neurotheory.ox.ac.uk/channels/3)
+
+## Description
+
+This is a single channel model file that was originally part of a [published model on the ModelDB website](http://senselab.med.yale.edu/mModelDB/ShowModel.cshtml?model=87284).
+
+The file [87284\_cat.mod](87284_cat.mod) was extrated from [the ModelDB repository](http://senselab.med.yale.edu/ModelDB/ShowModel.cshtml?model=87284), and committed in its original form.
+
+## Usage
+
+See the [icg-channel super-repository](https://github.com/icgenealogy/icg-channels) for more information.

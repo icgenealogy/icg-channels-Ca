@@ -1,0 +1,23 @@
+# ICGenealogy Channel: 151458\_cat.mod
+
+## Details
+
+Name | Description
+---- | -----------
+ModelDB id | [151458](http://senselab.med.yale.edu/ModelDB/ShowModel.cshtml?model=151458)
+ICG id | [3042](http://icg.neurotheory.ox.ac.uk/channels/3/3042)
+ICG Class | [Ca](http://icg.neurotheory.ox.ac.uk/channels/3)
+
+## Description
+
+This is a single channel model file that was originally part of a [published model on the ModelDB website](http://senselab.med.yale.edu/mModelDB/ShowModel.cshtml?model=151458).
+
+The file [151458\_cat.mod](151458_cat.mod) was extrated from [the ModelDB repository](http://senselab.med.yale.edu/ModelDB/ShowModel.cshtml?model=151458), and committed in its original form.
+
+## Note: Additional dependencies
+This model needs additional files to run. These are contained in the repository [icg-channels-customcode](https://github.com/icgenealogy/icg-channels-customcode), please check there for instructions on how to include them.
+
+
+## Usage
+
+See the [icg-channel super-repository](https://github.com/icgenealogy/icg-channels) for more information.
