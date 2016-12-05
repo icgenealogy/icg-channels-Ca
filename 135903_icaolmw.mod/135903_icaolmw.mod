@@ -16,7 +16,7 @@ COMMENT
 ENDCOMMENT
 NEURON {
 	SUFFIX ICaolmw
-	USEION ca WRITE ica
+	USEION ca READ eca WRITE ica
 }
 	
 UNITS {
@@ -27,10 +27,11 @@ UNITS {
 
 PARAMETER {
     gca = 1    (mS/cm2)
-    eca = 120  (mV)
+    :eca = 120  (mV)
 }
     
 ASSIGNED { 
+    eca (mV)
     ica (mA/cm2)    
     v   (mV)
 }
@@ -39,4 +40,4 @@ BREAKPOINT { ica = (1e-3) * gca * mcainf(v)^2 * (v-eca) }
 
 FUNCTION mcainf(v(mV)) { mcainf = fun2(v, -20, 1,  -9)*1(ms) }
 
-INCLUDE "aux_fun.inc"
+INCLUDE "custom_code/inc_files/135903_aux_fun.inc"

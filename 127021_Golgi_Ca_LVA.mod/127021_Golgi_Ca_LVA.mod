@@ -28,9 +28,10 @@ INDEPENDENT {t FROM 0 TO 1 WITH 1 (ms)}
 
 NEURON {
         SUFFIX Golgi_Ca_LVA
-        USEION ca2 READ ca2i, ca2o WRITE ica2 VALENCE 2
+        :USEION ca2 READ ca2i, ca2o WRITE ica2 VALENCE 2
+        USEION ca READ cai,cao WRITE ica
         RANGE g, gca2bar, m_inf, tau_m, h_inf, tau_h, shift
-	RANGE ica2, m ,h, ca2rev
+	RANGE ica, m ,h, carev
 	RANGE phi_m, phi_h
 	RANGE v0_m_inf,v0_h_inf,k_m_inf,k_h_inf,C_tau_m
 	RANGE A_tau_m,v0_tau_m1,v0_tau_m2,k_tau_m1,k_tau_m2
@@ -51,11 +52,11 @@ UNITS {
 PARAMETER {
         v               (mV)
         celsius (degC)
-        eca2 (mV)
+        eca (mV)
 	   gca2bar  = 2.5e-4 (mho/cm2)
         shift   = 2     (mV)            : screening charge for Ca_o = 2 mM
-        ca2i  (mM)           : adjusted for eca=120 mV
-        ca2o  (mM)
+        cai  (mM)           : adjusted for eca=120 mV
+        cao  (mM)
 	
 	v0_m_inf = -50 (mV)
 	v0_h_inf = -78 (mV)
@@ -84,8 +85,8 @@ STATE {
 }
 
 ASSIGNED {
-        ica2     (mA/cm2)
-        ca2rev   (mV)
+        ica     (mA/cm2)
+        carev   (mV)
 	g        (mho/cm2) 
         m_inf
         tau_m   (ms)
@@ -97,9 +98,9 @@ ASSIGNED {
 
 BREAKPOINT {
         SOLVE ca2state METHOD cnexp
-        ca2rev = (1e3) * (R*(celsius+273.15))/(2*FARADAY) * log (ca2o/ca2i)
+        carev = (1e3) * (R*(celsius+273.15))/(2*FARADAY) * log (cao/cai)
         g = gca2bar * m*m*h
-        ica2 = gca2bar * m*m*h * (v-ca2rev)
+        ica = gca2bar * m*m*h * (v-carev)
 }
 
 DERIVATIVE ca2state {

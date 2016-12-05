@@ -14,8 +14,8 @@ UNITS {
 NEURON {
 	SUFFIX can
 	USEION ca READ cai, cao WRITE ica
-	RANGE pbar, ica
-		POINTER mu
+	RANGE pbar, ica, mu
+		:POINTER mu
 }
 
 PARAMETER {
@@ -24,7 +24,7 @@ PARAMETER {
 	mvhalf = -8.7	(mV)		: Churchill 1998, fig 5
 	mslope = -7.4	(mV)		: Churchill 1998, fig 5
 	mshift = 0	(mV)
-
+        mu = 1
 	hvhalf = -74.8	(mV)		: McNaughton 1997, Table 1
 	hslope = 6.5	(mV)		: McNaughton 1997, Table 1
 	hshift = 0	(mV)
@@ -53,7 +53,7 @@ ASSIGNED {
 
     hinf
 
-		mu (1)
+	:	mu (1)
 }
 
 STATE {

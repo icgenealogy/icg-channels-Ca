@@ -19,7 +19,7 @@ ENDCOMMENT
 
 NEURON {
 	SUFFIX icapr
-	USEION ca WRITE ica
+	USEION ca READ eca WRITE ica
 	RANGE gca, ica
 }
 	
@@ -33,11 +33,11 @@ UNITS {
 PARAMETER {
 
     gca = 10  (mS/cm2)
-    eca = 80  (mV)
+    :eca = 80  (mV)
 }
     
 ASSIGNED { 
-
+    eca (mV)
     ica  (mA/cm2)    
     v    (mV)
     sinf (1)
@@ -75,4 +75,4 @@ PROCEDURE rates(v(mV)) { LOCAL a,b
     taus = 1.0/(a+b)
 }
 
-INCLUDE "aux_fun.inc"
+INCLUDE "custom_code/inc_files/139421_aux_fun.inc"

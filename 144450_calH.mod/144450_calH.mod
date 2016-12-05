@@ -12,7 +12,7 @@ NEURON {
 	SUFFIX calH
 	USEION ca READ cai, cao WRITE ica
         RANGE gcalbar, m, h, ica
-	RANGE inf, fac, tau
+	RANGE inf, fac, tau, ecan
 }
 
 UNITS {
@@ -27,7 +27,7 @@ UNITS {
 
 PARAMETER { 
         ki     = 0.1  (mM)            : middle point of inactivation fct
-        gcalbar = 0     (mho/cm2) : initialized conductance
+        gcalbar = 1.0     (mho/cm2) : initialized conductance
 }
 
 

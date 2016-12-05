@@ -7,8 +7,8 @@ ENDCOMMENT
 NEURON {
 	SUFFIX lva
 	: NONSPECIFIC_CURRENT i
-	USEION ca WRITE  ica
-	RANGE Erev,g, gbar, i
+	USEION ca READ eca WRITE ica
+	RANGE g, gbar
 	RANGE k, tee, alpha_1, alpha_2
 }
 
@@ -21,13 +21,14 @@ UNITS {
 PARAMETER {
 	gbar = 166e-6	(S/cm2) < 0, 1e9 > : Quadroni and Knopfel use 166e-6
 					   : Wang et al used 0.4e-3
-	Erev = 80 (mV)	: orig from Wang XJ et al 1991 was 120
+	:Erev = 80 (mV)	: orig from Wang XJ et al 1991 was 120
 			: Quadroni and Knopfel 1994 table 1 use 80 instead
 }
 
 ASSIGNED {
+        eca (mV)
 	ica (mA/cm2)
-	i (mA/cm2)
+	:i (mA/cm2)
 	v (mV)
 	g (S/cm2)
 	k
@@ -41,8 +42,8 @@ STATE {	m h d }
 BREAKPOINT {
 	SOLVE states METHOD cnexp
 	g = gbar * m^3 * h
-	ica = g * (v - Erev)
-	i = ica	: used only to display the value of the current (section.i_lva(0.5))
+	ica = g * (v - eca)
+	:i = ica	: used only to display the value of the current (section.i_lva(0.5))
 }
 
 INITIAL {

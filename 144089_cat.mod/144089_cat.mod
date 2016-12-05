@@ -7,10 +7,10 @@ TITLE t-type calcium channel with high threshold for activation
 
 NEURON {
 	SUFFIX cat
-	USEION ca READ cai, eca    
+	USEION ca READ cai, eca WRITE ica   
         :USEION Ca WRITE iCa VALENCE 2
         : The T-current does not activate calcium-dependent K-currents
-        RANGE gcatbar, iCa
+        :RANGE gcatbar, iCa
         RANGE gcatbar, ica
 	GLOBAL hinf, minf
 }
@@ -26,7 +26,7 @@ UNITS {
 
 PARAMETER {           :parameters that can be entered when function is called in cell-setup 
 :	gcatbar = 0.1e-7   (cm/s)  : initialized conductance
-	gcatbar = 0   (mho/cm2)  : initialized conductance
+	gcatbar = 1.0   (mho/cm2)  : initialized conductance
 	zetam = -3
 	zetah = 5.2
 	vhalfm =-36 (mV)

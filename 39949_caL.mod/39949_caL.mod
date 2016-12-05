@@ -21,9 +21,9 @@ ENDCOMMENT
 NEURON {
 	SUFFIX caL
 	USEION ca READ cai, cao WRITE ica
-	RANGE Pbar, P, i
+	RANGE Pbar, P, i, mu
 	GLOBAL minf, mtau
-	POINTER mu : hoc level DAsyn[i].msg--see dasyn.mod
+	:POINTER mu : hoc level DAsyn[i].msg--see dasyn.mod
 }
 
 UNITS {
@@ -48,6 +48,7 @@ PARAMETER {
 	Pbar = 42	(nanometer/s)	<0,1e9>
 	cao = 2		(mM)
 	cai = 10e-6	(mM)
+	mu = 1
 }
 
 ASSIGNED {
@@ -61,7 +62,7 @@ ASSIGNED {
 	zFRT	(1/volt)
 	zVFRT	(1)
 	ghk	(coulomb/liter)
-	mu	(1)
+	:mu	(1)
 }
 
 

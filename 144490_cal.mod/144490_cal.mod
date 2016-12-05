@@ -14,7 +14,7 @@ UNITS {
 PARAMETER {		:parameters that can be entered when function is called in cell-setup 
 	  v             (mV)
 	  celsius = 34	(degC)
-	  gcalbar = 0   (mho/cm2)   : initialized conductance
+	  gcalbar = 1.0   (mho/cm2)   : initialized conductance
 	  ki  = 0.001   (mM)  
 	  cai = 5.e-5   (mM)        : initial internal Ca++ concentration
 	  cao = 2       (mM)        : initial external Ca++ concentration

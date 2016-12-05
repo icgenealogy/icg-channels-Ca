@@ -15,7 +15,7 @@ UNITS {
 PARAMETER {
 	v (mV)
 	celsius 	(degC)
-	glcabar		 (mho/cm2)
+	glcabar = 1.0		 (mho/cm2)
 	ki=.001 (mM)
 	cai (mM)
 	cao (mM)
@@ -25,9 +25,9 @@ PARAMETER {
 
 NEURON {
 	SUFFIX lca
-	USEION lca READ elca WRITE ilca VALENCE 2
-	USEION ca READ cai, cao VALENCE 2 
-        RANGE glcabar, cai, ilca, elca
+	:USEION lca READ elca WRITE ilca VALENCE 2
+	USEION ca READ cai, cao WRITE ica 
+        RANGE glcabar, cai
         GLOBAL minf,matu
 }
 
@@ -36,11 +36,11 @@ STATE {
 }
 
 ASSIGNED {
-	ilca (mA/cm2)
+	ica (mA/cm2)
         glca (mho/cm2)
         minf
         matu   (ms)
-	elca (mV)   
+	eca (mV)   
 
 }
 
@@ -55,7 +55,7 @@ INITIAL {
 BREAKPOINT {
 	SOLVE state METHOD cnexp
 	glca = glcabar*m*m*h2(cai)
-	ilca = glca*ghk(v,cai,cao)
+	ica = glca*ghk(v,cai,cao)
 
 }
 

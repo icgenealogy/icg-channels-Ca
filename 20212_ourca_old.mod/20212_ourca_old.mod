@@ -20,7 +20,7 @@ PARAMETER {
         v (mV)
         celsius = 34	(degC)
 	dt (ms)
-        gcabar=0 (mho/cm2)
+        gcabar=1.0 (mho/cm2)
 	eca = 140 (mV)
         }
 

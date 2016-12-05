@@ -19,7 +19,7 @@ UNITS {
 PARAMETER {              : parameters that can be entered when function is called in cell-setup
     v             (mV)
     celsius = 34	(degC)
-    gcabar = 0    (mho/cm2) : initialized conductance
+    gcabar = 1.0    (mho/cm2) : initialized conductance
 	  eca = 140     (mV)      : Ca++ reversal potential
 }  
 

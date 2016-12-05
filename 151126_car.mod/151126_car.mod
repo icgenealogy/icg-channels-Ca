@@ -9,9 +9,9 @@ TITLE Ca R-type channel with medium threshold for activation
 
 NEURON {
 	SUFFIX car
-	USEION ca READ cai, cao WRITE ica
+	USEION ca READ eca, cai, cao WRITE ica
 :	USEION Ca WRITE iCa VALENCE 2
-        RANGE gcabar, m, h,ica
+        RANGE gcabar, m, h
 	RANGE inf, fac, tau
 }
 
@@ -26,6 +26,7 @@ UNITS {
 
 
 ASSIGNED {               : parameters needed to solve DE
+        eca (mV)
 	ica (mA/cm2)
 :	iCa (mA/cm2)
         inf[2]
@@ -39,8 +40,8 @@ ASSIGNED {               : parameters needed to solve DE
 
 
 PARAMETER {              : parameters that can be entered when function is called in cell-setup
-        gcabar = 0      (mho/cm2) : initialized conductance
-        eca = 140       (mV)      : Ca++ reversal potential
+        gcabar = 1.0      (mho/cm2) : initialized conductance
+        :eca = 140       (mV)      : Ca++ reversal potential
 
        
 }  

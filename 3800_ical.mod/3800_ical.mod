@@ -3,7 +3,7 @@ TITLE Cardiac L-type Calcium channel
 
 NEURON {
 	SUFFIX ICaL
-	USEION ca READ cai WRITE ica
+	USEION ca READ eca,cai WRITE ica
 	RANGE gCaL, ica
 	GLOBAL minf, ninf, hinf, mtau, ntau 
 }
@@ -25,6 +25,7 @@ STATE {
 }
 
 ASSIGNED {
+        eca (mV)
 	v (mV)
 	celsius (degC) : 37
         cai (mM)
@@ -44,7 +45,7 @@ INITIAL {
 
 BREAKPOINT {
 	SOLVE states METHOD derivimplicit
-	ica = gCaL*m*n*h*(v - 65)
+	ica = gCaL*m*n*h*(v - eca)
 }
 
 DERIVATIVE states {

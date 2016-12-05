@@ -6,7 +6,7 @@ TITLE T-calcium channel
 NEURON {
 	SUFFIX cat
 	USEION ca READ cai,cao WRITE ica
-        RANGE gbar, ica
+        RANGE gbar
 	GLOBAL m_tau, h_tau, minf, hinf
 }
 

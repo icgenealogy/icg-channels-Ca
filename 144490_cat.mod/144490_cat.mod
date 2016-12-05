@@ -16,7 +16,7 @@ PARAMETER {           :parameters that can be entered when function is called in
 	  v             (mV)
     tBase = 23.5  (degC)
 	  celsius = 22  (degC)
-	  gcatbar = 0   (mho/cm2)  : initialized conductance
+	  gcatbar = 1.0   (mho/cm2)  : initialized conductance
 	  ki = 0.001    (mM)
 	  cai = 5.e-5   (mM)       : initial internal Ca++ concentration
 	  cao = 2       (mM)       : initial external Ca++ concentration
@@ -27,8 +27,8 @@ PARAMETER {           :parameters that can be entered when function is called in
 
 NEURON {
 	  SUFFIX cat
-	  USEION ca READ cai,cao 
-    USEION Ca WRITE iCa VALENCE 2
+	  USEION ca READ cai,cao WRITE ica 
+    :USEION Ca WRITE iCa VALENCE 2
     : The T-current does not activate calcium-dependent currents.
     : The construction with dummy ion Ca prevents the updating of the 
     : internal calcium concentration. 
@@ -38,7 +38,7 @@ NEURON {
 STATE {	m h }  : unknown activation and inactivation parameters to be solved in the DEs 
 
 ASSIGNED {     : parameters needed to solve DE
-	  iCa  (mA/cm2)
+	  ica  (mA/cm2)
     gcat (mho/cm2) 
     gmax (mho/cm2) 
     minf
@@ -59,7 +59,7 @@ INITIAL {
 BREAKPOINT {
 	  SOLVE states METHOD cnexp
 	  gcat = gcatbar*m*m*h*h2(cai) : maximum channel permeability
-	  iCa = gcat*ghk(v,cai,cao)    : dummy calcium current induced by this channel
+	  ica = gcat*ghk(v,cai,cao)    : dummy calcium current induced by this channel
     if (gcat > gmax) {
         gmax = gcat
     }

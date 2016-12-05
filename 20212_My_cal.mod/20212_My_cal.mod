@@ -22,7 +22,7 @@ PARAMETER {
         dt  (ms)
 	v (mV)
 	celsius = 22.7	(degC)
-	gcalbar = 0 (mho/cm2)
+	gcalbar = 1.0 (mho/cm2)
 	cai = 5.e-5 (mM)
 	cao = 2  (mM)
         tadjm

@@ -15,16 +15,17 @@ UNITS {
 
 NEURON {
         SUFFIX ICa
-        USEION ca WRITE ica
-        RANGE gcabar, gca, ica, m
+        USEION ca READ eca WRITE ica
+        RANGE gcabar, gca, m
 }
  
 PARAMETER {
         gcabar 	= 0.0015 (mho/cm2)	<0,1e9>	
-	eca	= 120 	 (mV)
+	:eca	= 120 	 (mV)
 }
  
 ASSIGNED {
+        eca (mV)
         v 	(mV)
 	gca 	(mho/cm2)
         ica 	(mA/cm2)

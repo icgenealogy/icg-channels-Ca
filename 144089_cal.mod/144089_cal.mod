@@ -23,7 +23,7 @@ UNITS {
 
 PARAMETER {     
   	ki     = 0.025  (mM)            : middle point of inactivation fct
-	gcalbar = 0   (mho/cm2)  : initialized conductance
+	gcalbar = 1.0   (mho/cm2)  : initialized conductance
 : 	taumin  = 100    (ms)            : minimal value of the time cst
  	taumin  = 180    (ms)            : minimal value of the time cst
         vhalf = -1 (mV)       :half potential for activation 

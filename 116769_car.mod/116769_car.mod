@@ -10,11 +10,11 @@ TITLE Ca R-type channel with high threshold for activation
 
 NEURON {
 	SUFFIX car
-	USEION ca  WRITE ica
+	USEION ca READ eca WRITE ica
     RANGE gcabar, m, h, g, p, eca
 	RANGE inf, fac, tau, k
 	GLOBAL irtype
-	EXTERNAL Area_canmda
+	:EXTERNAL Area_canmda
 }
 
 UNITS {
@@ -29,16 +29,17 @@ PARAMETER {	: parameters that can be entered when function is called in cell-set
     celsius = 30	(degC)
 	dt              (ms)
     gcabar = 0.351  (mho/cm2) : initialized conductance 
-	eca = 10		(mV)      : Ca++ reversal potential was choosen to best fit the GHK between -40 and -10 mV	
+	:eca = 10		(mV)      : Ca++ reversal potential was choosen to best fit the GHK between -40 and -10 mV	
 
-	Area            (cm2)
+	Area = 1.11e-8 (cm2)           
 	k = 1e-06		(mA/nA)
 
         }  
 
 STATE {	m h }               
 
-ASSIGNED {                  
+ASSIGNED {
+        eca (mV)                  
 	ica             (mA/cm2)
     inf[2]
 	fac[2]
@@ -58,7 +59,7 @@ BREAKPOINT {
 	}
 
 INITIAL {
-	Area = Area_canmda
+	:Area = Area_canmda
     m = 0                               : initial activation parameter value
 	h = 0.5                             : initial inactivation parameter value
 	states()

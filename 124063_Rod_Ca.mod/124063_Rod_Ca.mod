@@ -5,10 +5,11 @@ NEURON
 {
 	SUFFIX Ca
 	
-	USEION Ca WRITE iCa VALENCE 2
+	:USEION Ca WRITE iCa VALENCE 2
+        USEION ca READ eca WRITE ica
         RANGE gCabar,VhalfCam,SCam
         RANGE VhalfCah,SCah
-        RANGE eCa,aomCa,bomCa
+        RANGE aomCa,bomCa
         RANGE gammaohCa,deltaohCa
 
 
@@ -29,7 +30,7 @@ PARAMETER
        
        : Calcium channel 
        gCabar = 4 (mS/cm2) <0,1e9> :different from ABME paper
-       eCa =  40 (mV)
+       :eCa =  40 (mV)
        aomCa = 100  (/s)  : changed from 3.10/s, 20/s
        bomCa = 100  (/s)
        gammaohCa = 10 (/s)
@@ -57,8 +58,9 @@ ASSIGNED
 	gCa (mho/cm2)
     
 	v (mV)
-	
-	iCa (mA/cm2)
+	eca (mV)
+        ica (mA/cm2)
+	:iCa (mA/cm2)
 
 	infmCa
 	taumCa  (ms) 
@@ -89,7 +91,7 @@ BREAKPOINT
 	gCa = (0.001)*gCabar*mCa*hCa
 	: g is in unit of S/cm2 ,i is in unit of mA/cm2 and v is in mV
 	
-	iCa = gCa*(v - eCa)
+	ica = gCa*(v - eca)
 	: the current is in the unit of mA/cm2
 	
 	

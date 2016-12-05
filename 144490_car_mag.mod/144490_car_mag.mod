@@ -15,10 +15,10 @@ NEURON {
     GLOBAL q10, taum_exp, z
 }
 
-INCLUDE "units.inc"
+INCLUDE "custom_code/inc_files/144490_units.inc"
 
 PARAMETER {   
-    gmax = 0      (S/cm2) <0,1e9> 
+    gmax = 1.0      (S/cm2) <0,1e9> 
     q10  = 3  
     taum_exp = 0.92  (ms)            : experimentally-measured taum
     z = 2                         : valency of Ca ions
@@ -59,7 +59,7 @@ KINETIC kin {
     CONSERVE hC + hO = 1
 }
 
-INCLUDE "ghk.inc"
+INCLUDE "custom_code/inc_files/144490_ghk.inc"
 
 
 

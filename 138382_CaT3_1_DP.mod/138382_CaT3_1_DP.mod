@@ -20,10 +20,10 @@ INDEPENDENT {t FROM 0 TO 1 WITH 1 (ms)}
 
 NEURON {
         SUFFIX CaT3_1_DP
-        USEION ca READ cai, cao
-	USEION ca2 READ ca2i WRITE ica2 VALENCE 2
+        USEION ca READ cai, cao WRITE ica
+	:USEION ca2 READ ca2i WRITE ica2 VALENCE 2
         RANGE g, pcabar, minf, taum, hinf, tauh
-	RANGE ica2, m ,h
+	RANGE ica, m ,h
 	GLOBAL frac1, frac2
 
     }
@@ -48,7 +48,7 @@ PARAMETER {
 	pcabar  = 2.5e-4 (cm/s)
         cai  (mM)    
 	cao  (mM)
-	ca2i (mM)
+	:ca2i (mM)
 
 	v0_m_inf = -52 (mV)
 	v0_h_inf = -72 (mV)
@@ -75,7 +75,7 @@ STATE {
 }
 
 ASSIGNED {
-        ica2     (mA/cm2)
+        ica     (mA/cm2)
 	g        (coulombs/cm3) 
         minf
         taum   (ms)
@@ -92,7 +92,7 @@ ASSIGNED {
 BREAKPOINT {
 	SOLVE castate METHOD cnexp 
 
-        ica2 = (1e3) *pcabar*m*m *h * g
+        ica = (1e3) *pcabar*m*m *h * g
 }
 
 DERIVATIVE castate {
@@ -134,7 +134,8 @@ PROCEDURE evaluate_fct(v(mV)) {
 	taum = ( C_tau_m + A_tau_m / (exp((v - v0_tau_m1)/ k_tau_m1) + exp((v - v0_tau_m2)/k_tau_m2)))
 	}
 	tauh = ( C_tau_h + A_tau_h / exp((v - v0_tau_h1)/k_tau_h1) )
-	g = ghk(v, frac1*cai + frac2*ca2i, (frac1+frac2)*cao, 2)
+	:g = ghk(v, frac1*cai + frac2*ca2i, (frac1+frac2)*cao, 2)
+        g = ghk(v, cai, cao, 2)
 }
 
 FUNCTION kelvinfkt( t (degC) )  (kelvin) {

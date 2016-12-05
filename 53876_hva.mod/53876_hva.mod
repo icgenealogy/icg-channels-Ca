@@ -6,8 +6,8 @@ ENDCOMMENT
 NEURON {
 	SUFFIX hva
 	:	NONSPECIFIC_CURRENT i
-	USEION ca WRITE  ica
-	RANGE i, Erev, gbar
+	USEION ca READ eca WRITE ica
+	RANGE gbar
 }
 
 UNITS {
@@ -18,12 +18,13 @@ UNITS {
 
 PARAMETER {
 	gbar = 1110e-6	(S/cm2) < 0, 1e9 >
-	Erev = 80 (mV)
+	:Erev = 80 (mV)
 }
 
 ASSIGNED {
+        eca (mV)
 	ica (mA/cm2)
-	i (mA/cm2)
+	:i (mA/cm2)
 	v (mV)
 	g (S/cm2)
 	sinf
@@ -37,8 +38,8 @@ STATE {	s r }
 BREAKPOINT {
 	SOLVE states METHOD cnexp
 	g = gbar * s*s * r
-	ica = g * (v - Erev)
-	i = ica	: supplied for diagnostic graphing
+	ica = g * (v - eca)
+	:i = ica	: supplied for diagnostic graphing
 }
 
 INITIAL {

@@ -8,9 +8,9 @@ TITLE Motoneuron L-type Calcium channels
 
 NEURON {
 	SUFFIX L_Ca
-	USEION caL READ ecaL WRITE icaL VALENCE 2
-	RANGE gcabar,icaL,m_inf,m
-	GLOBAL vca,theta_m,kappa_m
+	USEION ca READ eca WRITE ica
+	RANGE gcabar,m_inf,m
+	GLOBAL theta_m,kappa_m
 }
 
 
@@ -21,12 +21,12 @@ UNITS {
 
 PARAMETER {
 	gcabar  = 0.0003  (mho/cm2)
-	ecaL		(mV)	: eca can't be set here, only in hoc
+	:eca		(mV)	: eca can't be set here, only in hoc
 :	celcius = 36	(degC)
 	dt		(ms)
 	tau_m	= 20	(ms)
 	v		(mV)
-        vca=80		(mV)
+        :vca=80		(mV)
 	theta_m = -30   (mV)
 	kappa_m = -6	(-mV)
 }
@@ -36,14 +36,15 @@ STATE {
 }
 
 ASSIGNED {
-	icaL		(mA/cm2)
+        eca (mV)
+	ica		(mA/cm2)
 	m_inf
 	tadj
 }
 
 BREAKPOINT {
 	SOLVE states METHOD cnexp
-	icaL = gcabar * m * (v - vca)  :I have tried this as m*m also
+	ica = gcabar * m * (v - eca)  :I have tried this as m*m also
 }
 
 DERIVATIVE states {

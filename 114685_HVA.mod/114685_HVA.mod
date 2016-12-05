@@ -108,7 +108,7 @@ PROCEDURE setCadepLinact(cai) { : set Ca dependent L-type calcium channel inacti
     htau   = inactLtau /rate_k
 }
 
-:INCLUDE "ghk.inc"
+:INCLUDE "custom_code/inc_files/114685_ghk.inc"
 : included here for auto-launch on different platforms until 
 : finding file in path issue resolved
 FUNCTION ghkg(v(mV), ci(mM), co(mM), z) (mV) {

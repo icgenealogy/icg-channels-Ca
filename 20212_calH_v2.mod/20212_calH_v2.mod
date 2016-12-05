@@ -17,7 +17,7 @@ PARAMETER {
         dt  (ms)
 	v (mV)
 	celsius = 34	(degC)
-	gcalbar = 0 (mho/cm2)
+	gcalbar = 1.0 (mho/cm2)
 	ki=.001 (mM)
 	cai=5.e-5 (mM)
 	cao = 2  (mM)

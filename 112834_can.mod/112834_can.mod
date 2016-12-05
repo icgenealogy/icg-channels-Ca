@@ -14,7 +14,7 @@ UNITS {
 NEURON {
 	SUFFIX can
 	USEION ca READ cai, cao WRITE ica
-	RANGE pbar, ica
+	RANGE pbar
 }
 
 PARAMETER {

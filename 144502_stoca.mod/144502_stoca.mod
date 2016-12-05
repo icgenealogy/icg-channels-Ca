@@ -7,9 +7,9 @@ ENDCOMMENT
 
 NEURON {
        SUFFIX stoca
-       :USEION ca WRITE ica
-       NONSPECIFIC_CURRENT i
-       RANGE mMidV,gbar,g,i,minf,hinf,tauh,m,h,ecas : now i can access these variables
+       USEION ca READ eca WRITE ica
+       :NONSPECIFIC_CURRENT i
+       RANGE mMidV,gbar,g,i,minf,hinf,tauh,m,h : now i can access these variables
 }
 
 UNITS {
@@ -20,14 +20,15 @@ UNITS {
 }
 
 PARAMETER {
-	  ecas = 120 (mV)
+	  :ecas = 120 (mV)
 	  gbar = 0.4 (mS/cm2)
       mMidV=-61 (mV) : -61 default from mnaor. can be set to other values, e.g., to test 'windowness' of the current
 }
 
 ASSIGNED {
+         eca (mV)
 	 v (mV)
-	 i (mA/cm2)
+	 ica (mA/cm2)
 	 g (mS/cm2)
 	 minf 
 	 hinf 
@@ -49,7 +50,7 @@ BREAKPOINT {
 	   rates(v)
 	   SOLVE states METHOD cnexp
 	   g = gbar *minf*h
-	   i = g * (v - ecas)*(0.001)
+	   ica = g * (v - eca)*(0.001)
 	   :ica = i
 }
 

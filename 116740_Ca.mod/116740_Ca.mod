@@ -3,9 +3,9 @@
 
 NEURON {
 	SUFFIX Ca
-	USEION ca WRITE ica
-	RANGE gtcabar, gncabar, glcabar, gtca, gnca, glca, e_ca
-	GLOBAL ca0, cao
+	USEION ca READ eca, cai, cao WRITE ica
+	RANGE gtcabar, gncabar, glcabar, gtca, gnca, glca, eca
+	GLOBAL ca0
 }
 
 UNITS {
@@ -23,6 +23,7 @@ UNITS {
 PARAMETER {
 	ca0 = .00007	(mM)		: initial calcium concentration inside
 	cao = 2		(mM)		: calcium concentration outside
+	cai (mM)
 	tau = 9		(ms)
 	gtcabar = .01	(S/cm2)	: maximum permeability
 	gncabar = .01	(S/cm2)
@@ -31,26 +32,26 @@ PARAMETER {
 
 ASSIGNED {
 	v		(mV)
-	e_ca		(mV)
+	eca		(mV)
 	ica		(mA/cm2)
 	gtca		(S/cm2)
 	gnca		(S/cm2)
 	glca		(S/cm2)
 }
 
-STATE { ca_i (mM) a b c d e}
+STATE { a b c d e}
 
 BREAKPOINT {
 	SOLVE state METHOD cnexp
-	e_ca = (1000)*(TEMP+273.15)*R/(2*F)*log(cao/ca_i)
+	eca = (1000)*(TEMP+273.15)*R/(2*F)*log(cao/cai)
 	gtca = gtcabar*a*a*b
 	gnca = gncabar*c*c*d
 	glca = glcabar*e*e
-	ica = (gtca+gnca+glca)*(v - e_ca)
+	ica = (gtca+gnca+glca)*(v - eca)
 }
 
 DERIVATIVE state {	: exact when v held constant; integrates over dt step
-	ca_i' = -B*ica-(ca_i-ca0)/tau
+	:ca_i' = -B*ica-(ca_i-ca0)/tau
 	a' = alphaa(v)*(1-a)-betaa(v)*a
 	b' = alphab(v)*(1-b)-betab(v)*b
 	c' = alphac(v)*(1-c)-betac(v)*c
@@ -59,7 +60,7 @@ DERIVATIVE state {	: exact when v held constant; integrates over dt step
 }
 
 INITIAL {
-	ca_i = ca0
+	:ca_i = ca0
 	a = alphaa(v)/(alphaa(v)+betaa(v))
 	b = alphab(v)/(alphab(v)+betab(v))
 	c = alphac(v)/(alphac(v)+betac(v))

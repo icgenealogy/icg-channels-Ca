@@ -19,7 +19,7 @@ UNITS {
 
 PARAMETER {           :parameters that can be entered when function is called in cell-setup 
 :	gcabar = 0.2e-7   (cm/s)  : initialized conductance
-	gcabar = 0   (mho/cm2)  : initialized conductance
+	gcabar = 1.0   (mho/cm2)  : initialized conductance
 	zetam = -3.4		: HVAm Ca++ channels exhibit a fairly
 	zetah = 2		: homogenous set of biophysical characteristics
 	vhalfm =-21 (mV)	: but present distinctly different unitary openings

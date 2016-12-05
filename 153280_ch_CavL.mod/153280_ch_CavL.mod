@@ -36,7 +36,7 @@ NEURON {
 PARAMETER {
 	v (mV)
     celsius (degC) : temperature - set in hoc; default is 6.3
-	gmax		 (mho/cm2)
+	gmax = 1.0		 (mho/cm2)
 	ki=.001 (mM)
 	cai (mM)
 	cao (mM)

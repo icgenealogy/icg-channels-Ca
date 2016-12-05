@@ -13,7 +13,7 @@ UNITS {
  
 NEURON {
         SUFFIX cachan
-        USEION ca READ cai WRITE ica
+        USEION ca READ eca WRITE ica
         RANGE  gcalbar,gcanbar,gcahvabar,ica,ical,icahva,ican,kml,kmn
         GLOBAL dlinf,dhvainf,fhvainf
 }
@@ -23,13 +23,13 @@ INDEPENDENT {t FROM 0 TO 1 WITH 1 (ms)}
 PARAMETER {
         v (mV)
         dt (ms)
-        cai   (mM)
+        :cai   (mM)
         celsius =  35.0      (degC)
         gcahvabar =  0.0e-6 (S/cm2)
         gcalbar =  11.196e-6  (S/cm2)
         kmn = 0.0001   (mM)
         kml = 0.00045  (mM)
-        eca = 120 (mV)
+        :eca = 120 (mV)
         cao = 2.0 (mM)
         
 }
@@ -39,6 +39,7 @@ STATE {
 }
  
 ASSIGNED {
+        eca (mV)
         ica (mA/cm2)
         ical (mA/cm2)
         ican (mA/cm2)

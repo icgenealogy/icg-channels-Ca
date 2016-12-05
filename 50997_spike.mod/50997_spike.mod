@@ -31,11 +31,11 @@ UNITS {
 }
 
 PARAMETER {
-	gnabar	= 0.04	(mho/cm2)
-	gkbar	= 0.012 (mho/cm2)
-	gabar	= 0.036	(mho/cm2)
+	gnabar	= 0.0	(mho/cm2)
+	gkbar	= 0.0 (mho/cm2)
+	gabar	= 0.0	(mho/cm2)
 	gcabar	= 0.002	(mho/cm2)
-	gkcbar	= 0.00005 (mho/cm2)
+	gkcbar	= 0.0 (mho/cm2)
 	ena	= 35	(mV)
 	ek	= -75	(mV)
 	eca		(mV)
@@ -86,7 +86,7 @@ BREAKPOINT {
         idrk = gkbar * n*n*n*n * (v - ek)
         iak =  gabar * p*p*p*q * (v - ek)
         icak = gkcbar * ((cai / 0.001)/ (1 + (cai / 0.001))) * (v - ek)
-        ik = idrk + iak + icak
+        ik = idrk :+ iak + icak
 	ica = gcabar * c*c*c * (v - eca)
 
 }

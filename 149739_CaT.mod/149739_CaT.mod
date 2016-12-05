@@ -2,8 +2,8 @@ TITLE HH T-type calcium channel
  
 NEURON { 
  SUFFIX Icat 
- USEION ca WRITE ica 
- RANGE gbar, ica, g, h, m, sha, shi, k_tauH
+ USEION ca READ eca WRITE ica 
+ RANGE gbar, g, h, m, sha, shi, k_tauH
  GLOBAL minf, hinf, mtau, htau 
 } 
  
@@ -15,7 +15,7 @@ UNITS {
 PARAMETER { 
  v (mV) 
  gbar = 0.036 (mho/cm2) <0,1e9> 
- e = 100 (mV) 
+: e = 100 (mV) 
  sha = 0
  shi = 0
  k_tauH = 1
@@ -29,6 +29,7 @@ STATE {
 } 
  
 ASSIGNED { 
+ eca (Mv)
  ica (mA/cm2) 
  minf 
  hinf 
@@ -45,7 +46,7 @@ INITIAL {
 BREAKPOINT { 
  SOLVE states METHOD cnexp 
  g = gbar*m*m*h 
- ica = g*(v - e) 
+ ica = g*(v - eca) 
 } 
  
 DERIVATIVE states { 

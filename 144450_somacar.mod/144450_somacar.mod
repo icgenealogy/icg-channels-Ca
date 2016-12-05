@@ -8,7 +8,7 @@ TITLE Ca R-type channel with medium threshold for activation
 NEURON {
 	SUFFIX somacar
 	USEION ca READ cai, cao WRITE ica
-        RANGE gcabar, m, h, ica
+        RANGE gcabar, m, h, ica, ecar
 :	RANGE inf, fac, tau, ica
 }
 
@@ -21,7 +21,7 @@ UNITS {
 
 
 PARAMETER {     
-        gcabar = 0      (mho/cm2) : initialized conductance
+        gcabar = 1.0      (mho/cm2) : initialized conductance
 }
 
 

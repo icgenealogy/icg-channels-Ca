@@ -25,7 +25,7 @@ UNITS {
 
 PARAMETER {           :parameters that can be entered when function is called in cell-setup 
 :	gcatbar = 0.1e-7   (cm/s)  : initialized conductance
-	gcatbar = 0   (mho/cm2)  : initialized conductance
+	gcatbar = 1.0   (mho/cm2)  : initialized conductance
 	zetam = -3
 	zetah = 5.2
 	vhalfm =-36 (mV)

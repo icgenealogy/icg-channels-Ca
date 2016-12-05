@@ -23,7 +23,7 @@ PARAMETER {      : parameters that can be entered when function is called in cel
         v               (mV)
 	dt              (ms)
  	celsius = 34	(degC)
-        gcabar = 0      (mho/cm2) : initialized conductance
+        gcabar = 1.0      (mho/cm2) : initialized conductance
 	eca = 140       (mV)      : Ca++ reversal potential
         }
 

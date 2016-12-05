@@ -1,4 +1,6 @@
-NEURON { SUFFIX cah }
+NEURON { 
+    SUFFIX cah
+}
 NEURON {  USEION ca READ cao,cai WRITE ica }
 ASSIGNED { ica }
 PARAMETER {
@@ -33,7 +35,7 @@ PARAMETER {
 
 }
 
-INCLUDE "bg_cvode.inc"
+INCLUDE "custom_code/inc_files/64229_bg_cvode.inc"
 PROCEDURE iassign() { i = g * ghkca(v) ica=i }
 
 :** kdr

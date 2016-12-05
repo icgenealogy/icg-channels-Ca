@@ -12,7 +12,7 @@ UNITS {
  
 NEURON {
         SUFFIX CaP2
-        USEION ca READ cai, cao WRITE ica
+        USEION ca READ eca, cai, cao WRITE ica
         RANGE  gcabar, ica, gca, minf, mexp
 } 
  
@@ -23,7 +23,7 @@ PARAMETER {
         celsius = 37 (degC)
         dt (ms)
         gcabar = .0045 (mho/cm2)
-        eca = 135 (mV)
+        :eca = 135 (mV)
 	cai	= 0.40e-4 (mM)		: adjusted for eca=135mV
 	cao	= 2.4	(mM)
 
@@ -34,6 +34,7 @@ STATE {
 }
  
 ASSIGNED {
+        eca (mV)
         ica (mA/cm2)
         gca minf mexp
 }

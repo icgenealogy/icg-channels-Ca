@@ -56,7 +56,7 @@ INDEPENDENT {t FROM 0 TO 1 WITH 1 (ms)}
 
 NEURON {
 	SUFFIX ical
-	USEION ca READ eca WRITE ica
+	USEION ca READ cai, cao, eca WRITE ica
         RANGE gcabar, alpha_m, beta_m, alpha_h, beta_h, m, h, carev
 }
 

@@ -41,7 +41,7 @@ INDEPENDENT {t FROM 0 TO 100 WITH 100 (ms)}
 PARAMETER {
 	v (mV) 					: membrane potential
       celsius (degC) : temperature - set in hoc; default is 6.3
-	gmax (mho/cm2)		: conductance flux - defined in CavT but not here
+	gmax =1.0 (mho/cm2)		: conductance flux - defined in CavT but not here
 }
  
 STATE {

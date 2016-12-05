@@ -5,7 +5,7 @@ INDEPENDENT {t FROM 0 TO 1 WITH 1 (ms)}
 NEURON {
 	SUFFIX CaN
 	USEION ca READ cai,cao WRITE ica
-	RANGE minf, mtau, hinf, htau, ica
+	RANGE minf, mtau, hinf, htau
 	GLOBAL pmax
 }
 

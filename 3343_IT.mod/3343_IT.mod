@@ -32,7 +32,7 @@ NEURON {
 	SUFFIX it
 	USEION ca READ cai,cao WRITE ica
 	GLOBAL q10
-	RANGE gcabar, m_inf, tau_m, h_inf, tau_h, shift
+	RANGE gcabar, m_inf, tau_m, h_inf, tau_h, shift, carev
 }
 
 UNITS {

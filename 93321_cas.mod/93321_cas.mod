@@ -26,9 +26,9 @@ INDEPENDENT {t FROM 0 TO 1 WITH 1 (ms)}
 
 NEURON {
 	SUFFIX cas
-	USEION ca READ cai WRITE ica
-	POINTER gbar
-	RANGE m_inf, tau_m, h_inf, tau_h, shift, i, carev
+	USEION ca READ cai,cao WRITE ica
+	:POINTER gbar
+	RANGE m_inf, tau_m, h_inf, tau_h, shift, i, carev, gbar
 }
 
 UNITS {
@@ -43,7 +43,7 @@ UNITS {
 
 PARAMETER {
 	v		(mV)
-	gbar (S/cm2) :	= .00175 (mho/cm2) : modified by activity dependence
+	gbar = 1.0 (S/cm2) :	= .00175 (mho/cm2) : modified by activity dependence
 : Note: concentrations in Liu et al. paper are in micromolar which needs to be
 : converted to millimolar for use in these NEURON programs.  (These mod files
 : expect the cai, cao variables to already be in millimolar

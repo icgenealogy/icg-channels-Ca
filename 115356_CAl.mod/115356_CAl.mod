@@ -24,8 +24,8 @@ PARAMETER {
 	PcalBar=.00006622 (cm/s)
 : was soll ki
 	ki=.00002 (mM)
-	cai=5.e-5 (mM)
-	cao = 10  (mM)
+	cai (mM)
+	cao (mM)
 	q10m=11.45
 	q10Ampl=2.1
 }

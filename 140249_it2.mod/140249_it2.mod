@@ -14,8 +14,9 @@ INDEPENDENT {t FROM 0 TO 1 WITH 1 (ms)}
 
 NEURON {
 	SUFFIX it2
-	USEION Ca READ Cai, Cao WRITE iCa VALENCE 2
-	RANGE gcabar, g
+	:USEION Ca READ Cai, Cao WRITE iCa VALENCE 2
+	USEION ca READ cai,cao WRITE ica
+        RANGE gcabar, g
 	GLOBAL m_inf, tau_m, h_inf, tau_h, shift2, sm, sh, phi_m, phi_h, hx, mx, shift1
 }
 
@@ -35,8 +36,8 @@ PARAMETER {
 	gcabar	= 8.5e-6	(mho/cm2)
       hx      = 1.5
       mx      = 3.0
-	Cai	= 5e-5 (mM) : Initial Ca concentration
-	Cao	= 2	(mM) : External Ca concentration
+	cai	= 5e-5 (mM) : Initial Ca concentration
+	cao	= 2	(mM) : External Ca concentration
 
 : GH, parameters fitted to Broicher et al. 07 - data
 	minf1 = 46.2
@@ -63,7 +64,7 @@ STATE {
 }
 
 ASSIGNED {
-	iCa	(mA/cm2)
+	ica	(mA/cm2)
 	g       (mho/cm2)
 	carev	(mV)
 	m_inf
@@ -77,7 +78,7 @@ ASSIGNED {
 BREAKPOINT {
 	SOLVE castate METHOD cnexp
 	g = gcabar * m*m*h
-	iCa = g * ghk(v, Cai, Cao)
+	ica = g * ghk(v, cai, cao)
 }
 
 DERIVATIVE castate {
@@ -89,8 +90,8 @@ DERIVATIVE castate {
 UNITSOFF
 INITIAL {
 	VERBATIM
-	Cai = _ion_Cai;
-	Cao = _ion_Cao;
+	cai = _ion_cai;
+	cao = _ion_cao;
 	ENDVERBATIM
 :
 	phi_m = mx ^ ((celsius-23.5)/10)

@@ -31,7 +31,7 @@ INDEPENDENT {t FROM 0 TO 1 WITH 1 (ms)}
 NEURON {
 	SUFFIX it2
 	USEION ca READ cai, cao WRITE ica
-	RANGE gcabar, m_inf, tau_m, h_inf, tau_h, shift, qm, qh
+	RANGE gcabar, m_inf, tau_m, h_inf, tau_h, shift, qm, qh, carev
 }
 
 UNITS {

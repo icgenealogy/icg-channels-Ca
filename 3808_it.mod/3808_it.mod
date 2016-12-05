@@ -13,12 +13,12 @@ INDEPENDENT {t FROM 0 TO 1 WITH 1 (ms)}
 
 NEURON {
 	SUFFIX iT
-	USEION ca READ cai,cao
-	USEION Ca WRITE iCa VALENCE 2
+	USEION ca READ cai,cao WRITE ica
+	:USEION Ca WRITE iCa VALENCE 2
 	: The T-current does not activate calcium-dependent currents.
 	: The construction with dummy ion Ca prevents the updating of the 
 	: internal calcium concentration. 
-        RANGE pcabar, m_inf, h_inf, tau_m, tau_h, iCa
+        RANGE pcabar, m_inf, h_inf, tau_m, tau_h, ica
 }
 
 UNITS {
@@ -43,7 +43,7 @@ STATE {
 }
 
 ASSIGNED {
-	iCa		(mA/cm2)
+	ica		(mA/cm2)
 	tau_m		(ms)
 	tau_h		(ms)
 	m_inf 
@@ -54,7 +54,7 @@ ASSIGNED {
 
 BREAKPOINT { 
 	SOLVE state :METHOD euler
-	iCa = pcabar * m*m*h * ghk(v,cai,cao,2)
+	ica = pcabar * m*m*h * ghk(v,cai,cao,2)
 }
 
 :DERIVATIVE state {

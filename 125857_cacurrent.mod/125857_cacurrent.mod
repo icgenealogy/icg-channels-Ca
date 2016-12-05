@@ -8,7 +8,7 @@ ENDCOMMENT
 NEURON {
 
 	SUFFIX cacurrent
-	USEION ca WRITE ica
+	USEION ca READ eca WRITE ica
 	RANGE gca, ica
 }
 	
@@ -22,11 +22,11 @@ UNITS {
 PARAMETER {
 
     gca = 10  (mS/cm2)
-    eca = 80  (mV)
+    :eca = 80  (mV)
 }
     
 ASSIGNED { 
-
+    eca  (mV)
     ica  (mA/cm2)    
     v    (mV)
     sinf (1)

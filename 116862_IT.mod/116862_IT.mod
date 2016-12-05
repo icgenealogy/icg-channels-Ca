@@ -30,7 +30,7 @@ INDEPENDENT {t FROM 0 TO 1 WITH 1 (ms)}
 
 NEURON {
 	SUFFIX ittc
-	USEION ca READ cai,cao WRITE ica
+	USEION ca READ eca,cai,cao WRITE ica
 	GLOBAL q10m,q10h
 	RANGE g, gmax, m_inf, tau_m, h_inf, tau_h, shift, i
 }
@@ -52,8 +52,8 @@ PARAMETER {
 	q10h	= 3			: Q10 of inactivation
         exptemp = 24    (degC)
 	shift	= 2 	(mV)		: corresponds to 2mM ext Ca++
-	cai	= 2.4e-4 (mM)		: adjusted for eca=120 mV
-	cao	= 2	(mM)
+	cai	(mM)		: adjusted for eca=120 mV
+	cao	(mM)
 }
 
 STATE {
@@ -64,7 +64,7 @@ ASSIGNED {
 	g	(mho/cm2)
 	i	(mA/cm2)
 	ica	(mA/cm2)
-	carev	(mV)
+	eca	(mV)
 	m_inf
 	tau_m	(ms)			: dummy variable for compatibility
 	h_inf
@@ -76,9 +76,9 @@ ASSIGNED {
 
 BREAKPOINT {
 	SOLVE states METHOD cnexp
-	carev = (1e3) * (R*(celsius+273.15))/(2*FARADAY) * log (cao/cai)
+	:carev = (1e3) * (R*(celsius+273.15))/(2*FARADAY) * log (cao/cai)
 	g = gmax * m * m * h
-	i = g * (v-carev)
+	i = g * (v-eca)
         ica = i
 }
 

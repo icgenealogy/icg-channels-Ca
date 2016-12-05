@@ -8,7 +8,7 @@ TITLE  STN ion channels for single compartment model
 NEURON {
 	SUFFIX stn
 	NONSPECIFIC_CURRENT ilk
-	USEION ca READ cai, cao WRITE ica, cai
+	USEION ca READ cai, cao WRITE ica
 	USEION k READ ki, ko WRITE ik
 	USEION na READ nai, nao WRITE ina
 	RANGE ina, ik, ica
@@ -38,7 +38,7 @@ PARAMETER {
 	celsius		(degC)
 
 :Fast Na channel
-	gnabar   = 49e-3 (S/cm2) 
+	gnabar   = 0.0 (S/cm2) 
 	theta_m = -40 (mV)
 	theta_h = -45.5 (mV) 
 	k_m = -8 (mV)    
@@ -55,7 +55,7 @@ PARAMETER {
 	sig_h2 = 16 (mV)
 
 : Delayed rectifier K
-	gkdrbar  = 57e-3	(S/cm2)  
+	gkdrbar  = 0.0	(S/cm2)  
 	theta_n = -41 (mV)
 	k_n = -14 (mV)     
 	tau_n0 = 0 (ms)
@@ -66,7 +66,7 @@ PARAMETER {
 	sig_n2 = 50 (mV)
 
 :Leakage current
-	gl	= 0.35e-3	(S/cm2)
+	gl	= 0.0	(S/cm2)
 	el	= -60	(mV)
 
 :Ca dynamics
@@ -95,7 +95,7 @@ PARAMETER {
 	sig_q2 = 16 (mV)
 
 :Ca L current
-	gcalbar   = 15e-3 (S/cm2) 
+	gcalbar   = 0 (S/cm2) 
 	theta_c = -30.6 (mV)
 	theta_d1 = -60 (mV)
 	theta_d2 = 0.1e-3 (mM)
@@ -118,7 +118,7 @@ PARAMETER {
 	tau_d2 = 130 (ms)
 
 :A current
-	gkabar  = 5e-3	(S/cm2)  
+	gkabar  = 0.0	(S/cm2)  
 	theta_a = -45 (mV)
 	theta_b = -90 (mV) 
 	k_a = -14.7 (mV)    
@@ -135,7 +135,7 @@ PARAMETER {
 	sig_b2 = 10 (mV)
 
 :AHP current (Ca dependent K current)
-	gkcabar   = 1e-3 (S/cm2) 
+	gkcabar   = 0.0 (S/cm2) 
 	theta_r = 0.17e-3 (mM)
 	k_r = -0.08e-3 (mM)
 	tau_r = 2 (ms)
@@ -220,10 +220,10 @@ BREAKPOINT {
 	ikD   = gkdrbar * n^4 * (v - ek)
 	ikA   = gkabar * a*a*b * (v - ek)
 	ikAHP   = gkcabar * (v - ek)*r^(power_r)
-	ik=ikD+ikA+ikAHP
+	ik=ikD:+ikA+ikAHP
 	icaT   = gcatbar * p*p*q * (v - eca)
 	icaL   = gcalbar * c*c*d1*d2 * (v - eca)
-	ica=icaT+icaL
+	ica=icaT :+icaL
 	ilk = gl * (v - el)
 
 }
@@ -242,7 +242,7 @@ DERIVATIVE states {
 	d2' = (d2_inf - d2)/tau_d2
 
       :(Ica mA/cm2)*(area um2)*(1e-8 cm2/um2)*(1e-3 A/mA)*(1/(2*F) mol/C)*(1e-3 sec/msec)*(1e3 mMol/mol)(1/volume 1/L)=(mM/msec)
-	cai' = caGain*(-ica*area*1e-11/(2*FARADAY*vol) - kca*cai)
+	:cai' = caGain*(-ica*area*1e-11/(2*FARADAY*vol) - kca*cai)
 :	cai' = -ica*area*somaAreaFrac*1e-11/(2*FARADAY*vol*shellVolFrac) + (5e-6 - cai)/kca
 
 	a' = (a_inf - a)/tau_a

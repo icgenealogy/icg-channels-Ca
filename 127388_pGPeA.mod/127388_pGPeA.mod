@@ -10,7 +10,7 @@ TITLE  All ion channels used in GP models
 NEURON {
 	SUFFIX GPeA
 	NONSPECIFIC_CURRENT ilk
-	USEION ca READ cai, cao WRITE ica, cai
+	USEION ca READ cai, cao WRITE ica :, cai
 	USEION k READ ki, ko WRITE ik
 	USEION na READ nai, nao WRITE ina
 	RANGE ina, ik, ica
@@ -56,7 +56,7 @@ PARAMETER {
 	sig_h2 = 16 (mV)
 
 : delayed K rectifier 
-	gkdrbar  = 57e-3	(S/cm2)  
+	gkdrbar  = 0.0	(S/cm2)  
 	theta_n = -42 (mV)
 	k_n = -14 (mV)     
 	tau_n0 = 0 (ms)
@@ -67,7 +67,7 @@ PARAMETER {
 	sig_n2 = 50 (mV)
 
 :Leakage current
-	gl	= 0.35e-3	(S/cm2)
+	gl	= 0.0	(S/cm2)
 	el	= -60	(mV)
 
 :Ca dynamics
@@ -96,7 +96,7 @@ PARAMETER {
 	sig_q2 = 16 (mV)
 
 :AHP current (Ca dependent K current)
-	gkcabar   = 1e-3 (S/cm2) 
+	gkcabar   = 0.0 (S/cm2) 
 	theta_r = 0.17e-3 (mM)
 	k_r = -0.08e-3 (mM)
 	tau_r = 2 (ms)
@@ -161,7 +161,7 @@ BREAKPOINT {
 	ina = gnabar * m*m*m*h * (v - ena)
 	ikD = gkdrbar * n^4 * (v - ek)
 	ikAHP = gkcabar * (v - ek)*r^(power_r)
-	ik=ikD+ikAHP
+	ik=ikD:+ikAHP
 	ilk = gl * (v - el)
 	ica = gcatbar * p*p*q * (v - eca)
 }
@@ -175,7 +175,7 @@ DERIVATIVE states {
 	q' = (q_inf - q)/tau_q
 
       :(Ica mA/cm2)*(area um2)*(1e-8 cm2/um2)*(1e-3 A/mA)*(1/(2*F) mol/C)*(1e-3 sec/msec)*(1e3 mMol/mol)(1/volume 1/L)=(mM/msec)
-	cai' = caGain*(-ica*area*1e-11/(2*FARADAY*vol) - kca*cai)
+      :	cai' = caGain*(-ica*area*1e-11/(2*FARADAY*vol) - kca*cai)
 
 	r' = (r_inf - r)/tau_r
 }

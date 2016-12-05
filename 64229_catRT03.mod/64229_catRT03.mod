@@ -1,9 +1,13 @@
-NEURON { SUFFIX catRT03 }
-NEURON { USEION ca WRITE ica }
-ASSIGNED { ica }
+NEURON {
+    SUFFIX catRT03 }
+NEURON { USEION ca READ eca WRITE ica }
+ASSIGNED {
+    ica
+    eca (mV)
+}
 
 PARAMETER {
-  erev 		= 125.    (mV)
+  :erev 		= 125.    (mV)
   gmax 		= 0.4  (S/cm2)
   vrest           = 0    (mV)
 
@@ -19,7 +23,7 @@ PARAMETER {
   hexp 		= 1
 } : end PARAMETER
 
-INCLUDE "boltz_cvode.inc"
+INCLUDE "custom_code/inc_files/64229_boltz_cvode.inc"
 
 FUNCTION settau(j,v) {
   if (j==0) { : m
@@ -33,5 +37,5 @@ FUNCTION settau(j,v) {
   }
 }
 
-PROCEDURE iassign () { i=g*(v-erev) ica=i }
+PROCEDURE iassign () { i=g*(v-eca) ica=i }
 :** calRT03  -- Traub L channel

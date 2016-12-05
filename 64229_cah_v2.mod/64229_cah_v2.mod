@@ -1,5 +1,6 @@
-NEURON { SUFFIX cah }
-NEURON { USEION ca WRITE ica }
+NEURON {
+    SUFFIX cah }
+NEURON { USEION ca READ cao, cai WRITE ica }
 ASSIGNED { ica }
 PARAMETER {
         erev
@@ -23,9 +24,15 @@ PARAMETER {
 	htemp 		= 0
         hq10            = 3
 	hexp 		= 0
+
+	cao (mM)
+	cai (mM)
+	celsius (degC)
+	dt (ms)
+	v (mV)
 }
 
-INCLUDE "bg_cvode.inc"
+INCLUDE "custom_code/inc_files/64229_bg_cvode.inc"
 PROCEDURE iassign() { i = g * ghkca(v) ica=i }
 
 :** kdr

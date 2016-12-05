@@ -17,8 +17,8 @@ NEURON {
 }
 
 
-INCLUDE "noinact_ca_currs.inc"
+INCLUDE "custom_code/inc_files/84589_noinact_ca_currs.inc"
 
-INCLUDE "noinact_gate_states.inc"
+INCLUDE "custom_code/inc_files/84589_cal_noinact_gate_states.inc"
 
-INCLUDE "var_funcs.inc"
+INCLUDE "custom_code/inc_files/84589_var_funcs.inc"

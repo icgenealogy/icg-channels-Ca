@@ -20,7 +20,7 @@ UNITS {
 }
 
 PARAMETER {           :parameters that can be entered when function is called in cell-setup 
-	gcalbar = 0   (mho/cm2)  : initialized conductance
+	gcalbar = 1.0   (mho/cm2)  : initialized conductance
   	ki     = 0.025  (mM)            :test middle point of inactivation fct
   :	ki     = 0.01  (mM)            :test middle point of inactivation fct
 	zetam = -3.4

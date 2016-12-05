@@ -22,7 +22,7 @@ UNITS {
 
 PARAMETER { 
         eca = 140       (mV)      : Ca++ reversal potentia    
-        gcabar = 0      (mho/cm2) : initialized conductance
+        gcabar = 1.0      (mho/cm2) : initialized conductance
         celsius =34        (degC)
 }
 

@@ -15,17 +15,19 @@ UNITS {
  
 NEURON { 
 	SUFFIX cat
-	NONSPECIFIC_CURRENT i   : not causing [Ca2+] influx
-	RANGE gbar, i
+	:NONSPECIFIC_CURRENT i   : not causing [Ca2+] influx
+	USEION ca READ eca WRITE ica
+        RANGE gbar
 }
 
 PARAMETER { 
-	gbar = 0.0 	(mho/cm2)
-	v eca 		(mV)  
+	gbar = 1.0 	(mho/cm2)
+	v 		(mV)  
 }
  
 ASSIGNED { 
-	i 		(mA/cm2) 
+        eca (mV)
+	ica 		(mA/cm2) 
 	minf hinf 	(1)
 	mtau htau 	(ms) 
 }
@@ -36,7 +38,7 @@ STATE {
 
 BREAKPOINT { 
 	SOLVE states METHOD cnexp
-	i = gbar * m * m * h * ( v - 125 ) 
+	ica = gbar * m * m * h * ( v - eca ) 
 }
  
 INITIAL { 

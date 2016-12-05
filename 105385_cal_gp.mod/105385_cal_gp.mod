@@ -1,7 +1,7 @@
 NEURON {
 	SUFFIX cal_gp
 	USEION ca READ cai,cao WRITE ica
-        RANGE  gbar,ica,g
+        RANGE  gbar,g
 	GLOBAL vhm, vcm
 	GLOBAL Ctm, atm, btm, tm0, vhtm
         GLOBAL minf,tau

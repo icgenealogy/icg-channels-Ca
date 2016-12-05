@@ -14,8 +14,8 @@ UNITS {
 NEURON {
 	SUFFIX caq
 	USEION ca READ cai, cao WRITE ica
-	RANGE pcaqbar, ica
-		POINTER mu
+	RANGE pcaqbar, ica, mu
+		:POINTER mu
 }
 
 PARAMETER {
@@ -25,7 +25,7 @@ PARAMETER {
 	mslope = -6.6	(mV)		: Churchill 1998, fig 5
 	mtau = 1.13	(ms)			: Randall 1995, fig 13
 	mshift = 0	(mV)
-	
+	mu = 1
 	qfact = 3					: m recorded at 22 C
 }
 
@@ -39,7 +39,7 @@ ASSIGNED {
     cai		(mM)
     cao		(mM)
 
-		mu (1)
+	:	mu (1)
 }
 
 STATE {

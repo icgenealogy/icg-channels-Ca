@@ -47,7 +47,7 @@ PARAMETER {
         dt                      (ms)
         cai             = 5.e-05(mM)
         cao             = 2.5   (mM)
-        pcabar                  (cm/s)  
+        pcabar = 1.0                 (cm/s)  
         tauM            = 5     (ms)
 :        vHalfM          = -22   (mV)
 :        slopeM          = 12    (mV)

@@ -28,7 +28,7 @@ PARAMETER {
 
 NEURON {
 	SUFFIX cat1i
-	USEION ca READ eca WRITE ica
+	USEION ca READ cai,cao,eca WRITE ica
         RANGE gbar, carev
         GLOBAL ninf,linf,taul,taun, q10
 }

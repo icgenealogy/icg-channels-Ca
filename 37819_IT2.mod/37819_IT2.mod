@@ -29,8 +29,8 @@ INDEPENDENT {t FROM 0 TO 1 WITH 1 (ms)}
 
 NEURON {
 	SUFFIX itre
-	USEION ca READ cai, cao WRITE ica
-	RANGE gmax, m_inf, tau_m, h_inf, tau_h, carev, shift, i
+	USEION ca READ eca, cai, cao WRITE ica
+	RANGE gmax, m_inf, tau_m, h_inf, tau_h, shift, i
         GLOBAL exptemp, q10m, q10h
 }
 
@@ -61,9 +61,10 @@ STATE {
 }
 
 ASSIGNED {
+        eca     (mV)
 	i	(mA/cm2)  
 	ica	(mA/cm2)
-	carev	(mV)
+	:carev	(mV)
 	m_inf
 	tau_m	(ms)
 	h_inf
@@ -74,8 +75,8 @@ ASSIGNED {
 
 BREAKPOINT {
 	SOLVE states METHOD cnexp
-	carev = (1e3) * (R*(celsius+273.15))/(2*FARADAY) * log (cao/cai)
-	i = gmax * m*m*h * (v-carev)
+	:carev = (1e3) * (R*(celsius+273.15))/(2*FARADAY) * log (cao/cai)
+	i = gmax * m*m*h * (v-eca) :carev)
         ica=i
 }
 

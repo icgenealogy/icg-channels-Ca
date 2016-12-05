@@ -122,4 +122,4 @@ PROCEDURE settables(v) {  :Computes rate and other constants at current v.
 
 UNITSON
 
-INCLUDE "ghk.inc"
+INCLUDE "custom_code/inc_files/151460_ghk.inc"

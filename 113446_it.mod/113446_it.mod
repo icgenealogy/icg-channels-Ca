@@ -13,8 +13,8 @@ INDEPENDENT {t FROM 0 TO 1 WITH 1 (ms)}
 
 NEURON {
 	SUFFIX cat
-	USEION ca READ cai, cao WRITE ica VALENCE 2
-        RANGE gcatbar, ica
+	USEION ca READ cai, cao WRITE ica
+        RANGE gcatbar
         GLOBAL shiftm, shifth, tauh
 }
 

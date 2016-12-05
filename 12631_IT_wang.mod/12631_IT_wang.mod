@@ -20,7 +20,7 @@ INDEPENDENT {t FROM 0 TO 1 WITH 1 (ms)}
 NEURON {
 	SUFFIX it
 	USEION ca READ cai,cao WRITE ica
-        RANGE gcabar, m_inf, tau_m, alph1, alph2, KK, shift
+        RANGE gcabar, m_inf, tau_m, alph1, alph2, KK, shift, carev
 
 }
 

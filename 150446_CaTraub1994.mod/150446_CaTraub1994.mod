@@ -7,9 +7,9 @@ ENDCOMMENT
 
 NEURON {
         SUFFIX Ca
-		USEION ca WRITE ica
-        RANGE  gbar, g, i, minf
-		GLOBAL Vm, Eca
+		USEION ca READ eca WRITE ica
+        RANGE  gbar, g, minf
+		GLOBAL Vm
 } 
  
 UNITS {
@@ -19,12 +19,13 @@ UNITS {
 }
 
 PARAMETER { 
-		gbar = 0   		(S/cm2) 
+		gbar = 1.0   		(S/cm2) 
 		Vm   = -65 		(mV) : resting potential
-		Eca  = 75      (mV) : Ca reversal potential, absolute (140 mV relative to Vm)
+		:Eca  = 75      (mV) : Ca reversal potential, absolute (140 mV relative to Vm)
 }
 
 ASSIGNED {
+                eca (mV)
 		v   (mV)
 		ica  (mA/cm2)
 		i   (mA/cm2)
@@ -38,7 +39,7 @@ STATE { m }
 BREAKPOINT {
 		SOLVE states METHOD cnexp
 		g = gbar * m^2
-		i = g * (v - Eca)
+		i = g * (v - eca)
 		ica = i
 }
 

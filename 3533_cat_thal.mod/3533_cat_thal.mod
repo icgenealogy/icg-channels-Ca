@@ -4,9 +4,9 @@ TITLE cat
 
 NEURON {
 	SUFFIX cat
-	USEION ca READ cai,cao WRITE ica
+	USEION ca READ eca,cai,cao WRITE ica
         RANGE gbar,cai
-	GLOBAL minf, hinf, mtau, htau, carev
+	GLOBAL minf, hinf, mtau, htau :carev
 }
 
 UNITS {
@@ -45,10 +45,11 @@ PARAMETER {
 
 
 ASSIGNED {
+        eca (mV)
 	ica 		(mA/cm2)
 	minf (mV)	mtau (ms)	 	
 	hinf (mV)	htau (ms)	 	
-	carev	(mV)
+	:carev	(mV)
 }
  
 
@@ -57,8 +58,8 @@ STATE { m h}
 
 BREAKPOINT {
         SOLVE states METHOD cnexp
-	carev = (1e3) * (R*(celsius+273.15))/(2*FARADAY) * log (cao/cai)
-	ica = gbar*m^3*h* (v - carev)
+	:carev = (1e3) * (R*(celsius+273.15))/(2*FARADAY) * log (cao/cai)
+	ica = gbar*m^3*h* (v - eca)
 } 
 
 INITIAL {

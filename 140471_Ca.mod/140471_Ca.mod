@@ -3,8 +3,8 @@
 
 NEURON {
 	SUFFIX Ca
-	USEION ca WRITE ica
-	RANGE gtcabar, gncabar, glcabar, gtca, gnca, glca, e_ca
+	USEION ca READ eca WRITE ica
+	RANGE gtcabar, gncabar, glcabar, gtca, gnca, glca
 	GLOBAL ca0, cao
 }
 
@@ -31,7 +31,7 @@ PARAMETER {
 
 ASSIGNED {
 	v		(mV)
-	e_ca		(mV)
+	eca		(mV)
 	ica		(mA/cm2)
 	gtca		(S/cm2)
 	gnca		(S/cm2)
@@ -43,11 +43,11 @@ STATE { ca_i (mM) a b c d e}
 
 BREAKPOINT {
 	SOLVE state METHOD cnexp
-	e_ca = (1000)*(TEMP+273.15)*R/(2*F)*log(cao/ca_i)
+	:e_ca = (1000)*(TEMP+273.15)*R/(2*F)*log(cao/ca_i)
 	gtca = gtcabar*a*a*b
 	gnca = gncabar*c*c*d
 	glca = glcabar*e*e
-	ica = (gtca+gnca+glca)*(v - e_ca)   : only L type
+	ica = (gtca+gnca+glca)*(v - eca)   : only L type
 
 }
 

@@ -2,7 +2,7 @@ INDEPENDENT {t FROM 0 TO 1 WITH 1 (MS)}
 
 NEURON {
      SUFFIX tchannel
-     USEION ca READ ica, cai, cao WRITE ica
+     USEION ca READ cai, cao WRITE ica
      RANGE pbar
      RANGE tt_inf, u_inf
      RANGE tau_tt, tau_u
@@ -32,8 +32,8 @@ PARAMETER {
      v (mV)
      dt (ms)
      qt=1
-     cai = 1e-4 (mM)
-     cao = 15 (mM)
+     cai (mM)
+     cao (mM)
      GHKo
      GHKa
      GHKb

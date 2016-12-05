@@ -25,7 +25,7 @@ INDEPENDENT {t FROM 0 TO 1 WITH 1 (ms)}
 NEURON {
     SUFFIX newCaP_DP
     USEION ca READ cai, cao WRITE ica
-    USEION ca2 READ ca2i VALENCE 2
+    :USEION ca2 READ ca2i VALENCE 2
     RANGE pcabar, ica, gk, vhalfm, cvm, vshift
     GLOBAL frac1, frac2
 }
@@ -56,7 +56,7 @@ PARAMETER {
     cai (mM)
     cao (mM)
 
-    ca2i (mM)
+    :ca2i (mM)
 		
     vhalfm = -29.458 (mV)
     cvm = 8.429(mV)
@@ -119,7 +119,8 @@ PROCEDURE rates( v (mV) ) {
 
     taum = taumfkt(v-vshift)/qt
 
-    gk = ghk(v-vshift, frac1*cai+frac2*ca2i, (frac1+frac2)*cao, 2)
+    :gk = ghk(v-vshift, frac1*cai+frac2*ca2i, (frac1+frac2)*cao, 2)
+    gk = ghk(v-vshift, cai, cao, 2)
 }
 
 

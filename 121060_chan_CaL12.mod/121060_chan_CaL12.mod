@@ -4,8 +4,9 @@ INDEPENDENT {t FROM 0 TO 1 WITH 1 (ms)}
 
 NEURON {
 	SUFFIX CaL12
-	USEION Ca READ Cai, Cao WRITE iCa VALENCE 2
-	RANGE minf, mtau, hinf, htau, iCa
+	:USEION Ca READ Cai, Cao WRITE iCa VALENCE 2
+	USEION ca READ cai,cao WRITE ica
+        RANGE minf, mtau, hinf, htau
 	GLOBAL pmax
 }
 
@@ -20,10 +21,10 @@ UNITS {
 PARAMETER {
 	v		(mV)
 	celsius	(degC)
-	: cai		(mM)
-	: cao		(mM)
-	Cai		(mM)
-	Cao		(mM)
+	cai		(mM)
+	cao		(mM)
+	:Cai		(mM)
+	:Cao		(mM)
 	pmax = 6.7e-6	(cm/s)		
 }
 
@@ -35,7 +36,7 @@ STATE {
 }
 
 ASSIGNED {
-	iCa		(mA/cm2)
+	ica		(mA/cm2)
 	mtau		(ms)
 	minf
 	hinf
@@ -44,7 +45,7 @@ ASSIGNED {
 
 BREAKPOINT { 
 	SOLVE state METHOD cnexp
-	iCa = pmax*m*m*(a*h+(1-a))*ghk(v,Cai,Cao,2)	
+	ica = pmax*m*m*(a*h+(1-a))*ghk(v,cai,cao,2)	
 	: iCa = pmax*m*m*(a*h+(1-a))*ghk(v,0.001,Cao,2)	
 }
 

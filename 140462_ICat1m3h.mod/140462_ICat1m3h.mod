@@ -16,7 +16,7 @@ INDEPENDENT {t FROM 0 TO 1 WITH 1 (ms)}
 
 NEURON {
 	SUFFIX iCat1m3h
-	USEION ca READ cai, cao WRITE ica
+	USEION ca READ eca, cai, cao WRITE ica
 	RANGE gcabar, m_inf, tau_m, h_inf, tau_h, shift, i
 }
 
@@ -43,8 +43,9 @@ STATE {
 }
 
 ASSIGNED {
+        eca     (mV)
 	ica	(mA/cm2)
-	carev	(mV)
+	:carev	(mV)
 	m_inf
 	tau_m	(ms)
 	h_inf
@@ -54,10 +55,10 @@ ASSIGNED {
 
 BREAKPOINT {
 	SOLVE castate METHOD cnexp
-	carev = 35
+	:carev = 35
 
 :	Will assume m3h model
-	ica = gcabar * m*m*m*h * (v-carev)
+	ica = gcabar * m*m*m*h * (v-eca)
 	i = ica		: diagnostic i added to display the current
 }
 

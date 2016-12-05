@@ -11,8 +11,9 @@ ENDCOMMENT
 
 NEURON { 
 	SUFFIX CaLVA 
-	USEION cal READ cali, calo WRITE ical VALENCE 2
-	RANGE perm, ical, m, h, cali
+	:USEION cal READ cali, calo WRITE ical VALENCE 2
+	USEION ca READ cai,cao WRITE ica
+        RANGE perm, ical, m, h, cai
 	GLOBAL qdeltat
 } 
  
@@ -30,9 +31,9 @@ PARAMETER {
 
 ASSIGNED {
     v (mV)
-    cali (mM)
-    calo (mM)     
-	ical (mA/cm2) 
+    cai (mM)
+    cao (mM)     
+	ica (mA/cm2) 
 	minf
 	hinf
 	taum (ms) 
@@ -63,7 +64,7 @@ BREAKPOINT {
     : (below), this speeds up the whole DCN simulation (without synapses) by 8%.
     : The division of the calcium concentrations (mM) by 1000 gives molar as 
     : required by the GHK current equation.
-    ical = perm * m*m * h * (4.47814e6 * v / T) * ((cali/1000) - (calo/1000) * A) / (1 - A)
+    ica = perm * m*m * h * (4.47814e6 * v / T) * ((cai/1000) - (cao/1000) * A) / (1 - A)
 } 
  
 DERIVATIVE states { 

@@ -7,10 +7,10 @@ TITLE t-type calcium channel with high threshold for activation
 
 NEURON {
 	SUFFIX cat
-	USEION ca READ cai, eca    
-        USEION Ca WRITE iCa VALENCE 2
+	USEION ca READ cai, eca WRITE ica    
+        :USEION Ca WRITE iCa VALENCE 2
         : The T-current does not activate calcium-dependent K-currents
-        RANGE gcatbar, iCa
+        RANGE gcatbar
         RANGE gcatbar, ica
 	GLOBAL hinf, minf
 }
@@ -26,7 +26,7 @@ UNITS {
 
 PARAMETER {           :parameters that can be entered when function is called in cell-setup 
 :	gcatbar = 0.1e-7   (cm/s)  : initialized conductance
-	gcatbar = 0   (mho/cm2)  : initialized conductance
+	gcatbar = 1.0   (mho/cm2)  : initialized conductance
 	zetam = -3
 	zetah = 5.2
 	vhalfm =-36 (mV)
@@ -40,7 +40,7 @@ PARAMETER {           :parameters that can be entered when function is called in
 ASSIGNED {     : parameters needed to solve DE
 	v            (mV)
 	celsius      (degC)
-	iCa          (mA/cm2)
+	ica          (mA/cm2)
 :	ica          (mA/cm2)
 	cai          (mM)       :5e-5 initial internal Ca++ concentration
 	eca          (mV)       : initial external Ca++ concentration
@@ -64,7 +64,7 @@ BREAKPOINT {
 	SOLVE states METHOD cnexp
 
 :	ecat = (1e3) * (R*(celsius+273.15))/(2*FARADAY) * log (cao/cai)
-	iCa = gcatbar*m*m*h*(v-eca)	: dummy calcium current induced by this channel
+	ica = gcatbar*m*m*h*(v-eca)	: dummy calcium current induced by this channel
 :	ica = gcatbar*m*m*h*(v-eca)	: dummy calcium current induced by this channel
 
 }

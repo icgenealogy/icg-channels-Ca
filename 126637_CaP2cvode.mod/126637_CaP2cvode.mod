@@ -11,7 +11,7 @@ UNITS {
  
 NEURON {
         SUFFIX CaP2cvode
-        USEION ca READ cai, cao WRITE ica
+        USEION ca READ eca WRITE ica
         RANGE  gcabar, ica, gca
 } 
  
@@ -21,9 +21,9 @@ PARAMETER {
         v (mV)
         celsius = 37 (degC)
         gcabar = .0045 (mho/cm2)
-        ecacvode = 135 (mV)
-	  cai	= 0.40e-4 (mM)		: adjusted for ecacvode=135mV
-	  cao	= 2.4	(mM)
+        :ecacvode = 135 (mV)
+	 : cai	= 0.40e-4 (mM)		: adjusted for ecacvode=135mV
+	 : cao	= 2.4	(mM)
 	  mon = 1
 }
  
@@ -32,6 +32,7 @@ STATE {
 }
  
 ASSIGNED {
+        eca (mV)
         ica (mA/cm2)
         gca minf tau q10 alpha beta sum
 }
@@ -39,7 +40,7 @@ ASSIGNED {
 BREAKPOINT {
 	  SOLVE state METHOD cnexp
         gca = gcabar * m
-        ica = gca* (v-ecacvode)
+        ica = gca* (v-eca)
 }
  
 UNITSOFF

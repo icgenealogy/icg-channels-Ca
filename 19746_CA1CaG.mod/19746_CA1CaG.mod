@@ -16,8 +16,8 @@ UNITS {
  
 NEURON {
         SUFFIX CA1CaG
-        USEION ca WRITE ica
-        RANGE gcabar,gca,ica
+        USEION ca READ eca WRITE ica
+        RANGE gcabar,gca
         GLOBAL minf, hinf, mexp, hexp, tc
 }
  
@@ -28,7 +28,7 @@ PARAMETER {
         celsius = 36 (degC)
         dt (ms)
         gcabar = 0.01 (mho/cm2)
-        eca = 80 (mV)
+        :eca = 80 (mV)
         tc = 1 (1)
 }
  
@@ -37,6 +37,7 @@ STATE {
 }
  
 ASSIGNED {
+        eca (mV)
         ica (mA/cm2)
         minf hinf mexp hexp
 }

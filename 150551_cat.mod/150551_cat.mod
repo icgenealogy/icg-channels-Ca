@@ -18,7 +18,7 @@ PARAMETER {           :parameters that can be entered when function is called in
 	v             (mV)
         tBase = 23.5  (degC)
 	celsius = 22  (degC)
-	gcatbar = 0   (mho/cm2)  : initialized conductance
+	gcatbar = 1.0   (mho/cm2)  : initialized conductance
 	ki = 0.001    (mM)
 	cai = 5.0e-5   (mM)       : initial internal Ca++ concentration
 	cao = 2       (mM)       : initial external Ca++ concentration

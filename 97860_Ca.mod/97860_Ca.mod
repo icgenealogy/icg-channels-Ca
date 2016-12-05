@@ -3,8 +3,8 @@
 
 NEURON {
 	SUFFIX Ca
-	USEION ca READ cai WRITE ica
-	RANGE g, gbar, ica, eca
+	USEION ca READ eca,cai WRITE ica
+	RANGE g, gbar
 	GLOBAL vh, vc
 }
 
@@ -18,10 +18,11 @@ PARAMETER {
 	gbar = 1	(S/cm2)
 	vh = -40	(mV)
 	vc = 7		(mV)
-	eca = 100	(mV)
+	:eca = 100	(mV)
 }
 
 ASSIGNED {
+        eca (mV)
 	g       (S/cm2)
 	v		(mV)
 	ica		(mA/cm2)

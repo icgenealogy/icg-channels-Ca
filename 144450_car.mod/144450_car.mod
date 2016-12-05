@@ -12,7 +12,7 @@ NEURON {
 	USEION ca READ cai, cao WRITE ica
 :	USEION Ca WRITE iCa VALENCE 2
         RANGE gcabar, m, h,ica
-	RANGE inf, fac, tau
+	RANGE inf, fac, tau, ecar
 }
 
 UNITS {
@@ -39,7 +39,7 @@ ASSIGNED {               : parameters needed to solve DE
 
 
 PARAMETER {              : parameters that can be entered when function is called in cell-setup
-        gcabar = 0      (mho/cm2) : initialized conductance
+        gcabar = 1.0      (mho/cm2) : initialized conductance
 }  
 
 STATE {	

@@ -29,7 +29,7 @@
                              NEURON {
                                      SUFFIX it2
                                      USEION ca READ cai, cao WRITE ica
-                                     RANGE gcabar, m_inf, tau_m, h_inf, tau_h, shift
+                                     RANGE gcabar, m_inf, tau_m, h_inf, tau_h, shift, carev
                              }
 
                              UNITS {

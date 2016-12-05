@@ -16,7 +16,7 @@ ENDCOMMENT
 NEURON {
 	SUFFIX iL
 	USEION ca READ cai,cao WRITE ica
-        RANGE pca, minf, mtau, ica
+        RANGE pca, minf, mtau
 }
 
 UNITS {

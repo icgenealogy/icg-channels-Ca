@@ -2,8 +2,8 @@ TITLE HH P/N calcium channel
 
 NEURON { 
  SUFFIX Icapn
- USEION ca WRITE ica 
- RANGE gbar, ica, h, m, g 
+ USEION ca READ eca WRITE ica 
+ RANGE gbar, h, m, g 
  GLOBAL minf, hinf, mtau, htau 
 } 
  
@@ -15,7 +15,7 @@ UNITS {
 PARAMETER { 
  v (mV) 
  gbar = 0.1 (mho/cm2) <0,1e9> 
- e = 100 (mV) 
+ :e = 100 (mV) 
 } 
  
 STATE { 
@@ -25,6 +25,7 @@ STATE {
 } 
  
 ASSIGNED { 
+ eca (mV)
  ica (mA/cm2) 
  minf 
  hinf 
@@ -41,7 +42,7 @@ INITIAL {
 BREAKPOINT { 
  SOLVE states METHOD cnexp 
  g = gbar*m*m*h
- ica = g*(v - e) 
+ ica = g*(v - eca) 
 } 
  
 DERIVATIVE states { 

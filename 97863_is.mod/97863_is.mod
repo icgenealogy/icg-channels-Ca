@@ -3,12 +3,12 @@ TITLE Cardiac L-type Calcium channel
 
 NEURON {
 	SUFFIX Is
-	USEION ca READ cai WRITE ica
+	USEION ca READ eca,cai WRITE ica
 
-	USEION cs WRITE ics VALENCE 2
-	USEION ns WRITE ins VALENCE 2
+	:USEION cs WRITE ics VALENCE 2
+	:USEION ns WRITE ins VALENCE 2
 
-	RANGE gsbar, ica, ics
+	RANGE gsbar
 	GLOBAL minf, ninf, mtau, ntau
 }
 
@@ -28,12 +28,13 @@ STATE { : d f
 }
 
 ASSIGNED {
+        eca (mV)
 	v (mV)
 	celsius (degC) : 37
 	cai (mM)
 	ica (mA/cm2)
-	ics (mA/cm2)
-	ins (mA/cm2)
+	:ics (mA/cm2)
+	:ins (mA/cm2)
 	minf ninf
 	mtau (ms)
 	ntau (ms)
@@ -49,10 +50,10 @@ INITIAL {
 BREAKPOINT {
 LOCAL Es
 SOLVE states METHOD derivimplicit
-	Es = -82.3-13.0287*log(cai)
-	ics = gsbar*m*n*(v - Es)
-	ica = ics
-	ins = -ics
+	:Es = -82.3-13.0287*log(cai)
+	ica = gsbar*m*n*(v - eca)
+	:ica = ics
+	:ins = -ics
 }
 
 DERIVATIVE states {

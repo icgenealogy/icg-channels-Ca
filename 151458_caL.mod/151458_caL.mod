@@ -13,9 +13,10 @@ UNITS {
 
 NEURON {
 	SUFFIX caL
-	USEION cal READ cali, calo WRITE ical VALENCE 2
-	RANGE pbar, ical, mshift, hshift:, mu
-	POINTER mu
+	:USEION cal READ cali, calo WRITE ical VALENCE 2
+	USEION ca READ cai, cao WRITE ica
+        RANGE pbar, ical, mshift, hshift, mu
+	:POINTER mu
 }
 
 PARAMETER {
@@ -24,7 +25,7 @@ PARAMETER {
 	mvhalf = -8.9	(mV)		: Churchill 1998, fig 5
 	mslope = -6.7	(mV)		: Churchill 1998, fig 5
 	mshift = 0	(mV)
-
+	mu = 1
 	vm = -8.124  	(mV)		: Kasai 1992, fig 15
 	k = 9.005   	(mV)		: Kasai 1992, fig 15
 	kpr = 31.4   	(mV)		: Kasai 1992, fig 15
@@ -43,18 +44,18 @@ PARAMETER {
 
 ASSIGNED { 
     v 		(mV)
-    ical 	(mA/cm2)
-    ecal		(mV)
+    ica 	(mA/cm2)
+    eca		(mV)
 
     celsius	(degC)
-    cali		(mM)
-    calo		(mM)
+    cai		(mM)
+    cao		(mM)
     
     minf
     hinf
     mtau	(ms)
 
-mu	(1)
+:mu	(1)
 }
 
 STATE {
@@ -63,7 +64,7 @@ STATE {
 
 BREAKPOINT {
     SOLVE states METHOD cnexp
-    ical  = mu*ghk(v,cali,calo) * pbar * m * m * (a*h + (1-a))    : Kasai 92, Brown 93
+    ica  = mu*ghk(v,cai,cao) * pbar * m * m * (a*h + (1-a))    : Kasai 92, Brown 93
 }
 
 INITIAL {

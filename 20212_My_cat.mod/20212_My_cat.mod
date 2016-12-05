@@ -18,7 +18,7 @@ PARAMETER {
 	v (mV)
         tBase = 23.5  (degC)
 	celsius = 22	(degC)
-	gcatbar = 0 (mho/cm2)
+	gcatbar = 1.0 (mho/cm2)
 	ki=.001 (mM)
 	cai=5.e-5 (mM)
 	cao = 2  (mM)

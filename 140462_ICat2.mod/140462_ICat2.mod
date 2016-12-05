@@ -13,8 +13,8 @@ INDEPENDENT { t FROM 0 TO 1 WITH 1 (ms) }
 
 NEURON { 
 	SUFFIX iCat2
-	USEION ca WRITE ica
-	RANGE  gbar, ica
+	USEION ca READ eca WRITE ica
+	RANGE  gbar, ica, eca
 }
 
 
@@ -26,7 +26,7 @@ UNITS {
 
 PARAMETER { 
 	v  		(mV)  
-	gbar = 0.0 	(mho/cm2)
+	gbar = 1.0 	(mho/cm2)
 	cai	= 8e-5 (mM)		: eca=? mV
 	cao	= 2    (mM)
 }
@@ -39,7 +39,7 @@ STATE {
 ASSIGNED { 
 	ica 		(mA/cm2) 
 	alpha beta	(/ms)
-	carev	(mV)
+	eca	(mV)
 	i	(mA/cm2)
 }
  
@@ -50,9 +50,9 @@ BREAKPOINT {
 	
 
 :	Will assume m^2 model with no inactivation
-	carev = 35
+	:carev = 35
 
-	ica = gbar * m * m * ( v - carev) 
+	ica = gbar * m * m * ( v - eca) 
         i = ica		: diagnostic i added to display the current
 }
  

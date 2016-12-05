@@ -13,7 +13,7 @@ UNITS {
  
 NEURON {
         SUFFIX cachan
-        USEION ca READ cai WRITE ica
+        USEION ca READ eca,cai WRITE ica
         RANGE  gcalbar,gcanbar,gcatbar,ica,ical,icat,ican,kml,kmn
         GLOBAL dlinf,dninf,dtinf,ftinf,flinf,fninf
 }
@@ -30,7 +30,7 @@ PARAMETER {
         gcalbar =  216.0e-6  (S/cm2)
         kmn = 0.0001   (mM)
         kml = 0.00045  (mM)
-        eca = 120 (mV)
+        eca (mV)
         cao = 2.0 (mM)
         
 }

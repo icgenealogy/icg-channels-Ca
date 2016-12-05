@@ -27,9 +27,9 @@ INDEPENDENT {t FROM 0 TO 1 WITH 1 (ms)}
 
 NEURON {
 	SUFFIX cat
-	USEION ca READ cai WRITE ica
-	POINTER gbar
-	RANGE m_inf, tau_m, h_inf, tau_h, shift, i, carev
+	USEION ca READ cai,cao WRITE ica
+	:POINTER gbar
+	RANGE m_inf, tau_m, h_inf, tau_h, shift, i, carev, gbar
 }
 
 UNITS {
@@ -46,7 +46,7 @@ PARAMETER {
 	v		(mV)
 :	celsius	= 36	(degC)
 :	eca	= 120	(mV)
-	gbar (S/cm2) := .00175 (mho/cm2)
+	gbar = 1.0 (S/cm2) := .00175 (mho/cm2)
 :	shift	= 2 	(mV)		: screening charge for Ca_o = 2 mM
 	cai  (mM) : = 2.4e-4 (mM)		: adjusted for eca=120 mV
                                         : p.2319 Liu et al. 1998

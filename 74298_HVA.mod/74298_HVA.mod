@@ -130,6 +130,6 @@ PROCEDURE setCadepLinact(cai) { : set Ca dependent L-type calcium channel inacti
         htau   = inactLtau /rate_k
 }
 
-INCLUDE "ghk.inc"
+INCLUDE "custom_code/inc_files/74298_ghk.inc"
 
 

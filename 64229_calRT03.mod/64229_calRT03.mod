@@ -1,10 +1,15 @@
-NEURON { SUFFIX calRT03 }
-NEURON { USEION ca WRITE ica }
-ASSIGNED { ica }
+NEURON {
+    SUFFIX calRT03 }
+NEURON {
+    USEION ca READ eca WRITE ica }
+ASSIGNED {
+    ica
+    eca (mV)
+}
 
 PARAMETER {
-	erev 		= 125    (mV)
-	gmax 		= 0    (mho/cm^2)
+	:erev 		= 125    (mV)
+	gmax 		= 1.0    (mho/cm^2)
         vrest           = 0
 
 	maflag 		= 2
@@ -31,8 +36,8 @@ PARAMETER {
 	hexp 		= 0
 }
 
-INCLUDE "geneval_cvode.inc"
+INCLUDE "custom_code/inc_files/64229_geneval_cvode.inc"
 
-PROCEDURE iassign () { i=g*(v-erev) ica=i }
+PROCEDURE iassign () { i=g*(v-eca) ica=i }
 
 :* Traub defaults

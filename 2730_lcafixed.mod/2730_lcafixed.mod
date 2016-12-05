@@ -6,8 +6,8 @@ TITLE LCa calcium channel with fixed reversal potential
 
 NEURON {
 	SUFFIX lcafixed
-	USEION ca WRITE ica
-	RANGE gcabar, ica
+	USEION ca READ eca WRITE ica
+	RANGE gcabar
 	GLOBAL sinf, rinf, stau, rtau
 }
 
@@ -21,7 +21,7 @@ UNITS {
 
 INDEPENDENT {t FROM 0 TO 1 WITH 1 (ms)}
 
-CONSTANT { eca = 70 (mV) }
+:CONSTANT { eca = 70 (mV) }
 
 PARAMETER {
 	v (mV)
@@ -35,6 +35,7 @@ STATE {
 }
 
 ASSIGNED {
+        eca (mV)
 	ica (mA/cm2)
 	sinf
 	rinf

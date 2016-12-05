@@ -18,8 +18,9 @@ INDEPENDENT {t FROM 0 TO 1 WITH 1 (ms)}
 
 NEURON {
 	SUFFIX ical
-	USEION Ca READ Cai, Cao WRITE iCa VALENCE 2
-      RANGE pcabar, g
+	:USEION Ca READ Cai, Cao WRITE iCa VALENCE 2
+        USEION ca READ cai,cao WRITE ica
+        RANGE pcabar, g
 	GLOBAL 	m_inf, taum, sh1, sh2
 }
 
@@ -37,9 +38,9 @@ UNITS {
 PARAMETER {
 	v		(mV)
 	celsius	= 36	(degC)
-	eCa     = 120		(mV)
-	Cai 	= .00005	(mM)	: initial [Ca]i = 50 nM
-	Cao 	= 2		(mM)	: [Ca]o = 2 mM
+	eca     = 120		(mV)
+	cai 	= .00005	(mM)	: initial [Ca]i = 50 nM
+	cao 	= 2		(mM)	: [Ca]o = 2 mM
 	pcabar	= 9e-4	(mho/cm2)
 	sh1 	= -17		 : Modified (-10 in Zhu et al. 99a)
 	sh2	= -7		 : Modified (0 in Zhu et al. 99a)
@@ -58,7 +59,7 @@ INITIAL {
 
 
 ASSIGNED {
-	iCa	(mA/cm2)
+	ica	(mA/cm2)
 	g       (mho/cm2)
 	m_inf
 	taum	(ms)
@@ -68,7 +69,7 @@ ASSIGNED {
 BREAKPOINT { 
 	SOLVE states METHOD cnexp
 	g = pcabar * m * m
-	iCa = g * ghk(v, Cai, Cao)
+	ica = g * ghk(v, cai, cao)
 }
 
 DERIVATIVE states { 

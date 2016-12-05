@@ -12,8 +12,8 @@ TITLE Ca R-type channel with high threshold for activation
 
 NEURON {
 	SUFFIX carF
-	USEION ca  WRITE ica
-        RANGE gcabar, m, h, g, p, eca
+	USEION ca READ eca WRITE ica
+        RANGE gcabar, m, h, g, p
 	RANGE inf, fac, vha, ka, ta, vhi, ki, ti
 	RANGE irtype
 }
@@ -30,7 +30,7 @@ PARAMETER {	: parameters that can be entered when function is called in cell-set
     	celsius = 30	(degC)
 	dt              (ms)
     	gcabar = 0.351  (mho/cm2) : initialized conductance 
-	eca = 10	(mV)      : Ca++ reversal potential was choosen to best fit the GHK between -40 and -10 mV	
+	:eca = 10	(mV)      : Ca++ reversal potential was choosen to best fit the GHK between -40 and -10 mV	
 	vha = -14	(mV)	: half activation voltage (BPG)
 	ka = -6.7	(1)	: activation slope (BPG)
 	ta = 3.6	(ms)	: activation time constant (BPG)
@@ -41,7 +41,8 @@ PARAMETER {	: parameters that can be entered when function is called in cell-set
 
 STATE {	m h }               
 
-ASSIGNED {                  
+ASSIGNED {
+        eca (mV)                  
 	ica             (mA/cm2)
     	inf[2]
 	fac[2]

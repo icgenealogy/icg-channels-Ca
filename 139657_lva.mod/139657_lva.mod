@@ -7,8 +7,8 @@ ENDCOMMENT
 NEURON {
 	SUFFIX lva
 	: NONSPECIFIC_CURRENT i
-	USEION ca WRITE  ica
-	RANGE Erev,g, gbar, i
+	USEION ca READ eca WRITE ica
+	RANGE g, gbar
 	RANGE k, alpha_1, alpha_2, beta_1, beta_2, V_s, taum, minf
 	GLOBAL mytaum, myminf
 }
@@ -21,15 +21,16 @@ UNITS {
 
 PARAMETER {
 	gbar = 0.4e-3	(S/cm2) < 0, 1e9 > : Quadroni and Knopfel use 166e-6
-	Erev = 120 (mV)	: orig from Wang XJ et al 1991 was 120
+	:Erev = 120 (mV)	: orig from Wang XJ et al 1991 was 120
 	: note: Quadroni and Knopfel 1994 table 1 use 80 instead
 	V_s = 0 (mV)	: used to describe effect of changing extracellular [Ca]
 			: 0 corresponds to [Ca]outside = 3 mM (p 841)
 }
 
 ASSIGNED {
+        eca (mV)
 	ica (mA/cm2)
-	i (mA/cm2)
+	:i (mA/cm2)
 	v (mV)
 	g (S/cm2)
 	k
@@ -46,8 +47,8 @@ STATE {	m h d }
 BREAKPOINT {
 	SOLVE states METHOD cnexp
 	g = gbar * m^3 * h
-	ica = g * (v - Erev)
-	i = ica	: used only to display the value of the current (section.i_lva(0.5))
+	ica = g * (v - eca)
+	:i = ica	: used only to display the value of the current (section.i_lva(0.5))
 }
 
 INITIAL {

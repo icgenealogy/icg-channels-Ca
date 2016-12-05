@@ -26,7 +26,7 @@ NEURON {
 PARAMETER {
     inactF = 3
 	actF   = 1
-	gbar = 0   	(pS/um2)	: 0.12 mho/cm2
+	gbar = 1.0   	(pS/um2)	: 0.12 mho/cm2
 	vshift = 0	(mV)		: voltage shift (affects all)
 
 	cao  = 2.5	(mM)	        : external ca concentration
