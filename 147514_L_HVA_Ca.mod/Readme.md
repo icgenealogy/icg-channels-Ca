@@ -10,7 +10,7 @@ ICG Class | [Ca](http://icg.neurotheory.ox.ac.uk/channels/3)
 
 ## Description
 
-This is a single channel model file that was originally part of a [published model on the ModelDB website](http://senselab.med.yale.edu/mModelDB/ShowModel.cshtml?model=147514).
+This is a single channel model file that was originally part of a [published model on the ModelDB website](http://senselab.med.yale.edu/ModelDB/ShowModel.cshtml?model=147514).
 
 
 The file [147514\_L\_HVA\_Ca.mod](147514_L_HVA_Ca.mod) was extrated from [the ModelDB repository](http://senselab.med.yale.edu/ModelDB/ShowModel.cshtml?model=147514), and committed in its original form.
