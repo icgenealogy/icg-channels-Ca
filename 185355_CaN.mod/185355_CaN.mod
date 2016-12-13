@@ -31,10 +31,12 @@ UNITS {
  
 NEURON { 
 SUFFIX nca
-USEION nca READ enca WRITE inca VALENCE 2 
+:USEION nca READ enca WRITE inca VALENCE 2 
+USEION ca READ eca WRITE ica
 RANGE  gnca
 RANGE gncabar
 RANGE cinf, ctau, dinf, dtau, inca
+GLOBAL eca
 }
  
 INDEPENDENT {t FROM 0 TO 100 WITH 100 (ms)}
@@ -43,7 +45,7 @@ PARAMETER {
         v (mV) 
         celsius = 6.3 (degC)
         dt (ms) 
-	gncabar (mho/cm2)
+	gncabar = 1.0 (mho/cm2)
 }
  
 STATE {
@@ -52,8 +54,8 @@ STATE {
  
 ASSIGNED {
 	gnca (mho/cm2)
-	inca (mA/cm2)
-	enca (mV)
+	ica (mA/cm2)
+	eca (mV)
 
 	cinf dinf
 	ctau (ms) dtau (ms) 
@@ -63,7 +65,7 @@ ASSIGNED {
 BREAKPOINT {
 	SOLVE states
         gnca = gncabar*c*c*d
-	inca = gnca*(v-enca)
+	ica = gnca*(v-eca)
 }
  
 UNITSOFF

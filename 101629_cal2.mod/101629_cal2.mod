@@ -16,8 +16,8 @@ PARAMETER {
 	celsius 	(degC)
 	gcalbar=.003 (mho/cm2)
 	ki=.001 (mM)
-	cai = 50.e-6 (mM)
-	cao = 2 (mM)
+	cai (mM) :50.e-6 (mM)
+	cao (mM)
 	q10 = 5
 	mmin=0.2
 	tfa = 1
@@ -32,7 +32,7 @@ PARAMETER {
 NEURON {
 	SUFFIX cal
 	USEION ca READ cai,cao WRITE ica
-        RANGE gcalbar,cai, ica, gcal, ggk
+        RANGE gcalbar, gcal, ggk
         GLOBAL minf,tau
 }
 

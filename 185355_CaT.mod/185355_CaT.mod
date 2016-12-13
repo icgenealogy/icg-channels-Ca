@@ -26,10 +26,12 @@ UNITS {
  
 NEURON { 
 SUFFIX tca
-USEION tca READ etca WRITE itca VALENCE 2 
+:USEION tca READ etca WRITE itca VALENCE 2 
+USEION ca READ eca WRITE ica
 RANGE gtca
 RANGE gcatbar
 RANGE ainf, atau, binf, btau, itca
+GLOBAL eca
 }
 
 INDEPENDENT {t FROM 0 TO 100 WITH 100 (ms)}
@@ -38,7 +40,7 @@ PARAMETER {
         v (mV) 
         celsius = 6.3 (degC)
         dt (ms) 
-	gcatbar (mho/cm2)
+	gcatbar = 1.0 (mho/cm2)
 }
  
 STATE {
@@ -47,8 +49,8 @@ STATE {
  
 ASSIGNED {
         gtca (mho/cm2)
-	itca (mA/cm2)
-	etca (mV)
+	ica (mA/cm2)
+	eca (mV)
 
 	ainf binf
 	atau (ms) btau (ms) 
@@ -58,7 +60,7 @@ ASSIGNED {
 BREAKPOINT {
 	SOLVE states
         gtca = gcatbar*a*a*b
-	itca = gtca*(v-etca)
+	ica = gtca*(v-eca)
 }
  
 UNITSOFF

@@ -6,8 +6,9 @@ UNITS {
 
 NEURON {
   SUFFIX icalts
-  USEION ca WRITE ica
+  USEION ca READ eca WRITE ica
   RANGE gca,eca
+  GLOBAL eca
 }
 
 PARAMETER {
@@ -30,4 +31,4 @@ BREAKPOINT { iassign() }
 
 FUNCTION mcainf(v(mV)) { mcainf = fun2(v, -20, 1,  -9)*1(ms) }
 
-INCLUDE "aux_fun.inc"
+INCLUDE "custom_code/inc_files/185858_aux_fun.inc"

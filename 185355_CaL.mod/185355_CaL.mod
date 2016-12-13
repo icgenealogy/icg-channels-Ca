@@ -27,10 +27,12 @@ UNITS {
  
 NEURON { 
 SUFFIX lca
-USEION lca READ elca WRITE ilca VALENCE 2 
+:USEION lca READ elca WRITE ilca VALENCE 2 
+USEION ca READ eca WRITE ica
 RANGE  glca
 RANGE glcabar
-RANGE einf, etau, ilca
+RANGE einf, etau, ica
+GLOBAL eca
 }
  
 INDEPENDENT {t FROM 0 TO 100 WITH 100 (ms)}
@@ -39,7 +41,7 @@ PARAMETER {
         v (mV) 
         celsius = 6.3 (degC)
         dt (ms) 
-	glcabar (mho/cm2)
+	glcabar = 1.0 (mho/cm2)
 }
  
 STATE {
@@ -48,8 +50,8 @@ STATE {
  
 ASSIGNED {
 	glca (mho/cm2)
-	ilca (mA/cm2)
-	elca (mV)
+	ica (mA/cm2)
+	eca (mV)
 
 	einf 
 	etau (ms) 
@@ -59,7 +61,7 @@ ASSIGNED {
 BREAKPOINT {
 	SOLVE states
         glca = glcabar*e*e
-	ilca = glca*(v-elca)
+	ica = glca*(v-eca)
 }
  
 UNITSOFF

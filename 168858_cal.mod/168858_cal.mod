@@ -15,17 +15,19 @@ UNITS {
  
 NEURON { 
 	SUFFIX cal
-	USEION ca WRITE ica
+	USEION ca READ eca WRITE ica
 	RANGE  gbar, ica, vshift
+	GLOBAL eca
 }
 
 PARAMETER { 
-	gbar = 0.0 	(mho/cm2)
+	gbar = 1.0 	(mho/cm2)
 	v  		(mV)  
         vshift =0.0     (mV)
 }
  
 ASSIGNED { 
+	eca (mV)
 	ica 		(mA/cm2) 
 	alpha beta	(/ms)
 }
@@ -36,7 +38,7 @@ STATE {
 
 BREAKPOINT { 
 	SOLVE states METHOD cnexp
-	ica = gbar * m * m * ( v - 125 ) 
+	ica = gbar * m * m * ( v - eca ) 
 }
  
 INITIAL { 

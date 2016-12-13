@@ -24,9 +24,9 @@ PARAMETER {
 
 NEURON {
 	SUFFIX cal
-	USEION ca WRITE ica
+	USEION ca READ eca WRITE ica
         RANGE gcalbar, gcal, m
-        GLOBAL minf,tau
+        GLOBAL minf,tau,eca
 }
 
 STATE {
@@ -38,7 +38,7 @@ ASSIGNED {
         gcal (mho/cm2)
         minf
         tau   (ms)
-	e_ca  (mV)
+	eca  (mV)
 }
 
 INITIAL {
@@ -49,9 +49,9 @@ INITIAL {
 
 BREAKPOINT {
 	SOLVE state METHOD cnexp
-	e_ca = (1000)*(TEMP+273.15)*R/(2*F)*log(cao/ca_i)
+	:eca = (1000)*(TEMP+273.15)*R/(2*F)*log(cao/ca_i)
 	gcal = gcalbar*m*m
-	ica = gcal*(v-e_ca)
+	ica = gcal*(v-eca)
 
 }
 

@@ -19,8 +19,9 @@ ENDCOMMENT
 NEURON {
 
 	SUFFIX icapr
-	USEION ca WRITE ica
+	USEION ca READ eca WRITE ica
 	RANGE gca, ica
+	GLOBAL eca
 }
 	
 UNITS {
@@ -75,4 +76,4 @@ PROCEDURE rates(v(mV)) { LOCAL a,b
     taus = 1.0/(a+b)
 }
 
-INCLUDE "aux_fun.inc"
+INCLUDE "custom_code/inc_files/182134_aux_fun.inc"

@@ -9,7 +9,7 @@ NEURON {
 	USEION ca READ cai,cao WRITE ica
         RANGE gbar,ica, vshiftm, vshifth, timefactor_m, timefactor_h
         GLOBAL hinf,minf,taum,tauh, ki
-    NONSPECIFIC_CURRENT icont                                                       
+    :NONSPECIFIC_CURRENT icont                                                       
 }
 
 UNITS {
@@ -49,7 +49,7 @@ BREAKPOINT {
 	SOLVE states METHOD cnexp
 	gcan = gbar*m*m*h*h2(cai)
 	ica  = gcan*ghk(v,cai,cao)
-    icont = -ica
+    :icont = -ica
 }
 
 INITIAL {

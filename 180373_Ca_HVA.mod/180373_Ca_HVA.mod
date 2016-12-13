@@ -5,6 +5,7 @@ NEURON	{
 	SUFFIX Ca_HVA
 	USEION ca READ eca WRITE ica
 	RANGE gCa_HVAbar, gCa_HVA, ica 
+	GLOBAL eca
 }
 
 UNITS	{

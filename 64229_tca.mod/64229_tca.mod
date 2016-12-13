@@ -22,8 +22,8 @@ PARAMETER {
 
 NEURON {
 	SUFFIX cat
-	USEION tca READ etca WRITE itca VALENCE 2
-	USEION ca READ cai, cao VALENCE 2
+	USEION ca READ eca, cai, cao  WRITE ica
+	:USEION ca READ cai, cao VALENCE 2
         RANGE gcatbar,cai, itca, etca
 }
 
@@ -32,9 +32,9 @@ STATE {
 }
 
 ASSIGNED {
-	itca (mA/cm2)
+	ica (mA/cm2)
         gcat (mho/cm2)
-	etca (mV)
+	eca (mV)
 }
 
 INITIAL {
@@ -48,7 +48,7 @@ INITIAL {
 BREAKPOINT {
 	SOLVE states METHOD cnexp
 	gcat = gcatbar*m*m*h
-	itca = gcat*ghk(v,cai,cao)
+	ica = gcat*ghk(v,cai,cao)
 
 }
 
