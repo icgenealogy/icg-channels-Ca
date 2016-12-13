@@ -2,6 +2,7 @@
 Repository for channel models of the Ca class
 
 ## Channels
+* 4: [101629_cal2.mod](https://github.com/icgenealogy/icg-channels-ca/blob/master/101629_cal2.mod)
 * 5: [101629_can2.mod](https://github.com/icgenealogy/icg-channels-ca/blob/master/101629_can2.mod)
 * 6: [101629_cat.mod](https://github.com/icgenealogy/icg-channels-ca/blob/master/101629_cat.mod)
 * 15: [102288_ICaL.mod](https://github.com/icgenealogy/icg-channels-ca/blob/master/102288_ICaL.mod)
@@ -293,6 +294,7 @@ Repository for channel models of the Ca class
 * 2231: [64229_catRT03_v2.mod](https://github.com/icgenealogy/icg-channels-ca/blob/master/64229_catRT03_v2.mod)
 * 2263: [64229_lcafixed.mod](https://github.com/icgenealogy/icg-channels-ca/blob/master/64229_lcafixed.mod)
 * 2277: [64229_nca.mod](https://github.com/icgenealogy/icg-channels-ca/blob/master/64229_nca.mod)
+* 2282: [64229_tca.mod](https://github.com/icgenealogy/icg-channels-ca/blob/master/64229_tca.mod)
 * 2300: [64296_lcafixed.mod](https://github.com/icgenealogy/icg-channels-ca/blob/master/64296_lcafixed.mod)
 * 2341: [74298_CaT.mod](https://github.com/icgenealogy/icg-channels-ca/blob/master/74298_CaT.mod)
 * 2343: [74298_HVA.mod](https://github.com/icgenealogy/icg-channels-ca/blob/master/74298_HVA.mod)
@@ -339,6 +341,8 @@ Repository for channel models of the Ca class
 * 2889: [45539_cal.mod](https://github.com/icgenealogy/icg-channels-ca/blob/master/45539_cal.mod)
 * 2890: [45539_cat.mod](https://github.com/icgenealogy/icg-channels-ca/blob/master/45539_cat.mod)
 * 2891: [45539_cat_a.mod](https://github.com/icgenealogy/icg-channels-ca/blob/master/45539_cat_a.mod)
+* 2932: [83344_it2.mod](https://github.com/icgenealogy/icg-channels-ca/blob/master/83344_it2.mod)
+* 2938: [83344_SlowCa.mod](https://github.com/icgenealogy/icg-channels-ca/blob/master/83344_SlowCa.mod)
 * 2946: [150288_ca.mod](https://github.com/icgenealogy/icg-channels-ca/blob/master/150288_ca.mod)
 * 2947: [150288_cal2.mod](https://github.com/icgenealogy/icg-channels-ca/blob/master/150288_cal2.mod)
 * 2961: [150288_cadyn.mod](https://github.com/icgenealogy/icg-channels-ca/blob/master/150288_cadyn.mod)
@@ -429,10 +433,6 @@ Repository for channel models of the Ca class
 * 3445: [155602_nca.mod](https://github.com/icgenealogy/icg-channels-ca/blob/master/155602_nca.mod)
 * 3448: [155602_tca.mod](https://github.com/icgenealogy/icg-channels-ca/blob/master/155602_tca.mod)
 * 3494: [127388_pSTN_icgCA2.mod](https://github.com/icgenealogy/icg-channels-ca/blob/master/127388_pSTN_icgCA2.mod)
-* 4: [101629_cal2.mod](https://github.com/icgenealogy/icg-channels-ca/blob/master/101629_cal2.mod)
-* 2282: [64229_tca.mod](https://github.com/icgenealogy/icg-channels-ca/blob/master/64229_tca.mod)
-* 2932: [83344_it2.mod](https://github.com/icgenealogy/icg-channels-ca/blob/master/83344_it2.mod)
-* 2938: [83344_SlowCa.mod](https://github.com/icgenealogy/icg-channels-ca/blob/master/83344_SlowCa.mod)
 * 3496: [155735_CaP.mod](https://github.com/icgenealogy/icg-channels-ca/blob/master/155735_CaP.mod)
 * 3497: [155735_cap2.mod](https://github.com/icgenealogy/icg-channels-ca/blob/master/155735_cap2.mod)
 * 3498: [155735_CaT.mod](https://github.com/icgenealogy/icg-channels-ca/blob/master/155735_CaT.mod)
