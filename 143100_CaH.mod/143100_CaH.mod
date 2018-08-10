@@ -14,7 +14,7 @@ UNITS {
 NEURON {
  SUFFIX CaH
  USEION ca READ eca WRITE ica
- RANGE gmax, iCaH
+ RANGE gbar, iCaH
 }
 
 PARAMETER {
@@ -22,7 +22,7 @@ PARAMETER {
  dt (ms)
  :cai (mM)
  :cao (mM)
- gmax  = 0.001 (mho/cm2)
+ gbar  = 0.001 (mho/cm2)
  iCaH  = 0.0 (mA/cm2)
  :e = 130 (mV)
 
@@ -43,7 +43,7 @@ ASSIGNED {
 
 BREAKPOINT {
  SOLVE states METHOD cnexp
- ica  = gmax*m*(v-eca)
+ ica  = gbar*m*(v-eca)
  iCaH = ica
 }
 

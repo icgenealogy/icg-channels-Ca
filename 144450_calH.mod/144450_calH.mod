@@ -11,7 +11,7 @@ TITLE Ca L-type channel with high treshold of activation
 NEURON {
 	SUFFIX calH
 	USEION ca READ cai, cao WRITE ica
-        RANGE gcalbar, m, h, ica
+        RANGE gbar, m, h, ica
 	RANGE inf, fac, tau, ecan
 }
 
@@ -27,7 +27,7 @@ UNITS {
 
 PARAMETER { 
         ki     = 0.1  (mM)            : middle point of inactivation fct
-        gcalbar = 1.0     (mho/cm2) : initialized conductance
+        gbar = 1.0     (mho/cm2) : initialized conductance
 }
 
 
@@ -62,7 +62,7 @@ FUNCTION h2(cai(mM)) {
 BREAKPOINT {
 	SOLVE states METHOD cnexp
 	ecan = (1e3) * (R*(celsius+273.15))/(2*FARADAY) * log (cao/cai)
-	ica = gcalbar*m*m*m*h*h2(cai)*(v - ecan)       
+	ica = gbar*m*m*m*h*h2(cai)*(v - ecan)       
 }
 
 DERIVATIVE states {

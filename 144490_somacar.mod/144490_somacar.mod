@@ -8,7 +8,7 @@ TITLE Ca R-type channel with medium threshold for activation
 NEURON {
 	  SUFFIX somacar
 	  USEION ca READ eca WRITE ica
-    RANGE gcabar, m, h, g, gmax
+    RANGE gbar, m, h, g, gmax
 	  RANGE inf, tau
 }
 
@@ -20,7 +20,7 @@ UNITS {
 PARAMETER {      : parameters that can be entered when function is called in cell-setup
     v               (mV)
  	  celsius = 34	  (degC)
-    gcabar = 1.0      (mho/cm2) : initialized conductance
+    gbar = 1.0      (mho/cm2) : initialized conductance
 	  eca = 140       (mV)      : Ca++ reversal potential
 }
 
@@ -36,7 +36,7 @@ ASSIGNED {               : parameters needed to solve DE
 
 BREAKPOINT {
 	  SOLVE states METHOD cnexp
-    g = gcabar*m*m*m*h
+    g = gbar*m*m*m*h
 	  ica = g*(v - eca)
     if (g > gmax) {
         gmax = g
@@ -47,7 +47,7 @@ INITIAL {
     mhn(v)
     m = inf[0]
     h = inf[1]
-    g = gcabar*m*m*m*h
+    g = gbar*m*m*m*h
     ica = g*(v - eca) : initial Ca++ current value
     gmax = g
 }

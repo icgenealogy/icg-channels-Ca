@@ -13,7 +13,7 @@ UNITS {
 NEURON {
         SUFFIX CaT
         USEION ca READ eca WRITE ica
-        RANGE  gcabar, ica, gca, minf, hinf, mexp, hexp
+        RANGE  gbar, ica, gca, minf, hinf, mexp, hexp
 } 
  
 INDEPENDENT {t FROM 0 TO 1 WITH 1 (ms)}
@@ -24,7 +24,7 @@ PARAMETER {
 	cai		(mM)
         celsius = 37 (degC)
         dt (ms)
-        gcabar = .0005 (mho/cm2)
+        gbar = .0005 (mho/cm2)
 
 }
 
@@ -41,7 +41,7 @@ ASSIGNED {
  
 BREAKPOINT {
         SOLVE states
-        gca = gcabar * m*h
+        gca = gbar * m*h
 	ica = gca* (v-eca)
 }
  

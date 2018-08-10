@@ -71,7 +71,7 @@ INITIAL {
 BREAKPOINT {
         SOLVE states METHOD cnexp
         gcaH = gbar*m*m*h
-	icaH = (1e-4) * gcaH * (v - eca)
+	icaH = 1 * gcaH * (v - eca)
 	ica = icaH
 } 
 

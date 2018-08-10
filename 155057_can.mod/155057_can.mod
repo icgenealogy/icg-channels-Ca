@@ -6,7 +6,7 @@ TITLE N-type calcium channel
 NEURON {
 	SUFFIX can
 	USEION ca READ cai, eca WRITE ica 
-        RANGE gcabar, ica, po
+        RANGE gbar, ica, po
 	GLOBAL hinf, minf, s_inf
 }
 
@@ -20,7 +20,7 @@ UNITS {
 }
 
 PARAMETER {           :parameters that can be entered when function is called in cell-setup 
-	gcabar = 1.0   (mho/cm2)  : initialized conductance
+	gbar = 1.0   (mho/cm2)  : initialized conductance
   	ki     = 0.025  (mM)            :test middle point of inactivation fct
 	zetam = -3.4
 	zetah = 2
@@ -68,7 +68,7 @@ INITIAL {
 BREAKPOINT {
 	SOLVE states METHOD cnexp
 	po = m*m*h
- 	ica = gcabar *po*h2(cai) * (v - eca)
+ 	ica = gbar *po*h2(cai) * (v - eca)
 
 }
 

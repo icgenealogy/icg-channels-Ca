@@ -145,7 +145,7 @@ BREAKPOINT {
     } else{                                         
     gca = strap(m2h1) * scale_dens 
 }
-    ica = (1e-4) * gca * (v - eca) } 
+    ica = 1 * gca * (v - eca) } 
 
 PROCEDURE states() {
 VERBATIM

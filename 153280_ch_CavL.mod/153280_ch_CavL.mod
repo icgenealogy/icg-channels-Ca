@@ -27,7 +27,7 @@ UNITS {
 NEURON {
 	SUFFIX ch_CavL
 	USEION ca READ cai, cao, eca WRITE ica VALENCE 2 
-    RANGE gmax, g, cai, ica, eca
+    RANGE gbar, g, cai, ica, eca
  	RANGE myi
     RANGE minf, mtau
     THREADSAFE
@@ -36,7 +36,7 @@ NEURON {
 PARAMETER {
 	v (mV)
     celsius (degC) : temperature - set in hoc; default is 6.3
-	gmax = 1.0		 (mho/cm2)
+	gbar = 1.0		 (mho/cm2)
 	ki=.001 (mM)
 	cai (mM)
 	cao (mM)
@@ -63,7 +63,7 @@ INITIAL {
 
 BREAKPOINT {
 	SOLVE state METHOD cnexp
-	g = gmax*m*m*h2(cai)
+	g = gbar*m*m*h2(cai)
 	ica = g*ghk(v,cai,cao)
 	myi = ica
 }

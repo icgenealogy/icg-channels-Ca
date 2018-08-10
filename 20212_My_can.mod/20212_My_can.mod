@@ -15,14 +15,14 @@ INDEPENDENT {t FROM 0 TO 1 WITH 1 (ms)}
 NEURON {
 	SUFFIX mycan
 	USEION ca READ cai,cao WRITE ica
-        RANGE gcanbar, gcan, hinf, minf, taum, tauh, facm, fach, ica
+        RANGE gbar, gcan, hinf, minf, taum, tauh, facm, fach, ica
 }
 
 PARAMETER {
         dt  (ms)
 	v (mV)
 	celsius = 6.3	(degC)
-	gcanbar = 1.0 (mho/cm2)
+	gbar = 1.0 (mho/cm2)
 	cai=5.e-5 (mM)
 	cao = 2  (mM)
         tadjm
@@ -52,13 +52,13 @@ INITIAL {
 	 rates(v)
          m = minf
          h = hinf
-         gcan = gcanbar*m*m*h
+         gcan = gbar*m*m*h
 }
 
 BREAKPOINT {
 	SOLVE states
-	gcan = gcanbar*m*m*h
-:	gcan = gcanbar*m*h
+	gcan = gbar*m*m*h
+:	gcan = gbar*m*h
 	ica = gcan*ghk(v,cai,cao,2)
 
 }

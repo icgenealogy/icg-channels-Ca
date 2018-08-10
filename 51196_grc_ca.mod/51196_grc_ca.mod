@@ -10,7 +10,7 @@ ENDCOMMENT
 NEURON { 
 	SUFFIX GrC_CaHVA 
 	USEION ca READ eca WRITE ica 
-	RANGE gcabar, ica, g, alpha_s, beta_s, alpha_u, beta_u 
+	RANGE gbar, ica, g, alpha_s, beta_s, alpha_u, beta_u 
 	RANGE Aalpha_s, Kalpha_s, V0alpha_s
 	RANGE Abeta_s, Kbeta_s, V0beta_s
 	RANGE Aalpha_u, Kalpha_u, V0alpha_u
@@ -36,7 +36,7 @@ PARAMETER {
 	Abeta_u = 0.0013 (/ms)
 	Kbeta_u = 83.33 (mV)
 	V0beta_u = -48 (mV)
-	gcabar= 0.00046 (mho/cm2) 
+	gbar= 0.00046 (mho/cm2) 
 } 
 STATE { 
 	s 
@@ -66,7 +66,7 @@ INITIAL {
  
 BREAKPOINT { 
 	SOLVE states METHOD derivimplicit 
-	g = gcabar*s*s*u 
+	g = gbar*s*s*u 
 	ica = g*(v - eca) 
 	alpha_s = alp_s(v)
 	beta_s = bet_s(v)

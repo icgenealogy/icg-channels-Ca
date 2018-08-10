@@ -21,7 +21,7 @@ INDEPENDENT {t FROM 0 TO 1 WITH 1 (ms)}
 NEURON {
         SUFFIX CaT3_1
         USEION ca READ cai, cao WRITE ica VALENCE 2
-        RANGE g, pcabar, minf, taum, hinf, tauh
+        RANGE g, gbar, minf, taum, hinf, tauh
 	RANGE ica, m ,h
 
     }
@@ -43,7 +43,7 @@ PARAMETER {
         v               (mV)
         celsius (degC)
         eca (mV)
-	pcabar  = 2.5e-4 (cm/s)
+	gbar  = 2.5e-4 (cm/s)
         cai  (mM)           : adjusted for eca=120 mV
 	cao  (mM)
 	
@@ -86,7 +86,7 @@ ASSIGNED {
 BREAKPOINT {
 	SOLVE castate METHOD cnexp 
 
-        ica = (1e3) *pcabar*m*m *h * g
+        ica = (1e3) *gbar*m*m *h * g
 }
 
 DERIVATIVE castate {

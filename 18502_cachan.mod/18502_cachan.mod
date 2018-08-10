@@ -16,7 +16,7 @@ UNITS {
 NEURON {
 	SUFFIX cachan
 	USEION ca READ cai, cao WRITE ica
-	RANGE pcabar, ica
+	RANGE gbar, ica
 }
 
 UNITS {
@@ -30,7 +30,7 @@ PARAMETER {
 	taufactor=.5	: Time constant factor relative to standard HH
 	celsius		(degC) : 20
 	v		(mV)
-	pcabar=.2e-3	(cm/s)	: Maximum Permeability
+	gbar=.2e-3	(cm/s)	: Maximum Permeability
 	cai		(mM)
 	cao		(mM)
 }
@@ -41,7 +41,7 @@ STATE {	oca }		: fraction of open channels
 
 BREAKPOINT {
 	SOLVE castate METHOD cnexp
-	ica = pcabar*oca*oca*ghk(v, cai, cao)
+	ica = gbar*oca*oca*ghk(v, cai, cao)
 }
 
 DERIVATIVE castate {

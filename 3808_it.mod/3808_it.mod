@@ -18,7 +18,7 @@ NEURON {
 	: The T-current does not activate calcium-dependent currents.
 	: The construction with dummy ion Ca prevents the updating of the 
 	: internal calcium concentration. 
-        RANGE pcabar, m_inf, h_inf, tau_m, tau_h, ica
+        RANGE gbar, m_inf, h_inf, tau_m, tau_h, ica
 }
 
 UNITS {
@@ -35,7 +35,7 @@ PARAMETER {
         dt              (ms)
 	cai		(mM)
 	cao		(mM)
-	pcabar= 0.0001	(cm/s)		
+	gbar= 0.0001	(cm/s)		
 }
 
 STATE {
@@ -54,7 +54,7 @@ ASSIGNED {
 
 BREAKPOINT { 
 	SOLVE state :METHOD euler
-	ica = pcabar * m*m*h * ghk(v,cai,cao,2)
+	ica = gbar * m*m*h * ghk(v,cai,cao,2)
 }
 
 :DERIVATIVE state {

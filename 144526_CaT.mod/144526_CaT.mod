@@ -11,13 +11,13 @@ INDEPENDENT {t FROM 0 TO 1 WITH 1 (ms)}
 NEURON {
 	SUFFIX it2
 	USEION ca READ eca WRITE ica
-	RANGE m, h, gcaT, icaT, gcabar
+	RANGE m, h, gcaT, icaT, gbar
 	RANGE minf, hinf, mtau, htau, inactF, actF
 	GLOBAL  vshift,vmin,vmax, v12m, v12h, vwm, vwh, am, ah, vm1, vm2, vh1, vh2, wm1, wm2, wh1, wh2
 }
 
 PARAMETER {
-	gcabar = 8 	(pS/um2)	: 0.12 mho/cm2
+	gbar = 8 	(pS/um2)	: 0.12 mho/cm2
 	vshift = 0	(mV)		: voltage shift (affects all)
 
 	cao  = 2.0	(mM)	        : external ca concentration
@@ -79,8 +79,8 @@ INITIAL {
 
 BREAKPOINT {
         SOLVE states
-        gcaT = gcabar*m*m*h
-	icaT = gcaT *(1e-4)* (v - eca)
+        gcaT = gbar*m*m*h
+	icaT = gcaT *1* (v - eca)
 	ica = icaT
 } 
 

@@ -24,7 +24,7 @@ NEURON {
 	SUFFIX Cav2
 	USEION ca READ cai, cao WRITE ica
 	NONSPECIFIC_CURRENT i
-	RANGE pbar, ica, i, igate, nc
+	RANGE gbar, ica, i, igate, nc
 	GLOBAL minf, taum
 	GLOBAL gateCurrent, punit 
 }
@@ -57,7 +57,7 @@ CONSTANT {
 PARAMETER {
 	gateCurrent = 0 (1)			: gating currents ON = 1 OFF = 0
 	
-	pbar = 3e-5 (cm/s)
+	gbar = 3e-5 (cm/s)
 	punit = 3.290e-13 (cm3/s)		: unitary calcium permeability
 	
 	monovalConc = 140 (mM)
@@ -87,7 +87,7 @@ ASSIGNED {
 STATE { m }
 
 INITIAL {
-	nc = pbar / punit
+	nc = gbar / punit
 	qt = q10^((celsius-22 (degC))/10 (degC))
 	T = kelvinfkt( celsius )
 	rates(v)
@@ -96,7 +96,7 @@ INITIAL {
 
 BREAKPOINT {
 	SOLVE states METHOD cnexp
-	ica = (1e3) * pbar * m * ghk(v, cai, cao, 2)
+	ica = (1e3) * gbar * m * ghk(v, cai, cao, 2)
 	igate = nc * (1e6) * e0 * zm * mgateFlip()
 
 	if (gateCurrent != 0) { 

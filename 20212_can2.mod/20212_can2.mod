@@ -17,8 +17,8 @@ PARAMETER {
         dt  (ms)
 	v (mV)
 	celsius = 6.3	(degC)
-:	gcanbar = 0.003 (mho/cm2)
-	gcanbar = 1.0 (mho/cm2)
+:	gbar = 0.003 (mho/cm2)
+	gbar = 1.0 (mho/cm2)
 	ki=.001 (mM)
 	cai=5.e-5 (mM)
 	cao = 2  (mM)
@@ -31,7 +31,7 @@ PARAMETER {
 NEURON {
 	SUFFIX can
 	USEION ca READ cai,cao WRITE ica
-        RANGE gcanbar       
+        RANGE gbar       
         GLOBAL hinf,minf,taum,tauh
 }
 
@@ -52,12 +52,12 @@ INITIAL {
 	  rates(v)
            m = minf
            h = hinf
-           gcan = gcanbar*m*m*h*h2(cai)
+           gcan = gbar*m*m*h*h2(cai)
 }
 
 BREAKPOINT {
 	SOLVE states
-	gcan = gcanbar*m*m*h*h2(cai)
+	gcan = gbar*m*m*h*h2(cai)
 	ica = gcan*ghk(v,cai,cao)
 
 }

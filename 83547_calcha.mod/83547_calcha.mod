@@ -17,7 +17,7 @@ UNITS {
 NEURON {
         SUFFIX calcha
         USEION ca READ eca, cai WRITE ica
-        RANGE gcalbar, gcanbar, gcahvabar, gcatbar,ica, ical,icat,ican,icahva,kml,kmn
+        RANGE gbar, gcanbar, gcahvabar, gcatbar,ica, ical,icat,ican,icahva,kml,kmn
         GLOBAL dlinf, dninf,  dtinf,ftinf,dhvainf,fhvainf
 }
  
@@ -29,7 +29,7 @@ PARAMETER {
         dt (ms)
         gcatbar =  1044.0e-6 (S/cm2)
         gcanbar =  171.0e-6  (S/cm2)
-        gcalbar =  216.0e-6  (S/cm2)
+        gbar =  216.0e-6  (S/cm2)
         gcahvabar =  0.0e-6  (S/cm2)
         kmn = 0.0001   (mM)
         kml = 0.00045  (mM)
@@ -60,7 +60,7 @@ BREAKPOINT {
         :eca = R*(celsius+273.15)/F*log(cao/cai)
         ENDCOMMENT
         icahva = gcahvabar*dhva*fhva*(v - eca)
-        ical = gcalbar*dl*flinf*(v - eca)
+        ical = gbar*dl*flinf*(v - eca)
         ican = gcanbar*dn*fninf*(v - eca)
         icat = gcatbar*d_t*ft*(v - eca)
         ica = icahva + ical + ican + icat

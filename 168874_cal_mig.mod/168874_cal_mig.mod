@@ -22,7 +22,7 @@ UNITS {
 PARAMETER {
   v (mV)
   celsius 	(degC)
-  gcalbar=.003 (mho/cm2)
+  gbar=.003 (mho/cm2)
   ki=.001 (mM)
   cai = 50.e-6 (mM)
   cao = 2 (mM)
@@ -40,7 +40,7 @@ PARAMETER {
 NEURON {
   SUFFIX cal
   USEION ca READ cai,cao WRITE ica
-  RANGE gcalbar,cai, ica, gcal, ggk
+  RANGE gbar,cai, ica, gcal, ggk
   GLOBAL minf,tau
 }
 
@@ -58,14 +58,14 @@ ASSIGNED {
 INITIAL {
   rate(v)
   m = minf
-  gcal = gcalbar*m*m*h2(cai)
+  gcal = gbar*m*m*h2(cai)
   ggk=ghk(v,cai,cao)
   ica = gcal*ggk
 }
 
 BREAKPOINT {
   SOLVE state METHOD cnexp
-  gcal = gcalbar*m*m*h2(cai)
+  gcal = gbar*m*m*h2(cai)
   ggk=ghk(v,cai,cao)
   ica = gcal*ggk
 }

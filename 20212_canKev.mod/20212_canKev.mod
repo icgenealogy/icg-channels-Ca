@@ -30,7 +30,7 @@ INDEPENDENT {t FROM 0 TO 1 WITH 1 (ms)}
 NEURON {
         SUFFIX ca
         USEION ca READ cai,cao WRITE ica
-        RANGE pcabar, ica, m_inf, h_inf
+        RANGE gbar, ica, m_inf, h_inf
 }
 
 UNITS {
@@ -47,7 +47,7 @@ PARAMETER {
         dt                      (ms)
         cai             = 5.e-05(mM)
         cao             = 2.5   (mM)
-        pcabar = 1.0                 (cm/s)  
+        gbar = 1.0                 (cm/s)  
         tauM            = 5     (ms)
 :        vHalfM          = -22   (mV)
 :        slopeM          = 12    (mV)
@@ -92,9 +92,9 @@ INITIAL {
 BREAKPOINT {
         SOLVE states
 
-:        ica = pcabar * pow(m,mpow) * h * nrn_ghk((v),(cai),(cao),2);
+:        ica = gbar * pow(m,mpow) * h * nrn_ghk((v),(cai),(cao),2);
 VERBATIM
-        ica = pcabar * m * m * h * nrn_ghk((v),(cai),(cao),2);
+        ica = gbar * m * m * h * nrn_ghk((v),(cai),(cao),2);
 ENDVERBATIM
 }
 

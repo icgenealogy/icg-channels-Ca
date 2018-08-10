@@ -18,7 +18,7 @@ NEURON {
 	SUFFIX ical3
 	:USEION Ca READ Cai, Cao WRITE iCa VALENCE 2
         USEION ca READ cai,cao WRITE ica
-        RANGE pcabar, g
+        RANGE gbar, g
 	GLOBAL 	m_inf, tau_m, sh1, sh2, rat
 }
 
@@ -39,7 +39,7 @@ PARAMETER {
 	eca     = 120		(mV)
 	cai 	= .00005	(mM)	: initial [Ca]i = 50 nM
 	cao 	= 2		(mM)	: [Ca]o = 2 mM
-	pcabar	= .003	(mho/cm2)	: gL is about 2x that of IT (McCormick)
+	gbar	= .003	(mho/cm2)	: gL is about 2x that of IT (McCormick)
 	sh1 	= 0		 
 	sh2	= 0
 	rat	= 1
@@ -67,7 +67,7 @@ ASSIGNED {
 
 BREAKPOINT { 
 	SOLVE states METHOD cnexp
-	g = pcabar * m * m
+	g = gbar * m * m
 	ica = g * ghk(v, cai, cao)
 }
 

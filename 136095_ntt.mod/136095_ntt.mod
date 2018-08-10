@@ -29,7 +29,7 @@ NEURON {
 	SUFFIX it2
 	:USEION Ca READ Cai, Cao WRITE iCa VALENCE 2
 	USEION ca READ cai,cao WRITE ica
-        RANGE gcabar, g, shift1
+        RANGE gbar, g, shift1
 	GLOBAL m_inf, tau_m, h_inf, tau_h, shift2, sm, sh, phi_m, phi_h, hx, mx,rat
 }
 
@@ -47,7 +47,7 @@ PARAMETER {
 	v		(mV)
 	celsius	= 36	(degC)
 :	eCa	= 120	(mV)
-	gcabar	= .024	(mho/cm2)
+	gbar	= .024	(mho/cm2)
 	shift1	= -1 	(mV)
         shift2  = -6    (mV) 
         sm      = 7.4
@@ -77,7 +77,7 @@ ASSIGNED {
 
 BREAKPOINT {
 	SOLVE castate METHOD cnexp
-	g = gcabar * m*m*h
+	g = gbar * m*m*h
 	ica = g * ghk(v, cai, cao)
 }
 

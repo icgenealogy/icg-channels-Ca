@@ -14,7 +14,7 @@ UNITS {
 PARAMETER {
 	v (mV)
 	celsius = 6.3	(degC)
-	gcatbar=.003 (mho/cm2)
+	gbar=.003 (mho/cm2)
 	cai (mM)
 	cao (mM)
 }
@@ -24,7 +24,7 @@ NEURON {
 	SUFFIX cat
 	:USEION tca READ etca WRITE itca VALENCE 2
 	USEION ca READ cai, cao WRITE ica
-        RANGE gcatbar,cai, ica, etca
+        RANGE gbar,cai, ica, etca
 }
 
 STATE {
@@ -47,7 +47,7 @@ INITIAL {
 
 BREAKPOINT {
 	SOLVE states METHOD cnexp
-	gcat = gcatbar*m*m*h
+	gcat = gbar*m*m*h
 	ica = gcat*ghk(v,cai,cao)
 
 }

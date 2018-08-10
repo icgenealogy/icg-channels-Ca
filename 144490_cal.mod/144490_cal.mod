@@ -25,7 +25,7 @@ PARAMETER {		:parameters that can be entered when function is called in cell-set
 NEURON {
 	  SUFFIX cal
 	  USEION ca READ cai,cao WRITE ica
-    RANGE gcalbar, gmax, gcal, minf, taum
+    RANGE gcalbar, gbar, gcal, minf, taum
 }
 
 STATE {	m }                      : unknown parameter to be solved in the DEs 
@@ -33,7 +33,7 @@ STATE {	m }                      : unknown parameter to be solved in the DEs
 ASSIGNED {                       : parameters needed to solve DE
 	  ica   (mA/cm2)
     gcal  (mho/cm2)
-    gmax  (mho/cm2) 
+    gbar  (mho/cm2) 
     minf
     taum  (ms)
 }
@@ -48,8 +48,8 @@ BREAKPOINT {
 	  SOLVE states METHOD cnexp
 	  gcal = gcalbar*m*h2(cai) : maximum channel permeability
 	  ica = gcal*ghk(v,cai,cao): calcium current induced by this channel
-    if (gcal > gmax) {
-        gmax = gcal
+    if (gcal > gbar) {
+        gbar = gcal
     }
 }
 

@@ -14,7 +14,7 @@ UNITS {
 PARAMETER {
 	v (mV)
 	celsius 	(degC)
-	gcalbar=.003 (mho/cm2)
+	gbar=.003 (mho/cm2)
 	ki=.001 (mM)
 	ca0 = .00007	(mM)		: initial calcium concentration inside
 	cao = 2		(mM)		: calcium concentration outside
@@ -25,7 +25,7 @@ PARAMETER {
 NEURON {
 	SUFFIX cal
 	USEION ca READ eca WRITE ica
-        RANGE gcalbar, gcal, m
+        RANGE gbar, gcal, m
         GLOBAL minf,tau,eca
 }
 
@@ -50,7 +50,7 @@ INITIAL {
 BREAKPOINT {
 	SOLVE state METHOD cnexp
 	:eca = (1000)*(TEMP+273.15)*R/(2*F)*log(cao/ca_i)
-	gcal = gcalbar*m*m
+	gcal = gbar*m*m
 	ica = gcal*(v-eca)
 
 }

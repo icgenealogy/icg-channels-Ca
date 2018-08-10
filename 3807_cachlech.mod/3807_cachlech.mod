@@ -8,7 +8,7 @@ UNITS {
 NEURON {  
         SUFFIX cach  
         USEION ca READ eca WRITE ica  
-        RANGE gcabar 
+        RANGE gbar 
         GLOBAL minf, mexp  
 }  
    
@@ -18,7 +18,7 @@ PARAMETER {
         v (mV)  
         celsius = 20 (degC)  
         dt (ms)  
-        gcabar = 2e-06 (mho/cm2)  
+        gbar = 2e-06 (mho/cm2)  
         eca = 125 (mV)  
 }  
    
@@ -33,7 +33,7 @@ ASSIGNED {
    
 BREAKPOINT {  
         SOLVE states  
-        ica = gcabar*m*(v - eca)  
+        ica = gbar*m*(v - eca)  
 }  
    
 UNITSOFF  

@@ -22,7 +22,7 @@ NEURON {
         : The T-current does not activate calcium-dependent currents.
         : The construction with dummy ion Ca prevents the updating of the 
         : internal calcium concentration. 
-        RANGE gcatbar, hinf, minf, taum, tauh, ica
+        RANGE gbar, hinf, minf, taum, tauh, ica
 }
 
 PARAMETER {
@@ -30,7 +30,7 @@ PARAMETER {
 	
       tBase = 23.5  (degC)
 	celsius = 22  (degC)
-	gcatbar = 1.0   (mho/cm2)  : initialized conductance
+	gbar = 1.0   (mho/cm2)  : initialized conductance
 	ki = 0.001    (mM)
 	cai = 5.e-5   (mM)       : initial internal Ca++ concentration
 	cao = 2       (mM)       : initial external Ca++ concentration
@@ -59,13 +59,13 @@ INITIAL {
 	rates(v)
 	m = minf
 	h = hinf
-     gcat = gcatbar*m*m*h*h2(cai)
+     gcat = gbar*m*m*h*h2(cai)
 
 }
 
 BREAKPOINT {
 	SOLVE states METHOD cnexp
-	gcat = gcatbar*m*m*h*h2(cai)
+	gcat = gbar*m*m*h*h2(cai)
 	ica = gcat*ghk(v,cai,cao)
 
 }

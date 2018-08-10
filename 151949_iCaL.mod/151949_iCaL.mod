@@ -19,7 +19,7 @@ INDEPENDENT {t FROM 0 TO 1 WITH 1 (ms)}
 NEURON {
 	SUFFIX iCaL
 	USEION ca READ cai,cao WRITE ica
-        RANGE pcabar, m_inf, tau_m, ica
+        RANGE gbar, m_inf, tau_m, ica
 }
 
 UNITS {
@@ -36,7 +36,7 @@ PARAMETER {
         dt              	(ms)
 	cai			(mM)
 	cao			(mM)
-	pcabar= 0.000276	(cm/s)		
+	gbar= 0.000276	(cm/s)		
 }
 
 STATE {
@@ -52,7 +52,7 @@ ASSIGNED {
 
 BREAKPOINT { 
 	SOLVE states :METHOD euler
-	ica = pcabar * m*m * ghk(v,cai,cao,2)
+	ica = gbar * m*m * ghk(v,cai,cao,2)
 }
 
 :DERIVATIVE states {

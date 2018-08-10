@@ -22,7 +22,7 @@ PARAMETER {
 	v (mV)
 	celsius 		(degC)
 
-	PcaRbar = .000044 (cm/s)
+	gbar = .000044 (cm/s)
 	ki=.001 (mM)
 	cai (mM)
 	cao (mM)
@@ -36,7 +36,7 @@ PARAMETER {
 NEURON {
 	SUFFIX car
 	USEION ca READ cai,cao WRITE ica
-        RANGE PcaRbar   
+        RANGE gbar   
         GLOBAL hinf,minf,taum,tauh
 }
 
@@ -64,7 +64,7 @@ BREAKPOINT {
         LOCAL qAmpl
 	qAmpl = q10Ampl^((celsius - 21)/10)
 	SOLVE states METHOD cnexp
-	PcaR = PcaRbar*m*h
+	PcaR = gbar*m*h
 	
 	ica = PcaR*qAmpl*ghk(v,cai,cao)
 

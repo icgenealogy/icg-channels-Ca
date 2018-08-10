@@ -9,7 +9,7 @@ ASSIGNED {
 
 PARAMETER {
 	:erev 		= 125    (mV)
-	gmax 		= 1.0    (mho/cm^2)
+	gbar 		= 1.0    (mho/cm^2)
         vrest           = 0
 
 	maflag 		= 2

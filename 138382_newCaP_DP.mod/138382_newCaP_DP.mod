@@ -26,7 +26,7 @@ NEURON {
     SUFFIX newCaP_DP
     USEION ca READ cai, cao WRITE ica
     :USEION ca2 READ ca2i VALENCE 2
-    RANGE pcabar, ica, gk, vhalfm, cvm, vshift
+    RANGE gbar, ica, gk, vhalfm, cvm, vshift
     GLOBAL frac1, frac2
 }
 
@@ -62,7 +62,7 @@ PARAMETER {
     cvm = 8.429(mV)
     vshift = 0 (mV)
 
-    pcabar = 0.00049568 (cm/s)
+    gbar = 0.00049568 (cm/s)
 
 }
 
@@ -94,7 +94,7 @@ INITIAL {
 BREAKPOINT {
     SOLVE states METHOD cnexp
     
-    ica = (1e3) * pcabar * m * m * m * gk
+    ica = (1e3) * gbar * m * m * m * gk
 }
 
 DERIVATIVE states {

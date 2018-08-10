@@ -29,7 +29,7 @@ NEURON {
 	SUFFIX ch_CavN				: The name of the mechanism
 	USEION ca READ eca WRITE ica VALENCE 2 
 	RANGE g
-	RANGE gmax
+	RANGE gbar
 	RANGE cinf, ctau, dinf, dtau
 	RANGE myi
 	THREADSAFE
@@ -41,7 +41,7 @@ INDEPENDENT {t FROM 0 TO 100 WITH 100 (ms)}
 PARAMETER {
 	v (mV) 					: membrane potential
       celsius (degC) : temperature - set in hoc; default is 6.3
-	gmax =1.0 (mho/cm2)		: conductance flux - defined in CavT but not here
+	gbar =1.0 (mho/cm2)		: conductance flux - defined in CavT but not here
 }
  
 STATE {
@@ -64,7 +64,7 @@ ASSIGNED {			: assigned (where?)
 
 BREAKPOINT {
 	SOLVE states : what is the method? let's specify one
-    g = gmax*c*c*d
+    g = gbar*c*c*d
 	ica = g*(v-eca)
 	myi = ica
 }

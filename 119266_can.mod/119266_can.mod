@@ -7,7 +7,7 @@ NEURON {
 	SUFFIX can
 	USEION ca READ cai, eca WRITE ica 
  	USEION can WRITE ican VALENCE 2: to use it in can-specific pump
-        RANGE gcalbar, ica, po, ican
+        RANGE gbar, ica, po, ican
 	GLOBAL hinf, minf, s_inf
 }
 
@@ -21,8 +21,8 @@ UNITS {
 }
 
 PARAMETER {           :parameters that can be entered when function is called in cell-setup 
-:	gcalbar = 0.2e-7   (cm/s)  : initialized conductance
-	gcalbar = 1.0   (mho/cm2)  : initialized conductance
+:	gbar = 0.2e-7   (cm/s)  : initialized conductance
+	gbar = 1.0   (mho/cm2)  : initialized conductance
   	ki     = 0.025  (mM)            :test middle point of inactivation fct
   :	ki     = 0.01  (mM)            :test middle point of inactivation fct
 	zetam = -3.4
@@ -75,8 +75,8 @@ BREAKPOINT {
 	SOLVE states METHOD cnexp
 	po = m*m*h
 :	po = s*m*m
-:	ica = gcalbar *po*h2(cai) * ghk(v,cai,cao)
- 	ica = gcalbar *po*h2(cai) * (v - eca)
+:	ica = gbar *po*h2(cai) * ghk(v,cai,cao)
+ 	ica = gbar *po*h2(cai) * (v - eca)
 	ican = ica
 
 }

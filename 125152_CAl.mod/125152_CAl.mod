@@ -14,7 +14,7 @@ UNITS {
 PARAMETER {
 	v (mV)
 	celsius 		(degC)
-	PcalBar=.00006622 (cm/s)
+	gbar=.00006622 (cm/s)
 	ki=.00002 (mM)
 	cai=5.e-5 (mM)
 	cao = 10  (mM)
@@ -26,7 +26,7 @@ PARAMETER {
 NEURON {
 	SUFFIX CAl
 	USEION ca READ cai,cao WRITE ica
-        RANGE PcalBar
+        RANGE gbar
         GLOBAL minf,taum
 }
 
@@ -53,7 +53,7 @@ BREAKPOINT {
 	qAmpl = q10Ampl^((celsius - 21)/10)
 	
 	SOLVE states METHOD cnexp
-	Pcal = qAmpl*PcalBar*m*m*h2(cai)
+	Pcal = qAmpl*gbar*m*m*h2(cai)
 	ica = Pcal*ghk(v,cai,cao)
 
 }

@@ -26,7 +26,8 @@ UNITS {
  
 PARAMETER { 
     qdeltat = 1
-    perm = 7.5e-6 (cm/seconds)
+    :perm = 7.5e-6 (cm/seconds)
+    perm = 1.0 (cm/seconds)
 } 
 
 ASSIGNED {

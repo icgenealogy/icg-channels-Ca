@@ -16,8 +16,8 @@ UNITS {
 }
 
 PARAMETER {
-	gCaL=0.2476e-3 (S/cm2) <0,1e9> 
-               
+	:gCaL=0.2476e-3 (S/cm2) <0,1e9> 
+        gCaL=1.0 (S/cm2) <0,1e9> 
 }
 
 STATE {

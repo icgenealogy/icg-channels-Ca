@@ -8,7 +8,7 @@ NEURON {
 	SUFFIX cal
 	USEION ca READ cai, eca WRITE ica
  	USEION cal WRITE ical VALENCE 2: to use it in cal-specific pump
-        RANGE gcalbar, ica, po, ical
+        RANGE gbar, ica, po, ical
 	GLOBAL inf, s_inf, tau_m
 }
 
@@ -25,8 +25,8 @@ UNITS {
 PARAMETER {     
   	ki     = 0.025  (mM)            : middle point of inactivation fct
   :	ki     = 0.01  (mM)            : middle point of inactivation fct
- :   gcalbar = 0.2e-7      (cm/s) : initialized conductance
-	gcalbar = 1.0   (mho/cm2)  : initialized conductance
+ :   gbar = 0.2e-7      (cm/s) : initialized conductance
+	gbar = 1.0   (mho/cm2)  : initialized conductance
  	taumin  = 100    (ms)            : minimal value of the time cst
         vhalf = -1 (mV)       :half potential for activation 
 	zeta=-4.6
@@ -69,8 +69,8 @@ BREAKPOINT {
 	SOLVE states METHOD cnexp
 	po = m*m*h2(cai)
 :	po = m*m*h2(cai)
-	ica = (gcalbar*po+s*s*8*gcalbar)*(v-eca)
-:	ica = (gcalbar*po+s*gcalbar*0.4)*ghk(v, cai, cao)
+	ica = (gbar*po+s*s*8*gbar)*(v-eca)
+:	ica = (gbar*po+s*gbar*0.4)*ghk(v, cai, cao)
 	ical = ica
 }
 

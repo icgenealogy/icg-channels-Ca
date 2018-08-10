@@ -14,7 +14,7 @@ INDEPENDENT {t FROM 0 TO 1 WITH 1 (ms)}
 NEURON {
 	SUFFIX cat
 	USEION ca READ cai, cao WRITE ica
-        RANGE gcatbar
+        RANGE gbar
         GLOBAL shiftm, shifth, tauh
 }
 
@@ -28,7 +28,7 @@ UNITS {
 
 PARAMETER {
 	celsius		(degC)
-	gcatbar= 0.0001	(cm/s)	
+	gbar= 0.0001	(cm/s)	
 	shiftm = 20 (mV)
 	shifth = 20 (mV)
 	tauh = 40 (ms)
@@ -49,7 +49,7 @@ ASSIGNED {
 
 BREAKPOINT { 
 	SOLVE state METHOD cnexp
-	ica = gcatbar * m*m*h * ghk(v,cai,cao,2)
+	ica = gbar * m*m*h * ghk(v,cai,cao,2)
 }
 
 DERIVATIVE state {

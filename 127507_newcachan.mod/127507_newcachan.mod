@@ -14,7 +14,7 @@ UNITS {
 NEURON {
         SUFFIX cachan
         USEION ca READ eca WRITE ica
-        RANGE  gcalbar,gcanbar,gcahvabar,ica,ical,icahva,ican,kml,kmn
+        RANGE  gbar,gcanbar,gcahvabar,ica,ical,icahva,ican,kml,kmn
         GLOBAL dlinf,dhvainf,fhvainf
 }
  
@@ -26,7 +26,7 @@ PARAMETER {
         :cai   (mM)
         celsius =  35.0      (degC)
         gcahvabar =  0.0e-6 (S/cm2)
-        gcalbar =  11.196e-6  (S/cm2)
+        gbar =  11.196e-6  (S/cm2)
         kmn = 0.0001   (mM)
         kml = 0.00045  (mM)
         :eca = 120 (mV)
@@ -49,7 +49,7 @@ ASSIGNED {
  
 BREAKPOINT {
         SOLVE states METHOD cnexp
-        ical = gcalbar*dl*(v - eca)
+        ical = gbar*dl*(v - eca)
         icahva = gcahvabar*dhva*fhva*(v - eca)
         ica  = ical +  icahva
 }

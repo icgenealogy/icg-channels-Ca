@@ -16,7 +16,7 @@ NEURON {
 	SUFFIX it2
 	:USEION Ca READ Cai, Cao WRITE iCa VALENCE 2
 	USEION ca READ cai,cao WRITE ica
-        RANGE gcabar, g
+        RANGE gbar, g
 	GLOBAL m_inf, tau_m, h_inf, tau_h, shift2, sm, sh, phi_m, phi_h, hx, mx, shift1
 }
 
@@ -33,7 +33,7 @@ UNITS {
 PARAMETER {
 	v		(mV)
 	celsius	= 36	(degC)
-	gcabar	= 8.5e-6	(mho/cm2)
+	gbar	= 8.5e-6	(mho/cm2)
       hx      = 1.5
       mx      = 3.0
 	cai	= 5e-5 (mM) : Initial Ca concentration
@@ -77,7 +77,7 @@ ASSIGNED {
 
 BREAKPOINT {
 	SOLVE castate METHOD cnexp
-	g = gcabar * m*m*h
+	g = gbar * m*m*h
 	ica = g * ghk(v, cai, cao)
 }
 

@@ -13,7 +13,7 @@ TITLE Ca R-type channel with high threshold for activation
 NEURON {
 	SUFFIX carF
 	USEION ca READ eca WRITE ica
-        RANGE gcabar, m, h, g, p
+        RANGE gbar, m, h, g, p
 	RANGE inf, fac, vha, ka, ta, vhi, ki, ti
 	RANGE irtype
 }
@@ -29,7 +29,7 @@ PARAMETER {	: parameters that can be entered when function is called in cell-set
     	v               (mV)
     	celsius = 30	(degC)
 	dt              (ms)
-    	gcabar = 0.351  (mho/cm2) : initialized conductance 
+    	gbar = 0.351  (mho/cm2) : initialized conductance 
 	:eca = 10	(mV)      : Ca++ reversal potential was choosen to best fit the GHK between -40 and -10 mV	
 	vha = -14	(mV)	: half activation voltage (BPG)
 	ka = -6.7	(1)	: activation slope (BPG)
@@ -55,7 +55,7 @@ ASSIGNED {
 
 BREAKPOINT {
 	SOLVE states METHOD derivimplicit
-	ica = gcabar*m*m*m*h*(v - eca)
+	ica = gbar*m*m*m*h*(v - eca)
 	irtype= -ica
 	}
 
@@ -63,7 +63,7 @@ INITIAL {
     	m = 0                               : initial activation parameter value
 	h = 0.5                             : initial inactivation parameter value
 	states()
-	ica = gcabar*m*m*m*h*(v - eca)      : initial Ca++ current value
+	ica = gbar*m*m*m*h*(v - eca)      : initial Ca++ current value
     	irtype=-ica 				: the ca current through R_type channel
 	}
 

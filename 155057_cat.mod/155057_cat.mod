@@ -9,8 +9,8 @@ NEURON {
 	SUFFIX cat
 	USEION ca READ cai, eca WRITE ica   
         : The T-current does not activate calcium-dependent K-currents
-        :RANGE gcatbar, iCa
-        RANGE gcatbar, ica
+        :RANGE gbar, iCa
+        RANGE gbar, ica
 	GLOBAL hinf, minf
 }
 
@@ -24,7 +24,7 @@ UNITS {
 }
 
 PARAMETER {           :parameters that can be entered when function is called in cell-setup 
-	gcatbar = 1.0   (mho/cm2)  : initialized conductance
+	gbar = 1.0   (mho/cm2)  : initialized conductance
 	zetam = -3
 	zetah = 5.2
 	vhalfm =-36 (mV)
@@ -59,7 +59,7 @@ INITIAL {
 
 BREAKPOINT {
 	SOLVE states METHOD cnexp
-	ica = gcatbar*m*m*h*(v-eca)	: dummy calcium current induced by this channel
+	ica = gbar*m*m*h*(v-eca)	: dummy calcium current induced by this channel
 
 }
 

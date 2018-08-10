@@ -9,7 +9,7 @@ NEURON {
      RANGE tt_exp, u_exp
      RANGE itt, itmax
 
-     RANGE pcabar,qt, vshift, GHKa, GHKb,GHKc, GHKo, it
+     RANGE gbar,qt, vshift, GHKa, GHKb,GHKc, GHKo, it
 
 }
 
@@ -27,7 +27,7 @@ UNITS {
 PARAMETER {
      celsius (degC)
      pbar = .000017 (cm/s) <0,1e9>
-     pcabar = .0002 (cm/s) <0,1e9>
+     gbar = .0002 (cm/s) <0,1e9>
      vshift (mV)
      v (mV)
      dt (ms)

@@ -5,7 +5,7 @@ COMMENT
  et al. (1989).  Both done at temperature 22degC.
 
  How the q10 works: There is a q10 for the rates (alpha and beta's)
- called Q10 and a Q10 for the maximum conductance called gmaxQ10.  The
+ called Q10 and a Q10 for the maximum conductance called gbarQ10.  The
  q10s should have been measured at specific temperatures temp1 and
  temp2 (that are 10degC apart). Ideally, as Q10 is temperature
  dependant, we should know these two temperatures.  We are going to
@@ -33,7 +33,7 @@ NEURON {
 	SUFFIX HVA
 	USEION ca READ cai,cao,eca WRITE ica
 	RANGE gcaN, gcaL, iNCa, iLCa
-	GLOBAL inactLtau,inactLmax,activate_Q10,Q10,gmaxQ10,rate_k,gmax_k,temp1,temp2,tempb
+	GLOBAL inactLtau,inactLmax,activate_Q10,Q10,gbarQ10,rate_k,gbar_k,temp1,temp2,tempb
 }
 
 PARAMETER {
@@ -52,7 +52,7 @@ PARAMETER {
 
 	activate_Q10 = 1
 	Q10 = 1.948259241e+00
-	gmaxQ10 = 1.948259241e+00
+	gbarQ10 = 1.948259241e+00
 	temp1 = 20.0 (degC)
 	temp2 = 30.0 (degC)
 	tempb = 22.0 (degC)
@@ -71,15 +71,15 @@ ASSIGNED {
 	utau (ms)
 	htau (ms)
 	rate_k
-	gmax_k
+	gbar_k
 }
 
 BREAKPOINT {
 	LOCAL vghk
 	SOLVE states METHOD cnexp
 	vghk = ghkg(v,cai,cao,2)
-	iNCa = gmax_k*(gcaN * u)*q*q*vghk
-	iLCa = gmax_k*(gcaL)*q*q*h*vghk
+	iNCa = gbar_k*(gcaN * u)*q*q*vghk
+	iLCa = gbar_k*(gcaL)*q*q*h*vghk
 	ica  = iNCa + iLCa
 }
 
@@ -92,10 +92,10 @@ INITIAL {
 	  ktemp1 = temp1+273.0
 	  ktemp2 = temp2+273.0
 	  rate_k = exp( log(Q10)*((1/ktempb)-(1/ktemp))/((1/ktemp1)-(1/ktemp2)) )
-	  gmax_k = exp( log(gmaxQ10)*((1/ktempb)-(1/ktemp))/((1/ktemp1)-(1/ktemp2)) )
+	  gbar_k = exp( log(gbarQ10)*((1/ktempb)-(1/ktemp))/((1/ktemp1)-(1/ktemp2)) )
 	}else{
 	  rate_k = 1.0
-	  gmax_k = 1.0
+	  gbar_k = 1.0
 	}
 
         settables(v)

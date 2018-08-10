@@ -8,7 +8,7 @@ NEURON {
 	:USEION cs WRITE ics VALENCE 2
 	:USEION ns WRITE ins VALENCE 2
 
-	RANGE gsbar
+	RANGE gbar
 	GLOBAL minf, ninf, mtau, ntau
 }
 
@@ -20,7 +20,7 @@ UNITS {
 }
 
 PARAMETER {
-	gsbar= 0.00009(S/cm2) <0,1e9> 
+	gbar= 0.00009(S/cm2) <0,1e9> 
 }
 
 STATE { : d f
@@ -51,7 +51,7 @@ BREAKPOINT {
 LOCAL Es
 SOLVE states METHOD derivimplicit
 	:Es = -82.3-13.0287*log(cai)
-	ica = gsbar*m*n*(v - eca)
+	ica = gbar*m*n*(v - eca)
 	:ica = ics
 	:ins = -ics
 }

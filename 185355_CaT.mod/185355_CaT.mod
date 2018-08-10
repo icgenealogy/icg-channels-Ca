@@ -29,7 +29,7 @@ SUFFIX tca
 :USEION tca READ etca WRITE itca VALENCE 2 
 USEION ca READ eca WRITE ica
 RANGE gtca
-RANGE gcatbar
+RANGE gbar
 RANGE ainf, atau, binf, btau, itca
 GLOBAL eca
 }
@@ -40,7 +40,7 @@ PARAMETER {
         v (mV) 
         celsius = 6.3 (degC)
         dt (ms) 
-	gcatbar = 1.0 (mho/cm2)
+	gbar = 1.0 (mho/cm2)
 }
  
 STATE {
@@ -59,7 +59,7 @@ ASSIGNED {
 
 BREAKPOINT {
 	SOLVE states
-        gtca = gcatbar*a*a*b
+        gtca = gbar*a*a*b
 	ica = gtca*(v-eca)
 }
  

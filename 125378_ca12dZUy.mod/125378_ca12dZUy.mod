@@ -37,7 +37,8 @@ UNITS {
 } 
 
 PARAMETER {
-	p    = 7e-6  	(cm/s)		: max permeability
+	:p    = 7e-6  	(cm/s)		: max permeability
+	p     = 1.0   	(cm/s)		: max permeability
 	v 		(mV)
 
 	: max rates

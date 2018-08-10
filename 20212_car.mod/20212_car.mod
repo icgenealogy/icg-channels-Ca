@@ -7,7 +7,7 @@ TITLE Ca R-type channel with medium threshold for activation
 NEURON {
 	SUFFIX car
 	USEION ca READ eca WRITE ica
-        RANGE gcabar, m, h
+        RANGE gbar, m, h
 	RANGE inf, fac, tau
 }
 
@@ -22,7 +22,7 @@ PARAMETER {              : parameters that can be entered when function is calle
         v               (mV)
         celsius = 34	(degC)
 	dt              (ms)
-        gcabar = 1.0      (mho/cm2) : initialized conductance
+        gbar = 1.0      (mho/cm2) : initialized conductance
 	eca = 140       (mV)      : Ca++ reversal potential
         }  
 
@@ -37,14 +37,14 @@ ASSIGNED {               : parameters needed to solve DE
 
 BREAKPOINT {
 	SOLVE states
-	ica = gcabar*m*m*m*h*(v - eca)
+	ica = gbar*m*m*m*h*(v - eca)
 	}
 
 INITIAL {
         m = 0    : initial activation parameter value
 	h = 1    : initial inactivation parameter value
 	states()
-	ica = gcabar*m*m*m*h*(v - eca) : initial Ca++ current value
+	ica = gbar*m*m*m*h*(v - eca) : initial Ca++ current value
         }
 
 PROCEDURE calcg() {

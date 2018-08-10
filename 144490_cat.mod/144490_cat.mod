@@ -32,7 +32,7 @@ NEURON {
     : The T-current does not activate calcium-dependent currents.
     : The construction with dummy ion Ca prevents the updating of the 
     : internal calcium concentration. 
-    RANGE gcatbar, hinf, minf, taum, tauh, iCa, gmax
+    RANGE gcatbar, hinf, minf, taum, tauh, iCa, gbar
 }
 
 STATE {	m h }  : unknown activation and inactivation parameters to be solved in the DEs 
@@ -40,7 +40,7 @@ STATE {	m h }  : unknown activation and inactivation parameters to be solved in 
 ASSIGNED {     : parameters needed to solve DE
 	  ica  (mA/cm2)
     gcat (mho/cm2) 
-    gmax (mho/cm2) 
+    gbar (mho/cm2) 
     minf
     hinf
     taum (ms)
@@ -53,15 +53,15 @@ INITIAL {
     m = minf
     h = hinf
 	  gcat = gcatbar*m*m*h*h2(cai)
-    gmax = gcat
+    gbar = gcat
 }
 
 BREAKPOINT {
 	  SOLVE states METHOD cnexp
 	  gcat = gcatbar*m*m*h*h2(cai) : maximum channel permeability
 	  ica = gcat*ghk(v,cai,cao)    : dummy calcium current induced by this channel
-    if (gcat > gmax) {
-        gmax = gcat
+    if (gcat > gbar) {
+        gbar = gcat
     }
 }
 

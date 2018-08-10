@@ -4,7 +4,7 @@
 NEURON {
 	SUFFIX cap
 	USEION ca READ cai, cao WRITE ica
-	RANGE pcabar, ica
+	RANGE gbar, ica
 	GLOBAL minf,mtau
 	GLOBAL monovalConc, monovalPerm
 }
@@ -20,7 +20,7 @@ UNITS {
 PARAMETER {
 	v (mV)
 
-	pcabar = .00005	(cm/s)
+	gbar = .00005	(cm/s)
 	monovalConc = 140     (mM)
 	monovalPerm = 0
 
@@ -47,7 +47,7 @@ INITIAL {
 
 BREAKPOINT {
 	SOLVE states METHOD cnexp
-	ica = (1e3) * pcabar * m * ghk(v, cai, cao, 2)
+	ica = (1e3) * gbar * m * ghk(v, cai, cao, 2)
 }
 
 DERIVATIVE states {

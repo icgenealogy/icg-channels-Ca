@@ -17,7 +17,7 @@ INDEPENDENT {t FROM 0 TO 1 WITH 1 (ms)}
 NEURON {
 	SUFFIX iCat1m3h
 	USEION ca READ eca, cai, cao WRITE ica
-	RANGE gcabar, m_inf, tau_m, h_inf, tau_h, shift, i
+	RANGE gbar, m_inf, tau_m, h_inf, tau_h, shift, i
 }
 
 UNITS {
@@ -33,7 +33,7 @@ UNITS {
 PARAMETER {
 	v		(mV)
 	celsius	= 35	(degC)
-	gcabar	= .0008	(mho/cm2)
+	gbar	= .0008	(mho/cm2)
 	cai	= 8e-5 (mM)		: eca=? mV
 	cao	= 2	(mM)
 }
@@ -58,7 +58,7 @@ BREAKPOINT {
 	:carev = 35
 
 :	Will assume m3h model
-	ica = gcabar * m*m*m*h * (v-eca)
+	ica = gbar * m*m*m*h * (v-eca)
 	i = ica		: diagnostic i added to display the current
 }
 

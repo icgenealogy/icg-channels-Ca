@@ -50,7 +50,7 @@ INITIAL {
 BREAKPOINT {
         SOLVE states
 	gca = gbar*n
-	ica = (1e-4) * gca * (v - eca)
+	ica = 1 * gca * (v - eca)
 } 
 
 PROCEDURE states() {   : Computes state variable n 

@@ -22,7 +22,7 @@ NEURON {
         SUFFIX CaT3_1_DP
         USEION ca READ cai, cao WRITE ica
 	:USEION ca2 READ ca2i WRITE ica2 VALENCE 2
-        RANGE g, pcabar, minf, taum, hinf, tauh
+        RANGE g, gbar, minf, taum, hinf, tauh
 	RANGE ica, m ,h
 	GLOBAL frac1, frac2
 
@@ -45,7 +45,7 @@ PARAMETER {
         v               (mV)
         celsius (degC)
         eca (mV)
-	pcabar  = 2.5e-4 (cm/s)
+	gbar  = 2.5e-4 (cm/s)
         cai  (mM)    
 	cao  (mM)
 	:ca2i (mM)
@@ -92,7 +92,7 @@ ASSIGNED {
 BREAKPOINT {
 	SOLVE castate METHOD cnexp 
 
-        ica = (1e3) *pcabar*m*m *h * g
+        ica = (1e3) *gbar*m*m *h * g
 }
 
 DERIVATIVE castate {

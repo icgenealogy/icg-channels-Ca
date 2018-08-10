@@ -20,8 +20,8 @@ UNITS {
 PARAMETER {
 	v (mV)
 	celsius 		(degC)
-: PcanpqBar=0.7*PcaRest
-	PcanpqBar=.000154 (cm/s)
+: gbar=0.7*PcaRest
+	gbar=.000154 (cm/s)
 : was soll ki
 	ki=.00002 (mM)
 	cai (mM)
@@ -34,7 +34,7 @@ PARAMETER {
 NEURON {
 	SUFFIX CAnpq
 	USEION ca READ cai,cao WRITE ica
-        RANGE PcanpqBar
+        RANGE gbar
         GLOBAL minf,taum
 }
 
@@ -61,7 +61,7 @@ BREAKPOINT {
 	qAmpl = q10Ampl^((celsius - 21)/10)
 	
 	SOLVE states METHOD cnexp
-	Pcanpq = qAmpl*PcanpqBar*m*m
+	Pcanpq = qAmpl*gbar*m*m
 	ica = Pcanpq*ghk(v,cai,cao)
 
 }
