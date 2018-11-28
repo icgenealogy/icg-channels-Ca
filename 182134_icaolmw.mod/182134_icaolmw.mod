@@ -36,7 +36,7 @@ ASSIGNED {
     v   (mV)
 }
 
-BREAKPOINT { ica = gca * mcainf(v)^2 * (v-eca) }
+BREAKPOINT { ica = (1e-3) * gca * mcainf(v)^2 * (v-eca) }
 
 FUNCTION mcainf(v(mV)) { mcainf = fun2(v, -20, 1,  -9)*1(ms) }
 

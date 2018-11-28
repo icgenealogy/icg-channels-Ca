@@ -73,7 +73,7 @@ INITIAL {
 BREAKPOINT {
         SOLVE states
         gca = tadj*gbar*m*m*h
-	  ica = 1 * gca * (v - eca)
+	  ica = (1e-4) * gca * (v - eca)
 } 
 
 LOCAL mexp, hexp

@@ -7,7 +7,7 @@ TITLE L-type calcium channel with high threshold for activation
 NEURON {
 	SUFFIX cal
 	USEION ca READ cai, eca WRITE ica
-        RANGE gbar, ica, po
+        RANGE gcalbar, ica, po
 	GLOBAL inf, s_inf, tau_m
 }
 
@@ -23,7 +23,7 @@ UNITS {
 
 PARAMETER {     
   	ki     = 0.025  (mM)            : middle point of inactivation fct
-	gbar = 1.0   (mho/cm2)  	: initialized conductance
+	gcalbar = 1.0   (mho/cm2)  	: initialized conductance
  	taumin  = 180    (ms)           : minimal value of the time cst
         vhalf = -1 (mV)       		:half potential for activation 
 	zeta=-4.6
@@ -66,7 +66,7 @@ FUNCTION h2(cai(mM)) {
 BREAKPOINT {
 	SOLVE states METHOD cnexp
 	po = m*m*h2(cai)
-	ica = gbar*(po+s*s*bo)*(v-eca)
+	ica = gcalbar*(po+s*s*bo)*(v-eca)
 }
 
 

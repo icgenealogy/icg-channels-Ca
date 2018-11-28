@@ -16,7 +16,7 @@ NEURON {
 	RANGE gkdrbar, ek, n_inf, tau_n, ikD                   : delayed K rectifier
 	RANGE gl, el, ilk                                      : leak
 	RANGE gcatbar, eca, p_inf, tau_p, q_inf, tau_q	       : T-type ca current
-	RANGE gbar, eca, c_inf, d1_inf, d2_inf, tau_c, tau_d1, tau_d2, icaT, icaL  : L-type ca current
+	RANGE gcalbar, eca, c_inf, d1_inf, d2_inf, tau_c, tau_d1, tau_d2, icaT, icaL  : L-type ca current
 	RANGE gkabar, ek, a_inf, tau_a, b_inf, tau_b, ikA      : A-type K current
 	RANGE gkcabar, ek, r_inf, ikAHP                        : ca dependent AHP K current
       RANGE kca, vol, caGain                                 : ca dynamics
@@ -95,7 +95,7 @@ PARAMETER {
 	sig_q2 = 16 (mV)
 
 :Ca L current
-	gbar   = 15e-3 (S/cm2) 
+	gcalbar   = 15e-3 (S/cm2) 
 	theta_c = -30.6 (mV)
 	theta_d1 = -60 (mV)
 	theta_d2 = 0.1e-3 (mM)
@@ -222,7 +222,7 @@ BREAKPOINT {
 	ikAHP   = gkcabar * (v - ek)*r^(power_r)
 	ik=ikD:+ikA+ikAHP
 	icaT   = gcatbar * p*p*q * (v - eca)
-	icaL   = gbar * c*c*d1*d2 * (v - eca)
+	icaL   = gcalbar * c*c*d1*d2 * (v - eca)
 	ica = icaL
 	ilk = gl * (v - el)
 

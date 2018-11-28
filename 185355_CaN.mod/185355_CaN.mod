@@ -34,7 +34,7 @@ SUFFIX nca
 :USEION nca READ enca WRITE inca VALENCE 2 
 USEION ca READ eca WRITE ica
 RANGE  gnca
-RANGE gbar
+RANGE gncabar
 RANGE cinf, ctau, dinf, dtau, inca
 GLOBAL eca
 }
@@ -45,7 +45,7 @@ PARAMETER {
         v (mV) 
         celsius = 6.3 (degC)
         dt (ms) 
-	gbar = 1.0 (mho/cm2)
+	gncabar = 1.0 (mho/cm2)
 }
  
 STATE {
@@ -64,7 +64,7 @@ ASSIGNED {
 
 BREAKPOINT {
 	SOLVE states
-        gnca = gbar*c*c*d
+        gnca = gncabar*c*c*d
 	ica = gnca*(v-eca)
 }
  

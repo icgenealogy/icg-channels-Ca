@@ -16,7 +16,7 @@ ENDCOMMENT
 NEURON {
 	SUFFIX iL
 	USEION ca READ cai,cao WRITE ica
-        RANGE gbar, minf, mtau, ica
+        RANGE pca, minf, mtau, ica
 }
 
 UNITS {
@@ -30,7 +30,7 @@ PARAMETER {
 	celsius		(degC)
 	cai		(mM)
 	cao		(mM)
-	gbar= 2.76e-4	(cm/s)		
+	pca= 2.76e-4	(cm/s)		
 }
 
 STATE { m }
@@ -44,7 +44,7 @@ ASSIGNED {
 
 BREAKPOINT { 
 	SOLVE states METHOD cnexp
-	ica= gbar* m^2* nrn_ghk( v, cai, cao, 2)
+	ica= pca* m^2* nrn_ghk( v, cai, cao, 2)
 }
 
 DERIVATIVE states {

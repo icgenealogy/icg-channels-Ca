@@ -30,7 +30,7 @@ SUFFIX lca
 :USEION lca READ elca WRITE ilca VALENCE 2 
 USEION ca READ eca WRITE ica
 RANGE  glca
-RANGE gbar
+RANGE glcabar
 RANGE einf, etau, ica
 GLOBAL eca
 }
@@ -41,7 +41,7 @@ PARAMETER {
         v (mV) 
         celsius = 6.3 (degC)
         dt (ms) 
-	gbar = 1.0 (mho/cm2)
+	glcabar = 1.0 (mho/cm2)
 }
  
 STATE {
@@ -60,7 +60,7 @@ ASSIGNED {
 
 BREAKPOINT {
 	SOLVE states
-        glca = gbar*e*e
+        glca = glcabar*e*e
 	ica = glca*(v-eca)
 }
  

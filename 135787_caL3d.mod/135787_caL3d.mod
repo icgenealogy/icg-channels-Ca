@@ -60,8 +60,7 @@ UNITS {
 } 
 
 PARAMETER {
-	:p    = 0.2e-3  	(cm/s)		: max permeability
-	p    = 1.0  	(cm/s)		: max permeability
+	p    = 0.2e-3  	(cm/s)		: max permeability
 	v 		(mV)
 
 	th   = 5	(mV)		: v 1/2 for on/off

@@ -4,7 +4,7 @@ NEURON { USEION ca READ cao, cai WRITE ica }
 ASSIGNED { ica }
 PARAMETER {
         erev
-	gbar 		= 0.001   (umho)
+	gmax 		= 0.001   (umho)
         vrest           = 0    (mV)
 
 	mvalence 	= 6

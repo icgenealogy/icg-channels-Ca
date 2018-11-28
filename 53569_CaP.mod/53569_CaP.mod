@@ -40,7 +40,7 @@ ENDCOMMENT
 NEURON {
 	SUFFIX CaP
 	USEION ca READ cai, cao WRITE ica
-	RANGE gbar, m_inf, tau_m, shift
+	RANGE gcabar, m_inf, tau_m, shift
 	RANGE delta
 	RANGE ica
 }
@@ -58,7 +58,7 @@ UNITS {
 PARAMETER {
 	v			(mV)
 	celsius		(degC)
-	gbar = .00002 	(mho/cm2)
+	gcabar = .00002 	(mho/cm2)
 	shift	= 2 		(mV)		: screening charge for Ca_o = 2 mM
 	cai			(mM)		
 	cao			(mM)
@@ -80,7 +80,7 @@ ASSIGNED {
 BREAKPOINT {
 	SOLVE castate METHOD cnexp
 	carev = (1e3) * (R*(celsius+273.15))/(2*FARADAY) * log (cao/cai)
-	ica = gbar * m*m * (v-carev)
+	ica = gcabar * m*m * (v-carev)
 }
 
 DERIVATIVE castate {

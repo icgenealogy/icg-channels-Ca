@@ -4,7 +4,7 @@
 NEURON {
 	SUFFIX Ca
 	USEION ca READ eca, cai, cao WRITE ica
-	RANGE gtcabar, gbar, glcabar, gtca, gnca, glca, eca
+	RANGE gtcabar, gncabar, glcabar, gtca, gnca, glca, eca
 	GLOBAL ca0
 }
 
@@ -26,7 +26,7 @@ PARAMETER {
 	cai (mM)
 	tau = 9		(ms)
 	gtcabar = .01	(S/cm2)	: maximum permeability
-	gbar = .01	(S/cm2)
+	gncabar = .01	(S/cm2)
 	glcabar = .01	(S/cm2)
 }
 
@@ -45,7 +45,7 @@ BREAKPOINT {
 	SOLVE state METHOD cnexp
 	eca = (1000)*(TEMP+273.15)*R/(2*F)*log(cao/cai)
 	gtca = gtcabar*a*a*b
-	gnca = gbar*c*c*d
+	gnca = gncabar*c*c*d
 	glca = glcabar*e*e
 	ica = (gtca+gnca+glca)*(v - eca)
 }

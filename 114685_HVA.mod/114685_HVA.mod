@@ -27,7 +27,7 @@ NEURON {
     SUFFIX HVA
     USEION ca READ cai,cao,eca WRITE ica
     RANGE gcaN, gcaL, iNCa, iLCa
-    GLOBAL inactLtau,inactLmax,rate_k,gbar_k
+    GLOBAL inactLtau,inactLmax,rate_k,gmax_k
 }
 
 PARAMETER {
@@ -58,21 +58,21 @@ ASSIGNED {
     utau (ms)
     htau (ms)
     rate_k
-    gbar_k
+    gmax_k
 }
 
 BREAKPOINT {
     LOCAL vghk
     SOLVE states METHOD cnexp
     vghk = ghkg(v,cai,cao,2)
-    iNCa = gbar_k*(gcaN * u)*q*q*vghk
-    iLCa = gbar_k*(gcaL)*q*q*h*vghk
+    iNCa = gmax_k*(gcaN * u)*q*q*vghk
+    iLCa = gmax_k*(gcaL)*q*q*h*vghk
     ica  = iNCa + iLCa
 }
 
 INITIAL {
     rate_k = 2.49
-    gbar_k = 2.49
+    gmax_k = 2.49
     settables(v)
     q = qinf
     u = uinf

@@ -27,7 +27,7 @@ COMMENT
    /channelml/channel_type/neuronDBref/modelName = Na channels 
    /channelml/channel_type/neuronDBref/uri = http://senselab.med.yale.edu/senselab/NeuronDB/channelGene2.htm#table2 
    /channelml/channel_type/current_voltage_relation/ohmic/@ion = ca 
-   /channelml/channel_type/current_voltage_relation/ohmic/conductance/@default_gbar = 120 
+   /channelml/channel_type/current_voltage_relation/ohmic/conductance/@default_gmax = 120 
    /channelml/channel_type/current_voltage_relation/ohmic/conductance/gate[1]/@power = 1 
    /channelml/channel_type/current_voltage_relation/ohmic/conductance/gate[1]/state/@name = m 
    /channelml/channel_type/current_voltage_relation/ohmic/conductance/gate[1]/state/@fraction = 1 
@@ -112,7 +112,7 @@ NEURON {
     SUFFIX LCa3_mit_usb_ChannelML
     USEION ca READ eca WRITE ica VALENCE 2 ? reversal potential of ion is read, outgoing current is written
             
-    RANGE gbar, gion
+    RANGE gmax, gion
     
     RANGE minf, mtau
     RANGE hinf, htau
@@ -121,7 +121,7 @@ NEURON {
 PARAMETER { 
       
 
-    gbar = 0.012 (S/cm2) ? default value, should be overwritten when conductance placed on cell
+    gmax = 0.012 (S/cm2) ? default value, should be overwritten when conductance placed on cell
     
 }
 
@@ -153,7 +153,7 @@ BREAKPOINT {
     SOLVE states METHOD cnexp
          
 
-    gion = gbar*((1*m)^1)*((1*h)^1)
+    gion = gmax*((1*m)^1)*((1*h)^1)
     ica = gion*(v - eca)
                 
 

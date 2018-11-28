@@ -21,7 +21,7 @@ ENDCOMMENT
 NEURON {
 	SUFFIX caL
 	USEION ca READ cai, cao WRITE ica
-	RANGE gbar, P, i, mu
+	RANGE Pbar, P, i, mu
 	GLOBAL minf, mtau
 	:POINTER mu : hoc level DAsyn[i].msg--see dasyn.mod
 }
@@ -42,10 +42,10 @@ PARAMETER {
 	vh = -35	(mV)	: half activation
 	ve = 6.1	(mV)	: slope
 	mtauconst = 0.1	(ms)	: m activates much faster than 100-1000 ms
-: gbar value in Table 1 of Gruber et al.
+: Pbar value in Table 1 of Gruber et al.
 : produces a current that is 10 times too small
-:	gbar = 4.2	(nanometer/s)	<0,1e9>
-	gbar = 42	(nanometer/s)	<0,1e9>
+:	Pbar = 4.2	(nanometer/s)	<0,1e9>
+	Pbar = 42	(nanometer/s)	<0,1e9>
 	cao = 2		(mM)
 	cai = 10e-6	(mM)
 	mu = 1
@@ -80,11 +80,11 @@ INITIAL {
 
 BREAKPOINT {
 	SOLVE states METHOD cnexp
-	P = mu*gbar*m
+	P = mu*Pbar*m
 	zVFRT = (0.001)*zFRT*v
 	ghk = 2*FARADAY*(cai - cao*exp(-zVFRT))*gtrap(zVFRT)
-	i = 1*P*ghk
-	ica = i
+	i = (1e-4)*P*ghk
+	ica = (1e-3)*i
 }
 
 

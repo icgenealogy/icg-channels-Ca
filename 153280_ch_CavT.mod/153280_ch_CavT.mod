@@ -27,7 +27,7 @@ UNITS {
 PARAMETER {
 	v (mV) 					: membrane potential
       celsius (degC) : temperature - set in hoc; default is 6.3
-	gbar=.003 (mho/cm2)	: conductance flux (bar(?))
+	gmax=.003 (mho/cm2)	: conductance flux (bar(?))
 	cai (mM)				: intracellular Ca2+ concentration
 	cao (mM)				: extracellular Ca2+ concentration
 }
@@ -35,7 +35,7 @@ PARAMETER {
 NEURON {
 	SUFFIX ch_CavT				: The name of the mechanism
 	USEION ca READ cai, cao WRITE ica VALENCE 2
-	RANGE gbar, cai, ica
+	RANGE gmax, cai, ica
 	RANGE myi
 	THREADSAFE
 }
@@ -62,7 +62,7 @@ INITIAL {
 
 BREAKPOINT {
 	SOLVE states METHOD cnexp
-	g = gbar*m*m*h
+	g = gmax*m*m*h
 	ica = g*ghk(v,cai,cao)
 	myi = ica
 

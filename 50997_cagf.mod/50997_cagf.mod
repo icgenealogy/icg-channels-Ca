@@ -8,7 +8,7 @@ INDEPENDENT {t FROM 0 TO 1 WITH 1 (ms)}
 NEURON {
 	SUFFIX gfbp
 	USEION ca READ cai, eca, cao WRITE ica
-	RANGE gbar
+	RANGE gcabar
 	RANGE c_inf
 	RANGE tau_c
 	RANGE c_exp
@@ -25,7 +25,7 @@ UNITS {
 }
 
 PARAMETER {
-	gbar	= 0.002	(mho/cm2)
+	gcabar	= 0.002	(mho/cm2)
 	eca		(mV)
 	cao	= 1.8	(mM)
 	cai     = 0.0001 (mM)
@@ -55,7 +55,7 @@ ASSIGNED {
 
 BREAKPOINT {
 	SOLVE states
-	ica = gbar * c*c*c * (v - eca)
+	ica = gcabar * c*c*c * (v - eca)
 
 }
 

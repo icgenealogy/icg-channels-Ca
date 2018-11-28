@@ -75,7 +75,7 @@ BREAKPOINT {
         SOLVE states METHOD cnexp
 :printf("ca BREAKPOINT entry t=%g cai=%g ica=%g eca=%g\n", t, cai, ica, eca)
         gca = tadj*gbar*m*m*h
-	ica = 1 * gca * (v - eca)
+	ica = (1e-4) * gca * (v - eca)
 :printf("ca BREAKPOINT exit t=%g cai=%g ica=%g eca=%g\n", t, cai, ica, eca)
 } 
 

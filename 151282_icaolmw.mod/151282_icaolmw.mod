@@ -39,7 +39,7 @@ ASSIGNED {
   v   (mV)
 }
 
-PROCEDURE iassign () { ica = gca * mcainf(v)^2 * (v-eca) }
+PROCEDURE iassign () { ica = (1e-3) * gca * mcainf(v)^2 * (v-eca) }
 
 INITIAL {
   iassign()

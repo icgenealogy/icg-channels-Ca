@@ -21,7 +21,7 @@ PARAMETER {
 	v (mV)
 	celsius = 6.3	(degC)
 
-	gbar = .000011 (cm/s)
+	PcaTbar = .000011 (cm/s)
 	cai (mM)
 	cao (mM)
 	q10Ampl=3.3
@@ -33,7 +33,7 @@ PARAMETER {
 NEURON {
 	SUFFIX cat
 	USEION ca READ cai,cao WRITE ica
-        RANGE gbar,cai
+        RANGE PcaTbar,cai
 }
 
 STATE {
@@ -53,7 +53,7 @@ INITIAL {
 UNITSOFF
 BREAKPOINT {
 	SOLVE states METHOD cnexp
-	PcaT = gbar*m*m*h
+	PcaT = PcaTbar*m*m*h
 	ica = PcaT*ghk(v,cai,cao)
 
 }

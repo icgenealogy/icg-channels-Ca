@@ -10,7 +10,7 @@ TITLE Ca R-type channel with medium threshold for activation
 NEURON {
 	SUFFIX car
 	USEION ca READ eca WRITE ica
-        RANGE gbar, m, h
+        RANGE gcabar, m, h
 	RANGE inf, fac, tau
 }
 
@@ -39,7 +39,7 @@ ASSIGNED {               : parameters needed to solve DE
 
 
 PARAMETER {              : parameters that can be entered when function is called in cell-setup
-        gbar = 1.0      (mho/cm2) : initialized conductance
+        gcabar = 1.0      (mho/cm2) : initialized conductance
 }  
 
 STATE {	
@@ -57,8 +57,8 @@ INITIAL {
 BREAKPOINT {
 	SOLVE states METHOD cnexp
 	:ecar = (1e3) * (R*(celsius+273.15))/(2*FARADAY) * log (cao/cai)
-	ica = gbar*m*m*m*h*(v - eca)
-:	iCa = gbar*m*m*m*h*(v - ecar)
+	ica = gcabar*m*m*m*h*(v - eca)
+:	iCa = gcabar*m*m*m*h*(v - ecar)
 
 }
 

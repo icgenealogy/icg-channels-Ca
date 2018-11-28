@@ -20,7 +20,7 @@ INDEPENDENT {t FROM 0 TO 1 WITH 1 (ms)}
 NEURON {
 	SUFFIX it
 	USEION ca READ cai,cao WRITE ica
-        RANGE gbar, i
+        RANGE gcabar, i
 	GLOBAL m_inf, tau_m, alph1, alph2, KK, shift
 
 }
@@ -39,7 +39,7 @@ PARAMETER {
 	v		(mV)
 	celsius = 36	(degC)
 :	eca	= 120	(mV)	
-	gbar	= .0008	(mho/cm2)
+	gcabar	= .0008	(mho/cm2)
 	shift	= 2	(mV)
 	cai	= 2.4e-4 (mM)		: adjusted for eca=120 mV
 	cao	= 2	(mM)
@@ -65,7 +65,7 @@ ASSIGNED {
 BREAKPOINT {
 	SOLVE states METHOD runge
 	carev = (1e3) * (R*(celsius+273.15))/(2*FARADAY) * log (cao/cai)
-	i = gbar * m*m*m*h * (v - carev)
+	i = gcabar * m*m*m*h * (v - carev)
 	ica = i
 }
 

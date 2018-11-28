@@ -17,7 +17,7 @@ NEURON {
 	RANGE gnabar, ena, m_inf, h_inf, tau_h, tau_m        : fast sodium
 	RANGE gkdrbar, ek, n_inf, tau_n, ikD                 : delayed K rectifier
 	RANGE gl, el, ilk                                    : leak
-	RANGE gbar, eca, p_inf, tau_p, q_inf, tau_q, icaT : T-type ca current
+	RANGE gcatbar, eca, p_inf, tau_p, q_inf, tau_q, icaT : T-type ca current
 	RANGE gkcabar, ek, r_inf, ikAHP                      : ca dependent AHP K current
       RANGE kca, vol, caGain                               : ca dynamics
 }
@@ -77,7 +77,7 @@ PARAMETER {
       caGain = .1
 
 :T-type ca current
-	gbar   = 5e-3 (S/cm2)  
+	gcatbar   = 5e-3 (S/cm2)  
 	theta_p = -56 (mV)
 	theta_q = -85 (mV) 
 	k_p = -6.7 (mV)    
@@ -163,7 +163,7 @@ BREAKPOINT {
 	ikAHP = gkcabar * (v - ek)*r^(power_r)
 	ik=ikD:+ikAHP
 	ilk = gl * (v - el)
-	ica = gbar * p*p*q * (v - eca)
+	ica = gcatbar * p*p*q * (v - eca)
 }
 
 DERIVATIVE states {   

@@ -17,7 +17,7 @@ INDEPENDENT {t FROM 0 TO 1 WITH 1 (ms)}
 NEURON {
 	SUFFIX ical
 	USEION ca READ eca WRITE ica
-        RANGE gbar
+        RANGE gcabar
 	GLOBAL 	m_inf, tau_m
 }
 

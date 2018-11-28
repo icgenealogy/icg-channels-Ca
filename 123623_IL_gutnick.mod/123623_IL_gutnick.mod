@@ -57,7 +57,7 @@ INDEPENDENT {t FROM 0 TO 1 WITH 1 (ms)}
 NEURON {
 	SUFFIX ical
 	USEION ca READ cai, cao, eca WRITE ica
-        RANGE gbar, alpha_m, beta_m, alpha_h, beta_h, m, h, carev
+        RANGE gcabar, alpha_m, beta_m, alpha_h, beta_h, m, h, carev
 }
 
 
@@ -77,7 +77,7 @@ PARAMETER {
 	eca		(mV)
 	cai 	= .00024 (mM)		: initial [Ca]i = 200 nM
 	cao 	= 2	(mM)		: [Ca]o = 2 mM
-	gbar	= 1e-4	(mho/cm2)	: Max conductance
+	gcabar	= 1e-4	(mho/cm2)	: Max conductance
 }
 
 
@@ -100,7 +100,7 @@ ASSIGNED {
 BREAKPOINT { 
 	SOLVE states METHOD cnexp : see http://www.neuron.yale.edu/phpBB/viewtopic.php?f=28&t=592
 	carev = (1e3) * (R*(celsius+273.15))/(2*FARADAY) * log (cao/cai)
-	ica = gbar * m * m * h * (v-carev)
+	ica = gcabar * m * m * h * (v-carev)
 }
 
 DERIVATIVE states { 

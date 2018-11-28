@@ -14,7 +14,7 @@ UNITS {
 PARAMETER {
 	v (mV)
 	celsius 		(degC)
-	gbar=.0003 (mho/cm2)
+	gcanbar=.0003 (mho/cm2)
 	ki=.001 (mM)
 	cai=5.e-5 (mM)
 	cao = 10  (mM)
@@ -24,7 +24,7 @@ PARAMETER {
 NEURON {
 	SUFFIX can
 	USEION ca READ cai,cao WRITE ica
-        RANGE gbar       
+        RANGE gcanbar       
         GLOBAL hinf,minf,taum,tauh
 }
 
@@ -49,7 +49,7 @@ INITIAL {
 
 BREAKPOINT {
 	SOLVE states METHOD cnexp
-	gcan = gbar*m*m*h*h2(cai)
+	gcan = gcanbar*m*m*h*h2(cai)
 	ica = gcan*ghk(v,cai,cao)
 
 }

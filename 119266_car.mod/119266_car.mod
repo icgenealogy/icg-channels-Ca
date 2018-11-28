@@ -6,7 +6,7 @@ TITLE R-type calcium channel with high threshold for activation
 NEURON {
 	SUFFIX car
 	USEION ca READ cai, eca WRITE ica 
-        RANGE gbar, ica, po
+        RANGE gcabar, ica, po
 	GLOBAL hinf, minf
 }
 
@@ -18,8 +18,8 @@ UNITS {
 }
 
 PARAMETER {           :parameters that can be entered when function is called in cell-setup 
-:	gbar = 0.2e-7   (cm/s)  : initialized conductance
-	gbar = 1.0   (mho/cm2)  : initialized conductance
+:	gcabar = 0.2e-7   (cm/s)  : initialized conductance
+	gcabar = 1.0   (mho/cm2)  : initialized conductance
 	zetam = -3.4		: HVAm Ca++ channels exhibit a fairly
 	zetah = 2		: homogenous set of biophysical characteristics
 	vhalfm =-21 (mV)	: but present distinctly different unitary openings
@@ -57,7 +57,7 @@ INITIAL {
 BREAKPOINT {
 	SOLVE states METHOD cnexp
 	po = m*m*h
-	ica = gbar *po* (v-eca)
+	ica = gcabar *po* (v-eca)
 
 }
 

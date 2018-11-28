@@ -16,11 +16,11 @@ UNITS {
 NEURON {
         SUFFIX ICa
         USEION ca READ eca WRITE ica
-        RANGE gbar, gca, m
+        RANGE gcabar, gca, m
 }
  
 PARAMETER {
-        gbar 	= 0.0015 (mho/cm2)	<0,1e9>	
+        gcabar 	= 0.0015 (mho/cm2)	<0,1e9>	
 	:eca	= 120 	 (mV)
 }
  
@@ -36,7 +36,7 @@ BREAKPOINT {
 	UNITSOFF
         m =  1 / ( 1 +  exp(-(v+20)/9) )
 	UNITSON
-        gca = gbar*m*m
+        gca = gcabar*m*m
 	ica = gca * ( v - eca )
 }
 

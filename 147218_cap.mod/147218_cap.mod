@@ -12,10 +12,7 @@ UNITS {
      (mA) = (milliamp)
 }
 
-PARAMETER {
-	:gca = 6e-4 (S/cm2) 
- 	gca = 1.0 (S/cm2) 
-}
+PARAMETER { gca = 6e-4 (S/cm2) }
 
 ASSIGNED {
      v       (mV)

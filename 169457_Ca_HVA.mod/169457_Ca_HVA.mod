@@ -4,7 +4,7 @@
 NEURON	{
 	SUFFIX Ca_HVA
 	USEION ca READ eca WRITE ica
-	RANGE gbar, gCa_HVA, ica, offma, offmb, offha, offhb, sloma, slomb, sloha, slohb, tauma, taumb, tauha, tauhb
+	RANGE gCa_HVAbar, gCa_HVA, ica, offma, offmb, offha, offhb, sloma, slomb, sloha, slohb, tauma, taumb, tauha, tauhb
 	GLOBAL eca
 }
 
@@ -15,7 +15,7 @@ UNITS	{
 }
 
 PARAMETER	{
-	gbar = 0.00001 (S/cm2) 
+	gCa_HVAbar = 0.00001 (S/cm2) 
         offma = -27 (mV)
         offmb = -75 (mV)
         offha = -13 (mV)
@@ -52,7 +52,7 @@ STATE	{
 
 BREAKPOINT	{
 	SOLVE states METHOD cnexp
-	gCa_HVA = gbar*m*m*h
+	gCa_HVA = gCa_HVAbar*m*m*h
 	ica = gCa_HVA*(v-eca)
 }
 

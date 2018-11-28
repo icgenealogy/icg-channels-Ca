@@ -7,7 +7,7 @@ TITLE LCa calcium channel with fixed reversal potential
 NEURON {
 	SUFFIX lcafixed
 	USEION ca READ eca WRITE ica
-	RANGE gbar
+	RANGE gcabar
 	GLOBAL mysinf, rinf, stau, rtau
 }
 
@@ -26,7 +26,7 @@ INDEPENDENT {t FROM 0 TO 1 WITH 1 (ms)}
 PARAMETER {
 	v (mV)
 	dt (ms)
-	gbar	= 0.120 (mho/cm2) <0,1e9>
+	gcabar	= 0.120 (mho/cm2) <0,1e9>
 :	eca = 70 (mV)
 }
 
@@ -51,7 +51,7 @@ INITIAL {
 
 BREAKPOINT {
 	SOLVE states METHOD cnexp
-	ica = gbar*s*r*(v - eca)
+	ica = gcabar*s*r*(v - eca)
 }
 
 DERIVATIVE states {

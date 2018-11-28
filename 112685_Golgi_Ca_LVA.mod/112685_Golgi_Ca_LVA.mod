@@ -30,7 +30,7 @@ NEURON {
         SUFFIX Golgi_Ca_LVA
         :USEION ca2 READ ca2i, ca2o WRITE ica2 VALENCE 2
         USEION ca READ eca,cai,cao WRITE ica
-        RANGE g, gbar, m_inf, tau_m, h_inf, tau_h, shift
+        RANGE g, gca2bar, m_inf, tau_m, h_inf, tau_h, shift
 	RANGE m ,h
 	RANGE phi_m, phi_h
 	RANGE v0_m_inf,v0_h_inf,k_m_inf,k_h_inf,C_tau_m
@@ -53,7 +53,7 @@ PARAMETER {
         v               (mV)
         celsius (degC)
         :eca2 (mV)
-	   gbar  = 2.5e-4 (mho/cm2)
+	   gca2bar  = 2.5e-4 (mho/cm2)
         shift   = 2     (mV)            : screening charge for Ca_o = 2 mM
         cai  (mM)           : adjusted for eca=120 mV
         cao  (mM)
@@ -100,8 +100,8 @@ ASSIGNED {
 BREAKPOINT {
         SOLVE ca2state METHOD cnexp
         :ca2rev = (1e3) * (R*(celsius+273.15))/(2*FARADAY) * log (ca2o/ca2i)
-        g = gbar * m*m*h
-        ica = gbar * m*m*h * (v-eca)
+        g = gca2bar * m*m*h
+        ica = gca2bar * m*m*h * (v-eca)
 }
 
 DERIVATIVE ca2state {

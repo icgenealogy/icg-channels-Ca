@@ -21,7 +21,7 @@ INDEPENDENT {t FROM 0 TO 1 WITH 1 (ms)}
 NEURON {
 	SUFFIX it2
 	USEION ca READ cai, cao WRITE ica
-	RANGE gbar, m_inf, tau_m, h_inf, tau_h, shift
+	RANGE gcabar, m_inf, tau_m, h_inf, tau_h, shift
 }
 
 UNITS {
@@ -38,7 +38,7 @@ PARAMETER {
 	v		(mV)
 	celsius	= 36	(degC)
 :	eca	= 120	(mV)
-	gbar	= .0008	(mho/cm2)
+	gcabar	= .0008	(mho/cm2)
 	shift	= 0 	(mV)
 	cai	= 2.4e-4 (mM)		: adjusted for eca=120 mV
 	cao	= 2	(mM)
@@ -62,7 +62,7 @@ ASSIGNED {
 BREAKPOINT {
 	SOLVE castate METHOD cnexp
 	carev = (1e3) * (R*(celsius+273.15))/(2*FARADAY) * log (cao/cai)
-	ica = gbar * m*m*h * (v-carev)
+	ica = gcabar * m*m*h * (v-carev)
 }
 
 DERIVATIVE castate {

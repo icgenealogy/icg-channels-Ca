@@ -9,7 +9,7 @@ INDEPENDENT {t FROM 0 TO 1 WITH 1 (ms)}
 NEURON {
 	SUFFIX N_Ca
 	USEION ca READ eca WRITE ica
-	RANGE gbar
+	RANGE gcabar
 	RANGE m_inf, h_inf
 }
 
@@ -20,8 +20,8 @@ UNITS {
 }
 
 PARAMETER {
-:	gbar  = .02 (mho/cm2)       :This is the original value
-	gbar  = .0005 (mho/cm2)
+:	gcabar  = .02 (mho/cm2)       :This is the original value
+	gcabar  = .0005 (mho/cm2)
 	eca	= 80	(mV)
 	dt		(ms)
 	tau_m	= 4	(ms)
@@ -45,7 +45,7 @@ ASSIGNED {
 
 BREAKPOINT {
 	SOLVE states METHOD cnexp
-	ica = gbar * m * m * h * (v - eca)
+	ica = gcabar * m * m * h * (v - eca)
 }
 
 DERIVATIVE states {

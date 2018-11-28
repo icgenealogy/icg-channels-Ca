@@ -10,7 +10,7 @@ ENDCOMMENT
 NEURON { 
 	SUFFIX Golgi_Ca_HVA
 	USEION ca READ eca WRITE ica 
-	RANGE gbar, ica, g
+	RANGE gcabar, ica, g
 	:RANGE alpha_s, beta_s, alpha_u, beta_u 
 	:RANGE Aalpha_s, Kalpha_s, V0alpha_s
 	:RANGE Abeta_s, Kbeta_s, V0beta_s
@@ -43,7 +43,7 @@ PARAMETER {
 	V0beta_u = -48 (mV)
 
 	v (mV) 
-	gbar= 460e-6 (mho/cm2) 
+	gcabar= 460e-6 (mho/cm2) 
 	eca (mV) 
 	celsius (degC)
 	Q10 = 3 
@@ -76,7 +76,7 @@ INITIAL {
  
 BREAKPOINT { 
 	SOLVE states METHOD derivimplicit 
-	g = gbar*s*s*u 
+	g = gcabar*s*s*u 
 	ica = g*(v - eca) 
 	alpha_s = alp_s(v)
 	beta_s = bet_s(v)

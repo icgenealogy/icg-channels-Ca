@@ -11,7 +11,7 @@ TITLE Ca R-type channel with high threshold for activation
 NEURON {
 	SUFFIX car
 	USEION ca READ eca  WRITE ica
-    RANGE gbar, m, h, g, p
+    RANGE gcabar, m, h, g, p
 	RANGE inf, fac, tau, k
 	GLOBAL irtype
 	:EXTERNAL Area_canmda
@@ -28,7 +28,7 @@ PARAMETER {	: parameters that can be entered when function is called in cell-set
     v               (mV)
     celsius = 30	(degC)
 	dt              (ms)
-    gbar = 0.351  (mho/cm2) : initialized conductance 
+    gcabar = 0.351  (mho/cm2) : initialized conductance 
 	:eca = 10		(mV)      : Ca++ reversal potential was choosen to best fit the GHK between -40 and -10 mV	
 
 	Area = 1.11e-8            (cm2)
@@ -52,9 +52,9 @@ ASSIGNED {
 
 BREAKPOINT {
 	SOLVE states
-	ica = gbar*m*m*m*h*(v - eca)
-	irtype= -gbar*m*m*m*h*(v - eca)
-	g = gbar*m*m*m*h*Area*1e6	:[uS]
+	ica = gcabar*m*m*m*h*(v - eca)
+	irtype= -gcabar*m*m*m*h*(v - eca)
+	g = gcabar*m*m*m*h*Area*1e6	:[uS]
 	p = m*m*m*h
 	}
 
@@ -63,9 +63,9 @@ INITIAL {
     m = 0                               : initial activation parameter value
 	h = 0.5                             : initial inactivation parameter value
 	states()
-	ica = gbar*m*m*m*h*(v - eca)      : initial Ca++ current value
-    irtype=-gbar*m*m*m*h*(v - eca) 	: the ca current through R_type channel
-	g = gbar*m*m*m*h*Area*1e6 		:[uS]
+	ica = gcabar*m*m*m*h*(v - eca)      : initial Ca++ current value
+    irtype=-gcabar*m*m*m*h*(v - eca) 	: the ca current through R_type channel
+	g = gcabar*m*m*m*h*Area*1e6 		:[uS]
 	p = m*m*m*h
 	}
 

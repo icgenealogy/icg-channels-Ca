@@ -29,7 +29,7 @@ INDEPENDENT {t FROM 0 TO 1 WITH 1 (ms)}
 NEURON {
 	SUFFIX itGHK
 	USEION ca READ cai,cao WRITE ica
-	RANGE gbar, m_inf, tau_m, h_inf, tau_h, shift, actshift
+	RANGE pcabar, m_inf, tau_m, h_inf, tau_h, shift, actshift
 	GLOBAL qm, qh
 }
 
@@ -46,7 +46,7 @@ UNITS {
 PARAMETER {
 	v		(mV)
 	celsius	= 36	(degC)
-	gbar	=.2e-3	(cm/s)	: Maximum Permeability
+	pcabar	=.2e-3	(cm/s)	: Maximum Permeability
 	shift	= 2 	(mV)	: corresponds to 2mM ext Ca++
 	actshift = 0 	(mV)	: shift of activation curve (towards hyperpol)
 	cai	= 2.4e-4 (mM)	: adjusted for eca=120 mV
@@ -71,7 +71,7 @@ ASSIGNED {
 
 BREAKPOINT {
 	SOLVE castate METHOD euler
-	ica = gbar * m*m*h * ghk(v, cai, cao)
+	ica = pcabar * m*m*h * ghk(v, cai, cao)
 }
 
 DERIVATIVE castate {
@@ -138,6 +138,6 @@ FUNCTION efun(z) {
 	}
 }
 FUNCTION nongat(v,cai,cao) {	: non gated current
-	nongat = gbar * ghk(v, cai, cao)
+	nongat = pcabar * ghk(v, cai, cao)
 }
 UNITSON

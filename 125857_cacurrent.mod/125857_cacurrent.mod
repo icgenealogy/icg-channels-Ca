@@ -45,7 +45,7 @@ BREAKPOINT {
 
 	SOLVE states METHOD cnexp
 	
-	ica = gca * s^2 * (v-eca)
+	ica = (1e-3) * gca * s^2 * (v-eca)
 }
 
 

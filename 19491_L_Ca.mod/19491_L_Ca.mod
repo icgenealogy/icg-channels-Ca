@@ -8,7 +8,7 @@ TITLE Motoneuron L-type Calcium channels
 NEURON {
 	SUFFIX L_Ca
 	USEION ca READ eca WRITE ica
-	RANGE gbar
+	RANGE gcabar
 	RANGE m_inf
 }
 
@@ -19,7 +19,7 @@ UNITS {
 }
 
 PARAMETER {
-	gbar  = 0.0003  (mho/cm2)
+	gcabar  = 0.0003  (mho/cm2)
 	eca		(mV)	: eca can't be set here, only in hoc
 :	celcius = 36	(degC)
 	dt		(ms)
@@ -41,7 +41,7 @@ ASSIGNED {
 
 BREAKPOINT {
 	SOLVE states METHOD cnexp
-	ica = gbar * m * (v - eca)  :I have tried this as m*m also
+	ica = gcabar * m * (v - eca)  :I have tried this as m*m also
 }
 
 DERIVATIVE states {

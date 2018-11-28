@@ -7,7 +7,7 @@ TITLE Ca L-type channel with high treshold of activation
 NEURON {
 	  SUFFIX calH
 	  USEION ca READ eca WRITE ica
-    RANGE gcalbar, m, h, g, gbar
+    RANGE gcalbar, m, h, g, gmax
 	  RANGE inf, tau
 }
 
@@ -30,15 +30,15 @@ ASSIGNED {                        : parameters needed to solve DE
     inf[2]
 	  tau[2] (ms)
     g      (mho/cm2)
-    gbar   (mho/cm2)
+    gmax   (mho/cm2)
 }
 
 BREAKPOINT {
 	  SOLVE states METHOD cnexp
     g = gcalbar*m*m*m*h
 	  ica = g*(v - eca)       
-    if (g > gbar) {
-        gbar = g
+    if (g > gmax) {
+        gmax = g
     }
 }
 

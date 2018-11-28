@@ -32,7 +32,7 @@ NEURON {
 	SUFFIX ittc
 	USEION ca READ cai,cao WRITE ica
 	GLOBAL q10m,q10h
-	RANGE g, gbar, m_inf, tau_m, h_inf, tau_h, shift, i
+	RANGE g, gmax, m_inf, tau_m, h_inf, tau_h, shift, i
 }
 
 UNITS {
@@ -47,7 +47,7 @@ UNITS {
 
 PARAMETER {
 	v		(mV)
-	gbar	= 0.0022 (mho/cm2)
+	gmax	= 0.0022 (mho/cm2)
 	q10m	= 3			: Q10 of activation
 	q10h	= 3			: Q10 of inactivation
         exptemp = 24    (degC)
@@ -77,7 +77,7 @@ ASSIGNED {
 BREAKPOINT {
 	SOLVE states METHOD cnexp
 	carev = (1e3) * (R*(celsius+273.15))/(2*FARADAY) * log (cao/cai)
-	g = gbar * m * m * h
+	g = gmax * m * m * h
 	i = g * (v-carev)
         ica = i
 }

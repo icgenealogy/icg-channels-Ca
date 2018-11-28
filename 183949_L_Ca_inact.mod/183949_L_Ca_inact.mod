@@ -10,7 +10,7 @@ NEURON {
 	SUFFIX L_Ca_inact
 	:USEION caL READ ecaL WRITE icaL VALENCE 2
 	USEION ca READ eca WRITE ica
-	RANGE gbar,ica,m_inf,m,h
+	RANGE gcabar,ica,m_inf,m,h
 	GLOBAL vca,theta_m,kappa_m,theta_h,kappa_h,eca
 }
 
@@ -21,7 +21,7 @@ UNITS {
 }
 
 PARAMETER {
-	gbar  = 0.0003  (mho/cm2)
+	gcabar  = 0.0003  (mho/cm2)
 	eca		(mV)	: eca can't be set here, only in hoc
 :	celcius = 36	(degC)
 	dt		(ms)
@@ -49,7 +49,7 @@ ASSIGNED {
 
 BREAKPOINT {
 	SOLVE states METHOD cnexp
-	ica = gbar * m *h* (v - eca)  :I have tried this as m*m also
+	ica = gcabar * m *h* (v - eca)  :I have tried this as m*m also
 }
 
 DERIVATIVE states {

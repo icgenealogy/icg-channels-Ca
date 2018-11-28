@@ -11,7 +11,7 @@ NEURON {
 	SUFFIX car
 	USEION ca READ cai, cao WRITE ica
 :	USEION Ca WRITE iCa VALENCE 2
-        RANGE gbar, m, h,ica
+        RANGE gcabar, m, h,ica
 	RANGE inf, fac, tau, ecar
 }
 
@@ -39,7 +39,7 @@ ASSIGNED {               : parameters needed to solve DE
 
 
 PARAMETER {              : parameters that can be entered when function is called in cell-setup
-        gbar = 1.0      (mho/cm2) : initialized conductance
+        gcabar = 1.0      (mho/cm2) : initialized conductance
 }  
 
 STATE {	
@@ -57,8 +57,8 @@ INITIAL {
 BREAKPOINT {
 	SOLVE states METHOD cnexp
 	ecar = (1e3) * (R*(celsius+273.15))/(2*FARADAY) * log (cao/cai)
-	ica = gbar*m*m*m*h*(v - ecar)
-:	iCa = gbar*m*m*m*h*(v - ecar)
+	ica = gcabar*m*m*m*h*(v - ecar)
+:	iCa = gcabar*m*m*m*h*(v - ecar)
 
 }
 

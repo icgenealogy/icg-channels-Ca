@@ -8,7 +8,7 @@ NEURON {
 	SUFFIX icalnew
 	USEION ca READ eca WRITE ica
 	GLOBAL inf
-	RANGE gbar, eca
+	RANGE gcabar, eca
 }
 
 UNITS {
@@ -21,7 +21,7 @@ PARAMETER {
 	v (mV)
 :	celsius = 37	(degC)
 	dt (ms)
-	gbar=.0006 (mho/cm2)
+	gcabar=.0006 (mho/cm2)
 	eca = 115 (mV)
 	caactvha = 25 (mV)
 	caactslope = -4 (mV)
@@ -35,7 +35,7 @@ ASSIGNED {
 
 BREAKPOINT {
 	SOLVE states METHOD cnexp
-	ica = gbar*m*m * (v - eca)
+	ica = gcabar*m*m * (v - eca)
 }
 
 DERIVATIVE states {	: exact when v held constant

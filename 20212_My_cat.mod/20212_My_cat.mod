@@ -18,7 +18,7 @@ PARAMETER {
 	v (mV)
         tBase = 23.5  (degC)
 	celsius = 22	(degC)
-	gbar = 1.0 (mho/cm2)
+	gcatbar = 1.0 (mho/cm2)
 	ki=.001 (mM)
 	cai=5.e-5 (mM)
 	cao = 2  (mM)
@@ -47,8 +47,8 @@ NEURON {
         : The T-current does not activate calcium-dependent currents.
         : The construction with dummy ion Ca prevents the updating of the 
         : internal calcium concentration. 
-        RANGE gbar, hinf, minf, taum, tauh, ica
-:        RANGE gbar, hinf, minf, iCa
+        RANGE gcatbar, hinf, minf, taum, tauh, ica
+:        RANGE gcatbar, hinf, minf, iCa
 }
 
 STATE {
@@ -68,12 +68,12 @@ INITIAL {
 	rates(v)
         m = minf
         h = hinf
-	gcat = gbar*m*m*h*h2(cai)
+	gcat = gcatbar*m*m*h*h2(cai)
 }
 
 BREAKPOINT {
 	SOLVE states
-	gcat = gbar*m*m*h*h2(cai)
+	gcat = gcatbar*m*m*h*h2(cai)
 	ica = gcat*ghk(v,cai,cao)
 
 }

@@ -18,7 +18,7 @@ PARAMETER {           :parameters that can be entered when function is called in
 	v             (mV)
         tBase = 23.5  (degC)
 	celsius = 22  (degC)
-	gbar = 1.0   (mho/cm2)  : initialized conductance
+	gcatbar = 1.0   (mho/cm2)  : initialized conductance
 	ki = 0.001    (mM)
 	cai (mM)       : initial internal Ca++ concentration
 	cao (mM)       : initial external Ca++ concentration
@@ -34,7 +34,7 @@ NEURON {
         : The T-current does not activate calcium-dependent currents.
         : The construction with dummy ion Ca prevents the updating of the 
         : internal calcium concentration. 
-        RANGE gbar, hinf, minf, taum, tauh
+        RANGE gcatbar, hinf, minf, taum, tauh
 }
 
 STATE {	m h }  : unknown activation and inactivation parameters to be solved in the DEs 
@@ -53,12 +53,12 @@ INITIAL {
 	rates(v)
         m = minf
         h = hinf
-	gcat = gbar*m*m*h*h2(cai)
+	gcat = gcatbar*m*m*h*h2(cai)
 }
 
 BREAKPOINT {
 	SOLVE states
-	gcat = gbar*m*m*h*h2(cai) : maximum channel permeability
+	gcat = gcatbar*m*m*h*h2(cai) : maximum channel permeability
 	ica = gcat*ghk(v,cai,cao)    : dummy calcium current induced by this channel
 
 }

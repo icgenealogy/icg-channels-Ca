@@ -9,7 +9,7 @@ TITLE Ca R-type channel with medium threshold for activation
 NEURON {
 	SUFFIX somacar
 	USEION ca READ eca WRITE ica
-        RANGE gbar, m, h
+        RANGE gcabar, m, h
 	RANGE inf, fac, tau
 }
 
@@ -22,7 +22,7 @@ UNITS {
 
 PARAMETER { 
         eca = 140       (mV)      : Ca++ reversal potentia    
-        gbar = 1.0      (mho/cm2) : initialized conductance
+        gcabar = 1.0      (mho/cm2) : initialized conductance
         celsius =34        (degC)
 }
 
@@ -48,13 +48,13 @@ INITIAL {
 	m = 0    : initial activation parameter value
 	h = 1    : initial inactivation parameter value
 	rates(v)
-      ica = gbar*m*m*m*h*(v - eca)  : initial Ca++ current value
+      ica = gcabar*m*m*m*h*(v - eca)  : initial Ca++ current value
 }
 
 BREAKPOINT {
 	SOLVE states METHOD cnexp
         :ecar = (1e3) * (R*(celsius+273.15))/(2*FARADAY) * log (cao/cai)
-	ica = gbar*m*m*m*h*(v - eca)
+	ica = gcabar*m*m*m*h*(v - eca)
 }
 
 

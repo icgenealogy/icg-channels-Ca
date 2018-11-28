@@ -20,7 +20,7 @@ UNITS {
 PARAMETER {
 	v (mV)
 	celsius 		(degC)
-: gbar=3/10*PcaRestbar
+: Pcalbar=3/10*PcaRestbar
 	PcalBar=.00006622 (cm/s)
 : was soll ki
 	ki=.00002 (mM)

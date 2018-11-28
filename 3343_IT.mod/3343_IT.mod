@@ -32,7 +32,7 @@ NEURON {
 	SUFFIX it
 	USEION ca READ cai,cao WRITE ica
 	GLOBAL q10
-	RANGE gbar, m_inf, tau_m, h_inf, tau_h, shift, carev
+	RANGE gcabar, m_inf, tau_m, h_inf, tau_h, shift, carev
 }
 
 UNITS {
@@ -48,7 +48,7 @@ UNITS {
 PARAMETER {
 	v		(mV)
 	celsius	= 36	(degC)
-	gbar	= 0.002	(mho/cm2)
+	gcabar	= 0.002	(mho/cm2)
 	q10	= 3			: Q10 of inactivation
 	shift	= 2 	(mV)		: corresponds to 2mM ext Ca++
 	cai	= 2.4e-4 (mM)		: adjusted for eca=120 mV
@@ -72,7 +72,7 @@ ASSIGNED {
 BREAKPOINT {
 	SOLVE castate METHOD cnexp
 	carev = (1e3) * (R*(celsius+273.15))/(2*FARADAY) * log (cao/cai)
-	ica = gbar * m_inf * m_inf * h * (v-carev)
+	ica = gcabar * m_inf * m_inf * h * (v-carev)
 }
 
 DERIVATIVE castate {

@@ -24,7 +24,7 @@ INDEPENDENT {t FROM 0 TO 1 WITH 1 (ms)}
 NEURON {
     SUFFIX newCaP
     USEION ca READ cai, cao WRITE ica
-    RANGE gbar, ica, gk, vhalfm, cvm, vshift
+    RANGE pcabar, ica, gk, vhalfm, cvm, vshift
 }
 
 UNITS {
@@ -59,7 +59,7 @@ PARAMETER {
     cvh = 16.098 (mV)
     vshift = 0 (mV)
 
-    gbar = 0.00049568 (cm/s)
+    pcabar = 0.00049568 (cm/s)
 }
 
 ASSIGNED {
@@ -85,7 +85,7 @@ INITIAL {
 BREAKPOINT {
     SOLVE states METHOD cnexp
     
-    ica = (1e3) * gbar * m * m * m * gk
+    ica = (1e3) * pcabar * m * m * m * gk
 }
 
 DERIVATIVE states {

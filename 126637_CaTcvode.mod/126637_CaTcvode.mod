@@ -12,7 +12,7 @@ UNITS {
 NEURON {
         SUFFIX CaTcvode
         USEION ca READ eca WRITE ica
-        RANGE  gbar, ica, gca
+        RANGE  gcabar, ica, gca
 } 
  
 INDEPENDENT {t FROM 0 TO 1 WITH 1 (ms)}
@@ -21,7 +21,7 @@ PARAMETER {
         v (mV)
         celsius = 37 (degC)
         
-        gbar = .0005 (mho/cm2)
+        gcabar = .0005 (mho/cm2)
         :ecacvode = 135 (mV)
    	:  cai	= 0.40e-4 (mM)		: adjusted for ecacvode=135mV
 	 : cao	= 2.4	(mM)
@@ -43,7 +43,7 @@ ASSIGNED {
  
 BREAKPOINT {
         SOLVE state METHOD cnexp
-        gca = gbar * m*h
+        gca = gcabar * m*h
 	ica = gca* (v-eca)
 }
  

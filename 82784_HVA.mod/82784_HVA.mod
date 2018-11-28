@@ -4,7 +4,7 @@
 NEURON {
 	SUFFIX HVA
 	USEION ca READ cai, cao WRITE ica
-	RANGE gbar, gca, eca, ica
+	RANGE gHVAbar, gca, eca, ica
 }
 
 UNITS {
@@ -13,7 +13,7 @@ UNITS {
 }
 
 PARAMETER {
-	gbar= 0.00034 (mho/cm2) <0,1e9>
+	gHVAbar= 0.00034 (mho/cm2) <0,1e9>
 }
 
 ASSIGNED {
@@ -41,7 +41,7 @@ INITIAL {
 
 BREAKPOINT {
 	SOLVE states METHOD derivimplicit
-	gca = gbar*u*u*z
+	gca = gHVAbar*u*u*z
 	eca = 12.5*log(cao/cai)
 	ica = gca*(v-eca)
 }

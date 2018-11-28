@@ -6,7 +6,7 @@ NEURON {
 	SUFFIX CaN
 	USEION ca READ cai,cao WRITE ica
 	RANGE minf, mtau, hinf, htau
-	GLOBAL gbar
+	GLOBAL pmax
 }
 
 UNITS {
@@ -22,7 +22,7 @@ PARAMETER {
 	celsius	(degC)
 	cai		(mM)
 	cao		(mM)
-	gbar = 1e-5	(cm/s)		
+	pmax = 1e-5	(cm/s)		
 }
 
 CONSTANT {
@@ -42,8 +42,8 @@ ASSIGNED {
 
 BREAKPOINT { 
 	SOLVE state METHOD cnexp : see http://www.neuron.yale.edu/phpBB/viewtopic.php?f=28&t=592
-	ica = gbar*m*m*(a*h+(1-a))*ghk(v,cai,cao,2)
-	: ica = gbar*m*m*(a*h+(1-a))*ghk(v,0.001,cao,2)
+	ica = pmax*m*m*(a*h+(1-a))*ghk(v,cai,cao,2)
+	: ica = pmax*m*m*(a*h+(1-a))*ghk(v,0.001,cao,2)
 }
 
 DERIVATIVE state {

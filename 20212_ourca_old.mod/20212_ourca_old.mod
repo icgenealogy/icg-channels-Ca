@@ -5,7 +5,7 @@ TITLE Ca R-type channel
 NEURON {
 	SUFFIX car
 	USEION ca READ eca WRITE ica
-        RANGE gbar, m, h
+        RANGE gcabar, m, h
 	RANGE inf, fac, tau
 }
 
@@ -20,7 +20,7 @@ PARAMETER {
         v (mV)
         celsius = 34	(degC)
 	dt (ms)
-        gbar=1.0 (mho/cm2)
+        gcabar=1.0 (mho/cm2)
 	eca = 140 (mV)
         }
 
@@ -37,16 +37,16 @@ ASSIGNED {
 
 BREAKPOINT {
 	SOLVE states
-	ica = gbar*m*m*m*h*(v - eca)
-        :ica = gbar*m*m*m*(v - eca )
+	ica = gcabar*m*m*m*h*(v - eca)
+        :ica = gcabar*m*m*m*(v - eca )
 	}
 
 INITIAL {
         h=1
         m=0
 	states()
-	ica = gbar*m*m*m*h*(v - eca)
-	:ica = gbar*m*m*m*(v - eca)
+	ica = gcabar*m*m*m*h*(v - eca)
+	:ica = gcabar*m*m*m*(v - eca)
         }
 
 PROCEDURE calcg() {

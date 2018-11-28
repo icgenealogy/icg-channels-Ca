@@ -9,7 +9,7 @@ NEURON {
 	SUFFIX tsbp
 	USEION ca READ cai, eca, cao WRITE ica
       USEION k READ ek WRITE ik
-	RANGE gbar , gkcabar
+	RANGE gcabar , gkcabar
 	RANGE c_inf , m_inf
 	RANGE tau_c , tau_m
 	RANGE c_exp , m_exp
@@ -26,7 +26,7 @@ UNITS {
 }
 
 PARAMETER {
-	gbar	= 0.002	(mho/cm2)
+	gcabar	= 0.002	(mho/cm2)
 	gkcabar     = 0.0014
 	eca		(mV)
 	ek          (mV)
@@ -60,7 +60,7 @@ ASSIGNED {
 
 BREAKPOINT {
 	SOLVE states
-	ica = gbar * c*c*c * (v - eca)
+	ica = gcabar * c*c*c * (v - eca)
 	ik = gkcabar * m*m*((cai)/(cai+0.2)) * (v - ek)
 
 	

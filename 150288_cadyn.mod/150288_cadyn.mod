@@ -3,7 +3,7 @@
 NEURON {
         SUFFIX cadyn
 	USEION ca READ eca WRITE ica
-	RANGE gbar, gca
+	RANGE gcabar, gca
 	RANGE uinf, zinf, utau, ztau 
 }
 
@@ -13,7 +13,7 @@ UNITS {
 }
 
 PARAMETER {
-	gbar = 0.0001 (mho/cm2) <0,1e9>
+	gcabar = 0.0001 (mho/cm2) <0,1e9>
 }
 
 STATE { u z }
@@ -31,7 +31,7 @@ ASSIGNED {
 
 BREAKPOINT { 
 	SOLVE states METHOD cnexp
-	gca = gbar*u*u*z
+	gca = gcabar*u*u*z
 	ica = gca*(v-eca)
 }
 

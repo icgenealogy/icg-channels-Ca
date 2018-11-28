@@ -7,7 +7,7 @@ NEURON {
 	:USEION Ca READ Cai, Cao WRITE iCa VALENCE 2
 	USEION ca READ cai,cao WRITE ica
         RANGE minf, mtau, hinf, htau
-	GLOBAL gbar
+	GLOBAL pmax
 }
 
 UNITS {
@@ -25,7 +25,7 @@ PARAMETER {
 	cao		(mM)
 	:Cai		(mM)
 	:Cao		(mM)
-	gbar = 6.7e-6	(cm/s)		
+	pmax = 6.7e-6	(cm/s)		
 }
 
 CONSTANT {
@@ -45,8 +45,8 @@ ASSIGNED {
 
 BREAKPOINT { 
 	SOLVE state METHOD cnexp
-	ica = gbar*m*m*(a*h+(1-a))*ghk(v,cai,cao,2)	
-	: iCa = gbar*m*m*(a*h+(1-a))*ghk(v,0.001,Cao,2)	
+	ica = pmax*m*m*(a*h+(1-a))*ghk(v,cai,cao,2)	
+	: iCa = pmax*m*m*(a*h+(1-a))*ghk(v,0.001,Cao,2)	
 }
 
 DERIVATIVE state {

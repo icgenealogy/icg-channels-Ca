@@ -10,7 +10,7 @@ NEURON {
 	USEION ca READ cai, eca   WRITE ica :Ca-entry could account for CDI, CDF of VGCC
       :  USEION Ca WRITE iCa VALENCE 2
         : The T-current does not activate calcium-dependent K-currents, anyway.
-        RANGE gbar, ica
+        RANGE gcatbar, ica
 	GLOBAL hinf, minf
 }
 
@@ -24,8 +24,8 @@ UNITS {
 }
 
 PARAMETER {           :parameters that can be entered when function is called in cell-setup 
-:	gbar = 0.1e-7   (cm/s)  : initialized conductance
-	gbar = 1.0   (mho/cm2)  : initialized conductance
+:	gcatbar = 0.1e-7   (cm/s)  : initialized conductance
+	gcatbar = 1.0   (mho/cm2)  : initialized conductance
 	zetam = -3
 	zetah = 5.2
 	vhalfm =-36 (mV)
@@ -62,8 +62,8 @@ BREAKPOINT {
 	SOLVE states METHOD cnexp
 :	ecat = 12.5(mV) * log (cao/cai)
 :	ecat = (1e3) * (R*(celsius+273.15))/(2*FARADAY) * log (cao/cai)
-	ica = gbar*m*m*h*(v-eca)	: dummy calcium current induced by this channel
- :	ica = gbar*m*m*h*ghk(v, cai, cao)
+	ica = gcatbar*m*m*h*(v-eca)	: dummy calcium current induced by this channel
+ :	ica = gcatbar*m*m*h*ghk(v, cai, cao)
 }
 
 FUNCTION ghk(v(mV), ci(mM), co(mM)) (.001 coul/cm3) {

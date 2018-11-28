@@ -29,7 +29,7 @@
                              NEURON {
                                      SUFFIX it2
                                      USEION ca READ cai, cao WRITE ica
-                                     RANGE gbar, m_inf, tau_m, h_inf, tau_h, shift, carev
+                                     RANGE gcabar, m_inf, tau_m, h_inf, tau_h, shift, carev
                              }
 
                              UNITS {
@@ -46,7 +46,7 @@
                                      v               (mV)
                                      celsius = 36    (degC)
                              :       eca     = 120   (mV)
-                                     gbar  = .00175 (mho/cm2)
+                                     gcabar  = .00175 (mho/cm2)
                                      shift   = 2     (mV)            : screening charge for Ca_o = 2 mM
                                      cai     = 2.4e-4 (mM)           : adjusted for eca=120 mV
                                      cao     = 2     (mM)
@@ -70,7 +70,7 @@
                              BREAKPOINT {
                                      SOLVE castate METHOD euler
                                      carev = (1e3) * (R*(celsius+273.15))/(2*FARADAY) * log (cao/cai)
-                                     ica = gbar * m*m*h * (v-carev)
+                                     ica = gcabar * m*m*h * (v-carev)
                              }
 
                              DERIVATIVE castate {

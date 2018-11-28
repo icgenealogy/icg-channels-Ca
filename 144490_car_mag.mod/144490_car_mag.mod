@@ -10,7 +10,7 @@ ENDCOMMENT
 NEURON {
     SUFFIX car_mag
     USEION ca READ cai, cao WRITE ica
-    RANGE gbar, m, h
+    RANGE gmax, m, h
     RANGE minf, hinf, taum, tauh
     GLOBAL q10, taum_exp, z
 }
@@ -18,7 +18,7 @@ NEURON {
 INCLUDE "custom_code/inc_files/144490_units.inc"
 
 PARAMETER {   
-    gbar = 1.0      (S/cm2) <0,1e9> 
+    gmax = 1.0      (S/cm2) <0,1e9> 
     q10  = 3  
     taum_exp = 0.92  (ms)            : experimentally-measured taum
     z = 2                         : valency of Ca ions
@@ -40,14 +40,14 @@ ASSIGNED {               : parameters needed to solve DE
 
 BREAKPOINT {
     SOLVE kin METHOD sparse
-	  ica = gbar*mO*mO*mO*hO*ghkg(v,cai,cao,z)
+	  ica = gmax*mO*mO*mO*hO*ghkg(v,cai,cao,z)
 }
 
 INITIAL { 
     taum = q10^(-(celsius-22(degC))/10(degC))*taum_exp
     tauh = q10^(-(celsius-22(degC))/10(degC))*53(ms)
     SOLVE kin STEADYSTATE sparse    
-    ica = gbar*mO*mO*mO*hO*ghkg(v,cai,cao,z)
+    ica = gmax*mO*mO*mO*hO*ghkg(v,cai,cao,z)
 }
 
 KINETIC kin {

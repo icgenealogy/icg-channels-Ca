@@ -30,7 +30,7 @@ INDEPENDENT {t FROM 0 TO 1 WITH 1 (ms)}
 NEURON {
 	SUFFIX itre
 	USEION ca READ eca, cai, cao WRITE ica
-	RANGE gbar, m_inf, tau_m, h_inf, tau_h, shift, i
+	RANGE gmax, m_inf, tau_m, h_inf, tau_h, shift, i
         GLOBAL exptemp, q10m, q10h
 }
 
@@ -46,7 +46,7 @@ UNITS {
 
 PARAMETER {
 	v		(mV)
-	gbar	= .003	(mho/cm2)
+	gmax	= .003	(mho/cm2)
 	shift	= 2 	(mV)
 	q10m	= 2.5
 	q10h	= 2.5
@@ -76,7 +76,7 @@ ASSIGNED {
 BREAKPOINT {
 	SOLVE states METHOD cnexp
 	:carev = (1e3) * (R*(celsius+273.15))/(2*FARADAY) * log (cao/cai)
-	i = gbar * m*m*h * (v-eca) :carev)
+	i = gmax * m*m*h * (v-eca) :carev)
         ica=i
 }
 
