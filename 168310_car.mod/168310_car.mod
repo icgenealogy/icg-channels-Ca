@@ -39,7 +39,7 @@ ASSIGNED {               : parameters needed to solve DE
 
 
 PARAMETER {              : parameters that can be entered when function is called in cell-setup
-        gcabar = 0      (mho/cm2) : initialized conductance
+        gcabar = 1      (mho/cm2) : initialized conductance
 }  
 
 STATE {	
